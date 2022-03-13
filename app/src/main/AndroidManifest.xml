@@ -8,6 +8,38 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Laundromatic" />
+        android:theme="@style/Theme.Laundromatic">
+        <activity
+            android:name=".UpcomingReservation"
+            android:exported="false"
+            android:label="@string/title_activity_upcoming_reservation"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".MissedReservation"
+            android:exported="false"
+            android:label="@string/title_activity_missed_reservation"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".CurrentMachines.kt"
+            android:exported="false"
+            android:label="@string/title_activity_current_machines.kt"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".MainMenuActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main_menu"
+            android:theme="@style/Theme.Laundromatic">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Laundromatic" />
+    </application>
 
 </manifest>

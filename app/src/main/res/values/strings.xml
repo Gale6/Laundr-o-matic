@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Laundr-o-matic</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_current_machines.kt">CurrentMachines.kt</string>
+    <string name="title_activity_missed_reservation">MissedReservation</string>
+    <string name="title_activity_upcoming_reservation">UpcomingReservation</string>
 </resources>
