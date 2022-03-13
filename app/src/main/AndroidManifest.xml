@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Laundromatic">
         <activity
+            android:name=".CurrentMachine"
+            android:exported="false"
+            android:label="@string/title_activity_current_machine"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
             android:name=".UpcomingReservation"
             android:exported="false"
             android:label="@string/title_activity_upcoming_reservation"

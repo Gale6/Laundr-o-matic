@@ -27,7 +27,7 @@ class CurrentMachines : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LaundromaticTheme {
-                CurrentMachinesScreen()
+                MachinesInUseScreen()
             }
         }
     }
@@ -35,11 +35,11 @@ class CurrentMachines : ComponentActivity() {
 
 @Preview
 @Composable
-fun CurrentMachinesScreen() {
+fun MachinesInUseScreen() {
 
     Column {
 
-        TopAppBar(title = { Text("Current Machines") })
+        TopAppBar(title = { Text("Machines in use") })
 
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = TopCenter) {
             Box(modifier = Modifier
