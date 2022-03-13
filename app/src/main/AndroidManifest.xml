@@ -8,6 +8,31 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Laundromatic" />
+        android:theme="@style/Theme.Apartmentlaundryapp">
+        <activity
+            android:name="com.revature.laundr_o_matic.TestingFeatures"
+            android:exported="false"
+            android:label="@string/title_activity_testing_features"
+            android:theme="@style/Theme.Apartmentlaundryapp" />
+        <activity
+            android:name="com.revature.laundr_o_matic.RegistrationSuccessful"
+            android:exported="false"
+            android:label="@string/title_activity_registration_successful"
+            android:theme="@style/Theme.Apartmentlaundryapp" />
+        <activity
+            android:name="com.revature.laundr_o_matic.Registration"
+            android:exported="false"
+            android:label="@string/title_activity_registration"
+            android:theme="@style/Theme.Apartmentlaundryapp" />
+        <activity
+            android:name="com.revature.laundr_o_matic.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>

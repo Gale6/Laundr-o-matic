@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Laundr-o-matic</string>
+    <string name="app_name">apartment-laundry-app</string>
+    <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_registration_successful">RegistrationSuccessful</string>
+    <string name="title_activity_log_in_portal">LogInPortal</string>
+    <string name="title_activity_testing_features">TestingFeatures</string>
 </resources>
