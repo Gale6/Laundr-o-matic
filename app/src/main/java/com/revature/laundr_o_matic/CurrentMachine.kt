@@ -32,7 +32,6 @@ class CurrentMachine : ComponentActivity() {
     }
 }
 
-@Preview
 @Composable
 fun CurrentMachineScreen() {
     val context = LocalContext.current
@@ -97,5 +96,13 @@ fun CurrentMachineScreen() {
                 }
             }
         }
+    }
+}
+
+@Preview (showBackground = true)
+@Composable
+fun CurrentMachineScreenPreview() {
+    LaundromaticTheme() {
+        CurrentMachineScreen()
     }
 }
