@@ -54,7 +54,7 @@ fun ReservationSuccessfulUI()
                 .height(50.dp), fontSize = 30.sp, textAlign = TextAlign.Center)
         Button(onClick = {context.startActivity(
             Intent(
-            context, MachineReservation::class.java)
+            context, MainMenuActivity::class.java)
         )},
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
