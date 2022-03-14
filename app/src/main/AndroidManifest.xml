@@ -8,7 +8,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Laundromatic">
+        android:theme="@style/Theme.Apartmentlaundryapp">
+
+
         <activity
             android:name=".CurrentMachine"
             android:exported="false"
@@ -28,23 +30,72 @@
             android:name=".CurrentMachines.kt"
             android:exported="false"
             android:label="@string/title_activity_current_machines.kt"
+            android:theme="@style/Theme.Apartmentlaundryapp" />
+
+        
+        <activity
+            android:name="com.revature.laundr_o_matic.TestingFeatures"
+            android:exported="false"
+            android:label="@string/title_activity_testing_features"
+            android:theme="@style/Theme.Apartmentlaundryapp" />
+        <activity
+            android:name="com.revature.laundr_o_matic.RegistrationSuccessful"
+            android:exported="false"
+            android:label="@string/title_activity_registration_successful"
+            android:theme="@style/Theme.Apartmentlaundryapp" />
+        <activity
+            android:name="com.revature.laundr_o_matic.Registration"
+            android:exported="false"
+            android:label="@string/title_activity_registration"
+            android:theme="@style/Theme.Apartmentlaundryapp" />
+        <activity
+            android:name="com.revature.laundr_o_matic.MainActivity"
+            android:exported="true"/> 
+  
+             <activity
+
+            android:name=".ReservationSuccessful"
+            android:exported="false"
+            android:label="@string/title_activity_reservation_successful"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".ReservationTime"
+            android:exported="false"
+            android:label="@string/title_activity_reservation_time"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".MachineDetails"
+            android:exported="false"
+            android:label="@string/title_activity_machine_details"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".MachineReservation"
+            android:exported="false"
+            android:label="@string/title_activity_machine_reservation"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".WalletActivity"
+            android:exported="false"
+            android:label="@string/title_activity_wallet"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_user_profile"
+
             android:theme="@style/Theme.Laundromatic" />
         <activity
             android:name=".MainMenuActivity"
             android:exported="true"
             android:label="@string/title_activity_main_menu"
-            android:theme="@style/Theme.Laundromatic">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Laundromatic" />
+
     </application>
 
 </manifest>
