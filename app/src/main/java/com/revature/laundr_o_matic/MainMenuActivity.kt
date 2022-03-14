@@ -48,7 +48,7 @@ fun MainContent() {
     Row(modifier = Modifier.padding(16.dp),verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center ){
         Column(modifier = Modifier.padding(16.dp),horizontalAlignment= Alignment.CenterHorizontally) {
             Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.createnewicon), contentDescription = "createNewIcon", modifier = Modifier
-                .clickable { /* context.startActivity(Intent(context,createNewReservation::Class.java)) */ }
+                .clickable { context.startActivity(Intent(context,MachineReservation::class.java)) }
                 .size(150.dp)
             )
             Text(text = "new reservation",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
