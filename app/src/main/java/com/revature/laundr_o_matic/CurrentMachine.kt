@@ -102,7 +102,7 @@ fun CurrentMachineScreen() {
 @Preview (showBackground = true)
 @Composable
 fun CurrentMachineScreenPreview() {
-    LaundromaticTheme() {
+    LaundromaticTheme {
         CurrentMachineScreen()
     }
 }

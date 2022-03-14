@@ -104,3 +104,11 @@ fun UpcomingReservationScreen() {
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun UpcomingReservationScreenPreview() {
+    LaundromaticTheme {
+        UpcomingReservationScreen()
+    }
+}

@@ -41,7 +41,7 @@ class MissedReservation : ComponentActivity() {
 @Composable
 fun MissedReservationScreen() {
 
-    var context = LocalContext.current
+    val context = LocalContext.current
     Column {
 
         TopAppBar(title = { Text("Missed Reservation") })
@@ -104,11 +104,10 @@ fun MissedReservationScreen() {
     }
 }
 
-
-
-
-
-
-
-
-
+@Preview(showBackground = true)
+@Composable
+fun MissedReservationPreview() {
+    LaundromaticTheme {
+        MissedReservationScreen()
+    }
+}

@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-class CurrentMachines : ComponentActivity() {
+class MachinesInUse : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -35,7 +35,6 @@ class CurrentMachines : ComponentActivity() {
     }
 }
 
-@Preview
 @Composable
 fun MachinesInUseScreen() {
     val context = LocalContext.current
@@ -132,5 +131,13 @@ fun MachinesInUseScreen() {
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MachinesInUseScreenPreview() {
+    LaundromaticTheme {
+        MachinesInUseScreen()
     }
 }
