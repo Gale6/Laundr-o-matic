@@ -7,6 +7,13 @@
     <string name="title_activity_testing_features">TestingFeatures</string>
 
     <string name="app_name">Laundr-o-matic</string>
+
+
+    <string name="title_activity_current_machines.kt">CurrentMachines.kt</string>
+    <string name="title_activity_missed_reservation">MissedReservation</string>
+    <string name="title_activity_upcoming_reservation">UpcomingReservation</string>
+    <string name="title_activity_current_machine">CurrentMachine</string>
+
     <string name="title_activity_machine_reservation">MachineReservation</string>
     <string name="title_activity_machine_details">MachineDetails</string>
     <string name="title_activity_reservation_time">ReservationTime</string>
@@ -14,5 +21,6 @@
     <string name="title_activity_main_menu">MainMenuActivity</string>
     <string name="title_activity_user_profile">UserProfileActivity</string>
     <string name="title_activity_wallet">WalletActivity</string>
+
 
 </resources>

@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic
 
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -19,6 +20,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
 class MainMenuActivity : ComponentActivity() {
@@ -26,6 +28,7 @@ class MainMenuActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LaundromaticTheme {
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -90,4 +93,5 @@ fun DefaultPreview() {
     LaundromaticTheme {
         MainContent()
     }
+
 }
