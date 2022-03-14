@@ -89,7 +89,7 @@ fun MainContent() {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun PreviewMainMenu() {
     LaundromaticTheme {
         MainContent()
     }

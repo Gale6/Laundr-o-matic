@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -40,6 +41,7 @@ class MissedReservation : ComponentActivity() {
 @Composable
 fun MissedReservationScreen() {
 
+    var context = LocalContext.current
     Column {
 
         TopAppBar(title = { Text("Missed Reservation") })
