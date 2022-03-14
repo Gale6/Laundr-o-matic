@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Laundr-o-matic</string>
+    <string name="title_activity_machine_reservation">MachineReservation</string>
+    <string name="title_activity_machine_details">MachineDetails</string>
+    <string name="title_activity_reservation_time">ReservationTime</string>
+    <string name="title_activity_reservation_successful">ReservationSuccessful</string>
 </resources>
