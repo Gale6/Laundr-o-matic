@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Laundromatic">
         <activity
+
             android:name=".ReservationSuccessful"
             android:exported="false"
             android:label="@string/title_activity_reservation_successful"
@@ -29,6 +30,27 @@
             android:exported="false"
             android:label="@string/title_activity_machine_reservation"
             android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".WalletActivity"
+            android:exported="false"
+            android:label="@string/title_activity_wallet"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_user_profile"
+            android:theme="@style/Theme.Laundromatic" />
+        <activity
+            android:name=".MainMenuActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main_menu"
+            android:theme="@style/Theme.Laundromatic" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
