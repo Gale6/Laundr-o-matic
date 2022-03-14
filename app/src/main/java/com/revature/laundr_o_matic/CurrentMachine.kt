@@ -69,7 +69,7 @@ fun CurrentMachineScreen() {
                         fontSize = 25.sp
                     )
                     Image(
-                        painter = painterResource(id = R.drawable.frowning_face),
+                        painter = painterResource(id = R.drawable.washing_machine),
                         contentDescription = "Washer Icon",
                         Modifier.size(250.dp)
                         )
@@ -87,9 +87,11 @@ fun CurrentMachineScreen() {
                     )
                     Spacer(modifier = Modifier.padding(10.dp))
 
-                    Button(onClick = {context.startActivity(Intent(context, MainMenuActivity::class.java))}, modifier = Modifier
-                        .fillMaxWidth(0.8f)
-                        .height(50.dp)
+                    Button(onClick = {context.startActivity(Intent(context,
+                            MainMenuActivity::class.java))},
+                        modifier = Modifier
+                            .fillMaxWidth(0.8f)
+                            .height(50.dp)
                     ) {
                         Text("Main Menu")
                     }

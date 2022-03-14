@@ -51,23 +51,23 @@ fun MainContent() {
                 .clickable { context.startActivity(Intent(context,MachineReservation::class.java)) }
                 .size(150.dp)
             )
-            Text(text = "new reservation",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
+            Text(text = "New Reservation",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(64.dp))
             Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.history1), contentDescription = "history", modifier = Modifier
                 .clickable { /* context.startActivity(Intent(context,createNewReservation::Class.java)) */ }
                 .size(150.dp)
             )
-            Text(text = "Histories",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
+            Text(text = "History",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
         }
 
         Spacer(modifier = Modifier.width(16.dp))
 
         Column(modifier = Modifier.padding(16.dp),horizontalAlignment= Alignment.CenterHorizontally) {
             Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.hourglass), contentDescription = "hourglass", modifier = Modifier
-                .clickable { /* context.startActivity(Intent(context,createNewReservation::Class.java)) */ }
+                .clickable { context.startActivity(Intent(context, MachinesInUse::class.java)) }
                 .size(150.dp)
             )
-            Text(text = "current",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
+            Text(text = "Current Machines",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(64.dp))
             Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.person1), contentDescription = "personalInfoIcon", modifier = Modifier
                 .clickable {
@@ -80,7 +80,7 @@ fun MainContent() {
                 }
                 .size(150.dp)
             )
-            Text(text = "personal Info",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
+            Text(text = "Personal Info",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
 
         }
     }

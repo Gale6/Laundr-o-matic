@@ -35,7 +35,6 @@ class UpcomingReservation : ComponentActivity() {
     }
 }
 
-@Preview
 @Composable
 fun UpcomingReservationScreen() {
     val context = LocalContext.current
@@ -51,7 +50,7 @@ fun UpcomingReservationScreen() {
                 contentAlignment = Alignment.TopCenter
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.frowning_face),
+                    painter = painterResource(id = R.drawable.washing_machine),
                     contentDescription = "Machine icon",
                     modifier = Modifier.size(250.dp)
                 )

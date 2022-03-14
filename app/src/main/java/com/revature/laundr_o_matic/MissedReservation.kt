@@ -37,7 +37,6 @@ class MissedReservation : ComponentActivity() {
     }
 }
 
-@Preview
 @Composable
 fun MissedReservationScreen() {
 
@@ -67,7 +66,8 @@ fun MissedReservationScreen() {
                 Spacer(modifier = Modifier.height(200.dp))
 
                 Text(text = "Oh no!",
-                    style = TextStyle(fontWeight = FontWeight.Bold),
+                    style = TextStyle(color = Color.Red,
+                    fontWeight = FontWeight.Bold),
                     fontSize = 50.sp)
                 Text(text = "You missed your reservation.",
                     fontSize = 25.sp)
@@ -84,7 +84,9 @@ fun MissedReservationScreen() {
                         .padding(10.dp)
                 ) {
                     Button(
-                        onClick = { /*TODO*/ }, modifier = Modifier
+                        onClick = {context.startActivity(Intent(context,
+                            MachineReservation::class.java))},
+                        modifier = Modifier
                             .fillMaxWidth(0.8f)
                             .height(50.dp)
                     ) {
@@ -92,9 +94,12 @@ fun MissedReservationScreen() {
                     }
                     Spacer(modifier = Modifier.padding(10.dp))
 
-                    Button(onClick = {context.startActivity(Intent(context, MainMenuActivity::class.java))}, modifier = Modifier
-                        .fillMaxWidth(0.8f)
-                        .height(50.dp)
+                    Button(
+                        onClick = {context.startActivity(Intent(context,
+                            MainMenuActivity::class.java) )},
+                        modifier = Modifier
+                            .fillMaxWidth(0.8f)
+                            .height(50.dp)
                     ) {
                         Text("Main Menu")
                     }

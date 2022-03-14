@@ -79,18 +79,22 @@ fun MachinesInUseScreen() {
                             .clip(RoundedCornerShape(30.dp))
                             .padding(10.dp)
                     ) {
-                        Button(onClick = {context.startActivity(Intent(context, CurrentMachine::class.java))}, modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .height(50.dp)
+                        Button(onClick = {context.startActivity(Intent(context,
+                                CurrentMachine::class.java))},
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                             .height(50.dp)
                         ) {
                             Text(text = "Washer 1: Time Left: 20 min")
                         }
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {context.startActivity(Intent(context, CurrentMachine::class.java))}, modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .height(50.dp)
+                        Button(onClick = {context.startActivity(Intent(context,
+                                CurrentMachine::class.java))},
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .height(50.dp)
                         ) {
                             Text(text = "Drier 1: Time Left: 40 min")
                         }
@@ -104,26 +108,32 @@ fun MachinesInUseScreen() {
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {context.startActivity(Intent(context, UpcomingReservation::class.java))}, modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .height(50.dp)
+                        Button(onClick = {context.startActivity(Intent(context,
+                                UpcomingReservation::class.java))},
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .height(50.dp)
                         ) {
                             Text(text = "Washer 2: 10:00 on 03/22/22")
                         }
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {context.startActivity(Intent(context, UpcomingReservation::class.java))}, modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .height(50.dp)
+                        Button(onClick = {context.startActivity(Intent(context,
+                                UpcomingReservation::class.java))},
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .height(50.dp)
                         ) {
                             Text(text = "Drier 2: 11:00 03/22/22")
                         }
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {context.startActivity(Intent(context, MainMenuActivity::class.java))}, modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .height(50.dp)
+                        Button(onClick = {context.startActivity(Intent(context,
+                                MainMenuActivity::class.java))},
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .height(50.dp)
                         ) {
                             Text("Main Menu")
                         }
