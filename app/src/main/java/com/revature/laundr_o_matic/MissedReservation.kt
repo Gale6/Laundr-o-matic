@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -89,7 +90,7 @@ fun MissedReservationScreen() {
                     }
                     Spacer(modifier = Modifier.padding(10.dp))
 
-                    Button(onClick = { /* TODO goes back to main menu*/ }, modifier = Modifier
+                    Button(onClick = {context.startActivity(Intent(context, MainMenuActivity::class.java))}, modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .height(50.dp)
                     ) {

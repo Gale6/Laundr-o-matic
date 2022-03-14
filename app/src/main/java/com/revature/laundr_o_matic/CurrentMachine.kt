@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,6 +35,7 @@ class CurrentMachine : ComponentActivity() {
 @Preview
 @Composable
 fun CurrentMachineScreen() {
+    val context = LocalContext.current
 
     Column {
 
@@ -85,7 +88,7 @@ fun CurrentMachineScreen() {
                     )
                     Spacer(modifier = Modifier.padding(10.dp))
 
-                    Button(onClick = { /* TODO goes back to main menu*/ }, modifier = Modifier
+                    Button(onClick = {context.startActivity(Intent(context, MainMenuActivity::class.java))}, modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .height(50.dp)
                     ) {

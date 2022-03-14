@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,6 +16,7 @@ import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,6 +38,7 @@ class CurrentMachines : ComponentActivity() {
 @Preview
 @Composable
 fun MachinesInUseScreen() {
+    val context = LocalContext.current
 
     Column {
 
@@ -77,7 +80,7 @@ fun MachinesInUseScreen() {
                             .clip(RoundedCornerShape(30.dp))
                             .padding(10.dp)
                     ) {
-                        Button(onClick = {/* TODO: Takes you to current washer in use*/}, modifier = Modifier
+                        Button(onClick = {context.startActivity(Intent(context, CurrentMachine::class.java))}, modifier = Modifier
                             .fillMaxWidth(0.8f)
                             .height(50.dp)
                         ) {
@@ -86,7 +89,7 @@ fun MachinesInUseScreen() {
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {/* TODO: Takes you to current drier in use */}, modifier = Modifier
+                        Button(onClick = {context.startActivity(Intent(context, CurrentMachine::class.java))}, modifier = Modifier
                             .fillMaxWidth(0.8f)
                             .height(50.dp)
                         ) {
@@ -102,7 +105,7 @@ fun MachinesInUseScreen() {
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {/* TODO: Takes you to current washer reservation*/}, modifier = Modifier
+                        Button(onClick = {context.startActivity(Intent(context, UpcomingReservation::class.java))}, modifier = Modifier
                             .fillMaxWidth(0.8f)
                             .height(50.dp)
                         ) {
@@ -111,7 +114,7 @@ fun MachinesInUseScreen() {
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {/* TODO: Takes you to current drier reservation*/}, modifier = Modifier
+                        Button(onClick = {context.startActivity(Intent(context, UpcomingReservation::class.java))}, modifier = Modifier
                             .fillMaxWidth(0.8f)
                             .height(50.dp)
                         ) {
@@ -119,7 +122,7 @@ fun MachinesInUseScreen() {
                         }
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = { /* TODO goes back to main menu*/ }, modifier = Modifier
+                        Button(onClick = {context.startActivity(Intent(context, MainMenuActivity::class.java))}, modifier = Modifier
                             .fillMaxWidth(0.8f)
                             .height(50.dp)
                         ) {
