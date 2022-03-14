@@ -1,7 +1,18 @@
 <resources>
-    <string name="app_name">apartment-laundry-app</string>
+
+   
     <string name="title_activity_registration">Registration</string>
     <string name="title_activity_registration_successful">RegistrationSuccessful</string>
     <string name="title_activity_log_in_portal">LogInPortal</string>
     <string name="title_activity_testing_features">TestingFeatures</string>
+
+    <string name="app_name">Laundr-o-matic</string>
+    <string name="title_activity_machine_reservation">MachineReservation</string>
+    <string name="title_activity_machine_details">MachineDetails</string>
+    <string name="title_activity_reservation_time">ReservationTime</string>
+    <string name="title_activity_reservation_successful">ReservationSuccessful</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_user_profile">UserProfileActivity</string>
+    <string name="title_activity_wallet">WalletActivity</string>
+
 </resources>
