@@ -27,7 +27,7 @@
             android:label="@string/title_activity_missed_reservation"
             android:theme="@style/Theme.Apartmentlaundryapp" />
         <activity
-            android:name=".CurrentMachines"
+            android:name=".MachinesInUse"
             android:exported="false"
             android:label="@string/title_activity_current_machines.kt"
             android:theme="@style/Theme.Apartmentlaundryapp" />
