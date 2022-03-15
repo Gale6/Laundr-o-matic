@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
 @Composable
@@ -79,7 +80,7 @@ fun MachineDetailsScreen(navController: NavController)
             }
 
         }
-        Button(onClick = { context.startActivity(Intent(context,ReservationTime::class.java)) },
+        Button(onClick = { navController.navigate(Screen.ReservationSuccessful.route) },
             modifier=Modifier.padding(10.dp)
                 .fillMaxWidth(.75f)
                 .height(50.dp)
@@ -97,5 +98,5 @@ fun MachineDetailsScreen(navController: NavController)
 @Composable
 fun PreviewMachineDetails()
 {
-    MachineDetailsScreen()
+    MachineDetailsScreen(navController = rememberNavController())
 }

@@ -21,10 +21,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
 @Composable
-fun userProfileScreen(navController: NavController) {
+fun UserProfileScreen(navController: NavController) {
     val context = LocalContext.current
     Column(
         modifier = Modifier
@@ -86,11 +87,11 @@ fun userProfileScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(32.dp))
         Row{
-            Button(onClick = { context.startActivity(Intent(context, WalletActivity()::class.java)) }, modifier = Modifier.width(100.dp)) {
+            Button(onClick = {navController.navigate(Screen.Wallet.route) }, modifier = Modifier.width(100.dp)) {
                 Text(text = "Wallet")
             }
             Spacer(modifier = Modifier.width(32.dp))
-            Button(onClick = { context.startActivity(Intent(context, MainMenuActivity::class.java)) }, modifier = Modifier.width(100.dp)) {
+            Button(onClick = {navController.navigate(Screen.MainMenu.route)}, modifier = Modifier.width(100.dp)) {
                 Text(text = "Main")
             }
         }
@@ -111,7 +112,7 @@ fun userProfileScreen(navController: NavController) {
 @Composable
 fun DefaultPreview2() {
     LaundromaticTheme {
-        userProfileScreen()
+        UserProfileScreen(navController = rememberNavController())
 
     }
 }

@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 // Washing machine icon
 @Composable
@@ -131,7 +132,7 @@ fun LogInScreen(navController: NavController) =
         // Register for account button
         Button(
             modifier = Modifier.height(50.dp),
-            onClick = { context.startActivity(Intent(context, Registration::class.java)) })
+            onClick = { navController.navigate(Screen.Registration.route)})
         {
             Text(
                 text = "Register For New Account",
@@ -144,5 +145,5 @@ fun LogInScreen(navController: NavController) =
 @Preview
 @Composable
 fun PreviewLogInScreen() {
-    LogInScreen()
+    LogInScreen(navController = rememberNavController())
 }

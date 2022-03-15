@@ -20,10 +20,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
 @Composable
-fun walletScreen(navController: NavController) {
+fun WalletScreen(navController: NavController) {
     val context = LocalContext.current
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         Text(text = "Balance: ", fontWeight = FontWeight.Bold, fontSize = 40.sp)
@@ -50,7 +51,7 @@ fun walletScreen(navController: NavController) {
             Text(text = "Add funds")
         }
 
-        Button(modifier = Modifier.padding(10.dp),onClick = { context.startActivity(Intent(context, MainMenuActivity::class.java)) }) {
+        Button(modifier = Modifier.padding(10.dp),onClick = { navController.navigate(Screen.MainMenu.route)}) {
             Text(text = "back to main")
         }
 
@@ -61,6 +62,6 @@ fun walletScreen(navController: NavController) {
 @Composable
 fun DefaultPreview3() {
     LaundromaticTheme {
-        walletScreen()
+        WalletScreen(navController = rememberNavController())
     }
 }

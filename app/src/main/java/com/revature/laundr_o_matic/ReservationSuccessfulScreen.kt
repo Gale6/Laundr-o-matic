@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
 @Composable
@@ -37,10 +38,7 @@ fun ReservationSuccessfulScreen(navController: NavController)
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp), fontSize = 30.sp, textAlign = TextAlign.Center)
-        Button(onClick = {context.startActivity(
-            Intent(
-            context, MainMenuActivity::class.java)
-        )},
+        Button(onClick = {navController.navigate(Screen.MainMenu.route)},
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .height(40.dp)
@@ -58,5 +56,5 @@ fun ReservationSuccessfulScreen(navController: NavController)
 @Composable
 fun PreviewReservationSuccessful()
 {
-    ReservationSuccessfulScreen()
+    ReservationSuccessfulScreen(navController = rememberNavController())
 }

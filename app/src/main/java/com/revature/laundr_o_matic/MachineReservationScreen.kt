@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
 @Composable
@@ -56,9 +57,7 @@ fun MachineReservationScreen(navController: NavController)
                 ) R.drawable.dryer else R.drawable.washer
                 Row(modifier = Modifier.background(MaterialTheme.colors.background)
                     .clickable {
-
-                        context.startActivity(Intent(context,MachineDetails::class.java))
-                    })
+                        navController.navigate(Screen.MachineDetails.route)})
                 {
                     Image(
                         painter = painterResource(id = iMachine),
@@ -102,5 +101,5 @@ fun MachineReservationScreen(navController: NavController)
 @Composable
 fun PreviewReservation()
 {
-    MachineReservationScreen()
+    MachineReservationScreen(navController = rememberNavController())
 }
