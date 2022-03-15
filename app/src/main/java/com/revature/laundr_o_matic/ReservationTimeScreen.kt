@@ -24,29 +24,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ReservationTime : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    ReservationTimeUI()
-                }
-            }
-        }
-    }
-}
-
 @Composable
-fun ReservationTimeUI()
+fun ReservationTimeScreen(navController: NavController)
 {
     val sdf = SimpleDateFormat("dd/M")
     val currentDate = sdf.format(Date())
@@ -66,7 +51,7 @@ fun ReservationTimeUI()
                     .border(1.dp, Color.Black, RoundedCornerShape(5.dp)), fontSize = 30.sp, textAlign = TextAlign.Center
             )
         }
-        TimeList(time = selectedDate)
+        TimeList(navController,time = selectedDate)
 
     }
 
@@ -104,7 +89,7 @@ fun dateSelection( select: MutableState<String>): MutableState<String>
 
 }
 @Composable
-fun TimeList(time: MutableState<String>)
+fun TimeList(navController: NavController,time: MutableState<String>)
 {
     var availableTimes = ArrayList<String>()
 
@@ -133,8 +118,8 @@ fun TimeList(time: MutableState<String>)
                 .fillMaxWidth()
                 .height(50.dp)
                 .clickable {
-                    onTimeClick(ctx)
                 }) {
+                navController.navigate(Screen.ReservationSuccessful.route)
 
                 Text(text = availableTimes[it],
                     modifier = Modifier
@@ -148,13 +133,10 @@ fun TimeList(time: MutableState<String>)
         }
     }
 }
-fun onTimeClick(ctx: Context){
-    ctx.startActivity(Intent(ctx,ReservationSuccessful::class.java))
-}
 
 @Preview
 @Composable
 fun PreviewReservationTime()
 {
-    ReservationTimeUI()
+    ReservationTimeScreen(navController = rememberNavController())
 }

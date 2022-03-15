@@ -19,28 +19,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-
-class WalletActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    walletComponent()
-                }
-            }
-        }
-    }
-}
-
 @Composable
-fun walletComponent() {
+fun WalletScreen(navController: NavController) {
     val context = LocalContext.current
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         Text(text = "Balance: ", fontWeight = FontWeight.Bold, fontSize = 40.sp)
@@ -67,7 +51,7 @@ fun walletComponent() {
             Text(text = "Add funds")
         }
 
-        Button(modifier = Modifier.padding(10.dp),onClick = { context.startActivity(Intent(context, MainMenuActivity::class.java)) }) {
+        Button(modifier = Modifier.padding(10.dp),onClick = { navController.navigate(Screen.MainMenu.route)}) {
             Text(text = "back to main")
         }
 
@@ -78,6 +62,6 @@ fun walletComponent() {
 @Composable
 fun DefaultPreview3() {
     LaundromaticTheme {
-        walletComponent()
+        WalletScreen(navController = rememberNavController())
     }
 }

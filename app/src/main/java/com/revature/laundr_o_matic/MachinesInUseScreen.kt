@@ -22,21 +22,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-class MachinesInUse : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                MachinesInUseScreen()
-            }
-        }
-    }
-}
-
 @Composable
-fun MachinesInUseScreen() {
+fun MachinesInUseScreen(navController: NavController) {
     val context = LocalContext.current
 
     Column {
@@ -79,8 +70,7 @@ fun MachinesInUseScreen() {
                             .clip(RoundedCornerShape(30.dp))
                             .padding(10.dp)
                     ) {
-                        Button(onClick = {context.startActivity(Intent(context,
-                                CurrentMachine::class.java))},
+                        Button(onClick = { navController.navigate(Screen.CurrentMachine.route)},
                             modifier = Modifier
                                 .fillMaxWidth(0.8f)
                              .height(50.dp)
@@ -90,8 +80,8 @@ fun MachinesInUseScreen() {
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {context.startActivity(Intent(context,
-                                CurrentMachine::class.java))},
+                        Button(onClick = {
+                            navController.navigate(Screen.CurrentMachine.route)},
                             modifier = Modifier
                                 .fillMaxWidth(0.8f)
                                 .height(50.dp)
@@ -108,8 +98,7 @@ fun MachinesInUseScreen() {
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {context.startActivity(Intent(context,
-                                UpcomingReservation::class.java))},
+                        Button(onClick = {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
                                 .fillMaxWidth(0.8f)
                                 .height(50.dp)
@@ -119,8 +108,7 @@ fun MachinesInUseScreen() {
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {context.startActivity(Intent(context,
-                                UpcomingReservation::class.java))},
+                        Button(onClick = {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
                                 .fillMaxWidth(0.8f)
                                 .height(50.dp)
@@ -129,8 +117,7 @@ fun MachinesInUseScreen() {
                         }
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button(onClick = {context.startActivity(Intent(context,
-                                MainMenuActivity::class.java))},
+                        Button(onClick = {navController.navigate(Screen.MainMenu.route)},
                             modifier = Modifier
                                 .fillMaxWidth(0.8f)
                                 .height(50.dp)
@@ -148,6 +135,6 @@ fun MachinesInUseScreen() {
 @Composable
 fun MachinesInUseScreenPreview() {
     LaundromaticTheme {
-        MachinesInUseScreen()
+        MachinesInUseScreen(navController = rememberNavController())
     }
 }

@@ -19,27 +19,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-class MachineDetails : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    MachineDetailsUI()
-                }
-            }
-        }
-    }
-}
-
 @Composable
-fun MachineDetailsUI()
+fun MachineDetailsScreen(navController: NavController)
 {
     var context = LocalContext.current
 
@@ -95,7 +80,7 @@ fun MachineDetailsUI()
             }
 
         }
-        Button(onClick = { context.startActivity(Intent(context,ReservationTime::class.java)) },
+        Button(onClick = { navController.navigate(Screen.ReservationSuccessful.route) },
             modifier=Modifier.padding(10.dp)
                 .fillMaxWidth(.75f)
                 .height(50.dp)
@@ -113,5 +98,5 @@ fun MachineDetailsUI()
 @Composable
 fun PreviewMachineDetails()
 {
-    MachineDetailsUI()
+    MachineDetailsScreen(navController = rememberNavController())
 }

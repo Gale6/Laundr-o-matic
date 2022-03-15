@@ -20,30 +20,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-
-class UserProfileActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    userProfileComponent()
-
-                }
-            }
-        }
-    }
-}
-
-
 @Composable
-fun userProfileComponent() {
+fun UserProfileScreen(navController: NavController) {
     val context = LocalContext.current
     Column(
         modifier = Modifier
@@ -105,11 +87,11 @@ fun userProfileComponent() {
 
         Spacer(modifier = Modifier.height(32.dp))
         Row{
-            Button(onClick = { context.startActivity(Intent(context, WalletActivity()::class.java)) }, modifier = Modifier.width(100.dp)) {
+            Button(onClick = {navController.navigate(Screen.Wallet.route) }, modifier = Modifier.width(100.dp)) {
                 Text(text = "Wallet")
             }
             Spacer(modifier = Modifier.width(32.dp))
-            Button(onClick = { context.startActivity(Intent(context, MainMenuActivity::class.java)) }, modifier = Modifier.width(100.dp)) {
+            Button(onClick = {navController.navigate(Screen.MainMenu.route)}, modifier = Modifier.width(100.dp)) {
                 Text(text = "Main")
             }
         }
@@ -130,7 +112,7 @@ fun userProfileComponent() {
 @Composable
 fun DefaultPreview2() {
     LaundromaticTheme {
-        userProfileComponent()
+        UserProfileScreen(navController = rememberNavController())
 
     }
 }

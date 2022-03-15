@@ -20,35 +20,18 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-class MainMenuActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    MainContent()
-                }
-            }
-        }
-    }
-}
-
-
 @Composable
-fun MainContent() {
+fun MainMenuScreen(navController: NavController) {
     var context = LocalContext.current
     Row(modifier = Modifier.padding(16.dp),verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center ){
         Column(modifier = Modifier.padding(16.dp),horizontalAlignment= Alignment.CenterHorizontally) {
             Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.createnewicon), contentDescription = "createNewIcon", modifier = Modifier
-                .clickable { context.startActivity(Intent(context,MachineReservation::class.java)) }
+                .clickable { navController.navigate(Screen.MachineReservation.route) }
                 .size(150.dp)
             )
             Text(text = "New Reservation",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
@@ -64,19 +47,13 @@ fun MainContent() {
 
         Column(modifier = Modifier.padding(16.dp),horizontalAlignment= Alignment.CenterHorizontally) {
             Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.hourglass), contentDescription = "hourglass", modifier = Modifier
-                .clickable { context.startActivity(Intent(context, MachinesInUse::class.java)) }
+                .clickable { navController.navigate(Screen.MachineInUse.route) }
                 .size(150.dp)
             )
             Text(text = "Current Machines",fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(64.dp))
             Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.person1), contentDescription = "personalInfoIcon", modifier = Modifier
-                .clickable {
-                    context.startActivity(
-                        Intent(
-                            context,
-                            UserProfileActivity::class.java
-                        )
-                    )
+                .clickable {navController.navigate(Screen.UserProfile.route)
                 }
                 .size(150.dp)
             )
@@ -91,7 +68,7 @@ fun MainContent() {
 @Composable
 fun PreviewMainMenu() {
     LaundromaticTheme {
-        MainContent()
+        MainMenuScreen(navController = rememberNavController())
     }
 
 }

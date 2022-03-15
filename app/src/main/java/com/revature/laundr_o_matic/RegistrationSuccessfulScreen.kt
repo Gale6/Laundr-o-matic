@@ -17,20 +17,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-class RegistrationSuccessful : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
-        setContent ()
-        {
-            RegistrationSuccessfulScreen()
-        }
-    }
-}
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun RegistrationSuccessfulScreen()
+fun RegistrationSuccessfulScreen(navController: NavController)
 {
     Column(
         verticalArrangement = Arrangement.Center,
@@ -68,7 +59,7 @@ fun RegistrationSuccessfulScreen()
         // Register for account button
         Button(
             modifier = Modifier.height(50.dp),
-            onClick = { context.startActivity(Intent(context, MainActivity::class.java)) })
+            onClick = { navController.navigate(Screen.Login.route)})
 
         {
             Text(
@@ -82,5 +73,5 @@ fun RegistrationSuccessfulScreen()
 @Composable
 fun PreviewRegistrationSuccessfulScreen()
 {
-    RegistrationSuccessfulScreen()
+    RegistrationSuccessfulScreen(navController = rememberNavController())
 }
