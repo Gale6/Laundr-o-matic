@@ -17,20 +17,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-class RegistrationSuccessful : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
-        setContent ()
-        {
-            RegistrationSuccessfulScreen()
-        }
-    }
-}
+import androidx.navigation.NavController
 
 @Composable
-fun RegistrationSuccessfulScreen()
+fun RegistrationSuccessfulScreen(navController: NavController)
 {
     Column(
         verticalArrangement = Arrangement.Center,

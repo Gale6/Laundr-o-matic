@@ -20,30 +20,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-class MainMenuActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    MainContent()
-                }
-            }
-        }
-    }
-}
-
-
 @Composable
-fun MainContent() {
+fun MainMenuScreen(navController: NavController) {
     var context = LocalContext.current
     Row(modifier = Modifier.padding(16.dp),verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center ){
         Column(modifier = Modifier.padding(16.dp),horizontalAlignment= Alignment.CenterHorizontally) {
@@ -91,7 +73,7 @@ fun MainContent() {
 @Composable
 fun PreviewMainMenu() {
     LaundromaticTheme {
-        MainContent()
+        MainMenuScreen()
     }
 
 }

@@ -20,30 +20,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-
-class UserProfileActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    userProfileComponent()
-
-                }
-            }
-        }
-    }
-}
-
-
 @Composable
-fun userProfileComponent() {
+fun userProfileScreen(navController: NavController) {
     val context = LocalContext.current
     Column(
         modifier = Modifier
@@ -130,7 +111,7 @@ fun userProfileComponent() {
 @Composable
 fun DefaultPreview2() {
     LaundromaticTheme {
-        userProfileComponent()
+        userProfileScreen()
 
     }
 }

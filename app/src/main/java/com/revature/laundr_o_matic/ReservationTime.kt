@@ -24,29 +24,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ReservationTime : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    ReservationTimeUI()
-                }
-            }
-        }
-    }
-}
-
 @Composable
-fun ReservationTimeUI()
+fun ReservationTimeScreen(navController: NavController)
 {
     val sdf = SimpleDateFormat("dd/M")
     val currentDate = sdf.format(Date())
@@ -156,5 +140,5 @@ fun onTimeClick(ctx: Context){
 @Composable
 fun PreviewReservationTime()
 {
-    ReservationTimeUI()
+    ReservationTimeScreen()
 }

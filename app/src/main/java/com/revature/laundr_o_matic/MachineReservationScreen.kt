@@ -19,27 +19,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-class MachineReservation : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    MachineReservationScreen()
-                }
-            }
-        }
-    }
-}
-
 @Composable
-fun MachineReservationScreen()
+fun MachineReservationScreen(navController: NavController)
 {
     //temp list of machines
     var machineArray = ArrayList<String>()

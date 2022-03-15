@@ -19,28 +19,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-
-class WalletActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    walletComponent()
-                }
-            }
-        }
-    }
-}
-
 @Composable
-fun walletComponent() {
+fun walletScreen(navController: NavController) {
     val context = LocalContext.current
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         Text(text = "Balance: ", fontWeight = FontWeight.Bold, fontSize = 40.sp)
@@ -78,6 +61,6 @@ fun walletComponent() {
 @Composable
 fun DefaultPreview3() {
     LaundromaticTheme {
-        walletComponent()
+        walletScreen()
     }
 }

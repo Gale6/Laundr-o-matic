@@ -16,26 +16,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-class ReservationSuccessful : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    ReservationSuccessfulUI()
-                }
-            }
-        }
-    }
-}
 @Composable
-fun ReservationSuccessfulUI()
+fun ReservationSuccessfulScreen(navController: NavController)
 {
     var context = LocalContext.current
     Column {
@@ -73,5 +58,5 @@ fun ReservationSuccessfulUI()
 @Composable
 fun PreviewReservationSuccessful()
 {
-    ReservationSuccessfulUI()
+    ReservationSuccessfulScreen()
 }

@@ -22,21 +22,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
-class MachinesInUse : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LaundromaticTheme {
-                MachinesInUseScreen()
-            }
-        }
-    }
-}
-
 @Composable
-fun MachinesInUseScreen() {
+fun MachinesInUseScreen(navController: NavController) {
     val context = LocalContext.current
 
     Column {
