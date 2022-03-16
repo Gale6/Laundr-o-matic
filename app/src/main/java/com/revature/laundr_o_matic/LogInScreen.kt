@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,7 +28,11 @@ import androidx.navigation.compose.rememberNavController
 
 // Washing machine icon
 @Composable
-fun LogInScreen(navController: NavController) =
+fun LogInScreen(navController: NavController) {
+
+    var username by remember { mutableStateOf ("") }
+    var password by rememberSaveable { mutableStateOf ("") }
+    var loginStat by rememberSaveable { mutableStateOf ("") }
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -48,10 +53,9 @@ fun LogInScreen(navController: NavController) =
             text = "Laundr-o-matic",
             fontSize = 40.sp,
             fontFamily = FontFamily.Monospace
-
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Background of washing machine image
         Surface(
@@ -67,7 +71,7 @@ fun LogInScreen(navController: NavController) =
 
         }
 
-        Spacer(modifier = Modifier.height(45.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
         // Username surrounding box
         Surface(
@@ -79,11 +83,9 @@ fun LogInScreen(navController: NavController) =
         )
         {
             // Username box input
-            var text by remember { mutableStateOf("") }
-
             TextField(
-                value = text,
-                onValueChange = { text = it },
+                value = username,
+                onValueChange = { username = it },
                 label = { Text("Username") }
             )
 
@@ -101,24 +103,45 @@ fun LogInScreen(navController: NavController) =
         )
         {
             // Password box input
-            var password by rememberSaveable { mutableStateOf("") }
+
+            var passwordVisibility by remember { mutableStateOf(false) }
+            val icon = if (passwordVisibility) {
+                painterResource(id = com.google.android.material.R.drawable.design_ic_visibility)
+            } else {
+                painterResource(id = com.google.android.material.R.drawable.design_ic_visibility_off)
+            }
 
             TextField(
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password") },
-                visualTransformation = PasswordVisualTransformation(),
+                trailingIcon = {
+                    IconButton(onClick = {
+                        passwordVisibility = !passwordVisibility
+                    }) {
+                        Icon(
+                            painter = icon,
+                            contentDescription = "visibility icon"
+                        )
+                    }
+                },
+                visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
         }
+        Text(text = loginStat)
         Spacer(modifier = Modifier.height(40.dp))
-
-        val context = LocalContext.current
 
         // Login button
         Button(
             modifier = Modifier.height(50.dp),
-            onClick = { context.startActivity(Intent()) })
+            onClick = {
+                if (checkLoginInfo(username,password)) {
+                    navController.navigate(Screen.MainMenu.route)
+                } else {
+                    loginStat = "Invalid login information"
+                }
+            })
         {
             Text(
                 text = "Login",
@@ -132,7 +155,7 @@ fun LogInScreen(navController: NavController) =
         // Register for account button
         Button(
             modifier = Modifier.height(50.dp),
-            onClick = { navController.navigate(Screen.Registration.route)})
+            onClick = { navController.navigate(Screen.Registration.route) })
         {
             Text(
                 text = "Register For New Account",
@@ -140,6 +163,12 @@ fun LogInScreen(navController: NavController) =
             )
         }
     }
+}
+
+fun checkLoginInfo (inUsername:String,inPassword:String): Boolean {
+    return (inUsername == "user" && inPassword == "pass")
+
+}
 
 
 @Preview
