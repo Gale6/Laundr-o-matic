@@ -26,7 +26,10 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 @Composable
 fun WalletScreen(navController: NavController) {
     val context = LocalContext.current
-    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
         Text(text = "Balance: ", fontWeight = FontWeight.Bold, fontSize = 40.sp)
         Text(text = "$500.00 ",fontSize = 20.sp)
 
@@ -36,8 +39,9 @@ fun WalletScreen(navController: NavController) {
             Modifier
                 .border(1.dp, color = Color.Black)
                 .size(300.dp)
+        , contentAlignment = Alignment.Center
         ){
-            Column(Modifier.padding(20.dp)) {
+            Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(text = "Washer 2: -$ 5.00 ",Modifier.padding(5.dp))
                 Text(text = "Dryer 4: -$ 4.00 ",Modifier.padding(5.dp))
                 Text(text = "Washer 3: -$ 5.00 ",Modifier.padding(5.dp))
