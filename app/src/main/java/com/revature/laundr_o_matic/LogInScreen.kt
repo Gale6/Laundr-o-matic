@@ -1,22 +1,30 @@
 package com.revature.laundr_o_matic
 
 import android.content.Intent
+
 import android.os.Bundle
+import android.text.style.BackgroundColorSpan
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
+import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.Typeface
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -25,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+
 
 // Washing machine icon
 @Composable
@@ -38,9 +47,9 @@ fun LogInScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(8.dp)
             .background(MaterialTheme.colors.surface, RectangleShape)
-            .size(900.dp)
+            .fillMaxSize()
+            .background(color = colorResource(id = R.color.lightCream))
     )
     {
 
@@ -52,26 +61,24 @@ fun LogInScreen(navController: NavController) {
         Text(
             text = "Laundr-o-matic",
             fontSize = 40.sp,
-            fontFamily = FontFamily.Monospace
+            color = colorResource(id = R.color.customDarkBrown),
+            fontFamily = FontFamily.Serif
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
         // Background of washing machine image
-        Surface(
-            modifier = Modifier.size(200.dp),
-            shape = RectangleShape
-        )
-        {
+
             // Washing machine image
             Image(
                 painter = painterResource(id = R.drawable.washing_machine),
-                contentDescription = "Kawaii washing machine"
+                contentDescription = "Kawaii washing machine",
+                Modifier.size(200.dp)
             )
 
-        }
 
-        Spacer(modifier = Modifier.height(30.dp))
+
+        Spacer(modifier = Modifier.height(50.dp))
 
         // Username surrounding box
         Surface(
@@ -79,15 +86,23 @@ fun LogInScreen(navController: NavController) {
 //                .height(30.dp)
                 .width(300.dp),
             shape = RectangleShape,
-            color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+            color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f),
         )
         {
             // Username box input
             TextField(
                 value = username,
                 onValueChange = { username = it },
-                label = { Text("Username") }
+                label = { Text("Username") },
+                colors = TextFieldDefaults.
+                outlinedTextFieldColors(
+
+                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)
+                )
             )
+//                    (colorResource(id = R.color.mintGreen))
+
 
         }
 
@@ -115,6 +130,13 @@ fun LogInScreen(navController: NavController) {
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password") },
+
+                colors = TextFieldDefaults.
+                outlinedTextFieldColors(
+
+                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)),
+
                 trailingIcon = {
                     IconButton(onClick = {
                         passwordVisibility = !passwordVisibility
@@ -130,10 +152,14 @@ fun LogInScreen(navController: NavController) {
             )
         }
         Text(text = loginStat)
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
         // Login button
         Button(
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colorResource(id = R.color.tealGreen)
+            ),
+
             modifier = Modifier.height(50.dp),
             onClick = {
                 if (checkLoginInfo(username,password)) {
@@ -145,7 +171,8 @@ fun LogInScreen(navController: NavController) {
         {
             Text(
                 text = "Login",
-                fontSize = 20.sp
+                fontSize = 20.sp,
+                color = colorResource(id = R.color.customDarkBrown)
             )
 
         }
@@ -153,13 +180,25 @@ fun LogInScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
 
         // Register for account button
+
+
+
         Button(
-            modifier = Modifier.height(50.dp),
-            onClick = { navController.navigate(Screen.Registration.route) })
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colorResource(id = R.color.tealGreen)
+            ),
+            modifier = Modifier
+                .height(50.dp),
+            onClick = { navController.navigate(Screen.Registration.route) },
+        )
+//        button_name.setBackgroundResource(R.drawable.custom_button_file_name)
+
+
         {
             Text(
                 text = "Register For New Account",
-                fontSize = 20.sp
+                fontSize = 20.sp,
+                color = colorResource(id = R.color.customDarkBrown)
             )
         }
     }

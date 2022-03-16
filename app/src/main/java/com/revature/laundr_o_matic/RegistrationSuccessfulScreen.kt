@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,29 +28,30 @@ fun RegistrationSuccessfulScreen(navController: NavController)
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(8.dp)
             .background(MaterialTheme.colors.surface, RectangleShape)
-            .size(900.dp)
+            .fillMaxSize()
+            .background(color = colorResource(id = R.color.lightCream))
     )
     {
 
-        Text("Congratulations", fontSize = 40.sp)
+        Text("Congratulations",
+            fontSize = 40.sp,
+            color = colorResource(id = R.color.animalCrossingGreen)
+        )
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        Text("Your registration was successful!", fontSize = 25.sp)
+        Text("Your registration was successful!",
+            fontSize = 25.sp,
+            color = colorResource(id = R.color.customDarkBrown))
 
         Spacer(modifier = Modifier.height(50.dp))
 
-        Surface(
-            modifier = Modifier.size(200.dp),
-            shape = RectangleShape
-        )
-        {
+
             // Washing machine image
             Image(painter = painterResource(id = R.drawable.washing_machine),
                 contentDescription = "wow")
-        }
+
 
 
         Spacer(modifier = Modifier.height(50.dp))
@@ -58,13 +60,18 @@ fun RegistrationSuccessfulScreen(navController: NavController)
 
         // Register for account button
         Button(
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colorResource(id = R.color.tealGreen)
+            ),
             modifier = Modifier.height(50.dp),
             onClick = { navController.navigate(Screen.Login.route)})
 
         {
             Text(
                 text = "Click here to log back in",
-                fontSize = 20.sp)
+                fontSize = 20.sp,
+                color = colorResource(id = R.color.customDarkBrown)
+            )
         }
     }
 }
