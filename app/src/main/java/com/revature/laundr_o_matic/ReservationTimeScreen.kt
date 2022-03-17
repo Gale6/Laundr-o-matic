@@ -91,9 +91,6 @@ fun dateSelection( select: MutableState<DateSlot>, reservationMng:ReservationMan
 @Composable
 fun TimeList(navController : NavController, date : MutableState<DateSlot>)
 {
-    //var date = DateSlot("2/22")
-
-    //var ctx = LocalContext.current
 
     //Create a state for the lazy column
     var state = rememberLazyListState()
@@ -108,10 +105,11 @@ fun TimeList(navController : NavController, date : MutableState<DateSlot>)
                 .fillMaxWidth()
                 .height(50.dp)
                 .clickable {
-                }) {
 
-                //When clicked, change screen
-                //navController.navigate(Screen.ReservationSuccessful.route)
+                    //When clicked, change screen
+                    navController.navigate(Screen.ReservationSuccessful.route)
+
+                }) {
 
                 //Display the time
                 Text(text = date.value.getHour(it+1).sHour,
@@ -134,5 +132,5 @@ fun TimeList(navController : NavController, date : MutableState<DateSlot>)
 @Composable
 fun PreviewReservationTime()
 {
-    ReservationTimeScreen(navController = rememberNavController())
+    //ReservationTimeScreen(navController = rememberNavController())
 }

@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
+//Shows a list of machines for selecting reservations
 @Composable
 fun MachineReservationScreen(navController: NavController)
 {
@@ -41,24 +42,34 @@ fun MachineReservationScreen(navController: NavController)
     machineArray.add("Dryer 5")
     machineArray.add("Dryer 6")
 
-    val context = LocalContext.current
-
     Column {
+
+        //TopBar of our screen
         TopAppBar(title = {Text("Select a Machine")})
 
+        //LazyColumn state
         var state = rememberLazyListState()
+
+        //Lazy Column of all our machines -
+        //needs to be updated for functionality with Machine Manager
         LazyColumn(state = state){
+
+            //for each item in the machine array
             items(machineArray.size)
             {
-                //id of the machine we are using, currently
-                //only changes if the machine starts with a D
+
+                //Image ID based on if machine is Dryer or Washer -
+                //needs to be updated
                 var iMachine: Int = if (machineArray.get(it)
                         .startsWith('D')
                 ) R.drawable.dryer else R.drawable.washer
+
+                //Row displaying machine
                 Row(modifier = Modifier.background(MaterialTheme.colors.background)
                     .clickable {
-                        navController.navigate(Screen.MachineDetails.route)})
-                {
+                        navController.navigate(Screen.MachineDetails.route)}) {
+
+                    //Image of machine
                     Image(
                         painter = painterResource(id = iMachine),
                         contentDescription = "Machine Icon",
@@ -66,15 +77,23 @@ fun MachineReservationScreen(navController: NavController)
                             .size(100.dp)
                             .padding(10.dp)
                     )
+
+                    //Column of the machine's name and details
                     Column {
+
+                        //Machine's name -
+                        //needs to be updated
                         Text(
                             machineArray[it], modifier = Modifier
                                 .padding(5.dp)
                                 .fillMaxWidth()
                                 .fillMaxHeight(),
-                            fontSize = 20.sp
-                        )
+                            fontSize = 20.sp)
+
                         Spacer(Modifier.size(10.dp))
+
+                        //Row containing the details of the machine -
+                        //needs to be updated
                         Row() {
                             Text("Cost: $5.00")
                             Spacer(Modifier.size(10.dp))
@@ -85,6 +104,8 @@ fun MachineReservationScreen(navController: NavController)
                     }
 
                 }
+
+                //Divider for spacing between machines
                 Divider(color = Color.Gray)
             }
 

@@ -20,13 +20,20 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
+//Screen showing Successful reservation of machine
 @Composable
 fun ReservationSuccessfulScreen(navController: NavController)
 {
-    var context = LocalContext.current
+
     Column {
+
+        //Top Bar of our Screen
         TopAppBar(title = {Text("Reservation Successful!")})
+
         Spacer(Modifier.padding(10.dp))
+
+        //Image of machine -
+        //needs to be updated
         Image(painter = painterResource(id = R.drawable.washer),
             contentDescription = "Reservation Success",
             modifier = Modifier
@@ -34,21 +41,22 @@ fun ReservationSuccessfulScreen(navController: NavController)
                 .size(200.dp)
                 .align(Alignment.CenterHorizontally))
 
+        //Text displaying success
         Text(text = "Success!",
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp), fontSize = 30.sp, textAlign = TextAlign.Center)
+
+        //Button to leave screen for main menu
         Button(onClick = {navController.navigate(Screen.MainMenu.route)},
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .height(40.dp)
-                .fillMaxWidth(.75f))
-        {
+                .fillMaxWidth(.75f)) {
+
+            //Text on Button
             Text("Return to Main Menu")
         }
-
-
-
     }
 }
 
