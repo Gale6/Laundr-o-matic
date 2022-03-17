@@ -21,6 +21,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.AbstractMachine
+import com.revature.laundr_o_matic.model.MachineManager
+import com.revature.laundr_o_matic.model.Washer
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
 //Shows the details of a selected machine
@@ -28,13 +31,20 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 fun MachineDetailsScreen(navController: NavController)
 {
 
+    //Temp machine for placeholder -
+    //needs to be updated\
+    val machineManager = MachineManager()
+    val machine = machineManager.getMachine(3)
+
     Column {
 
         //Top Bar for the screen
         TopAppBar(title = {Text("Machine Details")})
 
         //Image of the Machine Selected - needs to be updated
-        Image(painter = painterResource(id = R.drawable.washer),
+        var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
+
+        Image(painter = painterResource(id = machineImage),
             contentDescription = "Machine Image",
             modifier = Modifier
                 .size(250.dp)
@@ -43,54 +53,91 @@ fun MachineDetailsScreen(navController: NavController)
 
         //Column holding machine Information
         Column(modifier = Modifier
-            .padding(20.dp)
+            .padding(10.dp)
             .border(5.dp, Color.Black,
                 RoundedCornerShape(5.dp)
             )
-            .size(width =  250.dp, height = 200.dp)
+            //.size(width =  250.dp, height = 200.dp)
+            .fillMaxWidth(.75f)
             .align(Alignment.CenterHorizontally)){
 
-            Spacer(Modifier.size(10.dp))
+            //Spacer(Modifier.size(10.dp))
+
+            //Row displaying type of machine
+            Row(modifier = Modifier.fillMaxWidth(.9f)
+                .padding(5.dp)
+                .align(Alignment.CenterHorizontally)) {
+
+                val sType = if (machine is Washer) "Washer" else "Dryer"
+                Text(text = sType,
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center)
+            }
+
+
+           // Spacer(Modifier.size(10.dp))
 
             //Row containing our Machine's Unique ID - needs to be updated
-            Row(modifier = Modifier.fillMaxWidth()
-                .padding(horizontal = 10.dp, vertical = 5.dp)) {
+            Row(modifier = Modifier.fillMaxWidth(.9f)
+                .padding(5.dp)
+                .align(Alignment.CenterHorizontally)) {
 
-                Text(text = "Machine: ", fontSize = 20.sp)
-                Text(text = "Washer 1", fontSize = 20.sp, modifier = Modifier.fillMaxWidth(),
+                Text(text = "Machine ID: ",
+                    style = MaterialTheme.typography.body1,
+                    textAlign = TextAlign.Left)
+
+                Text(text = machine?.id.toString(),
+                    style = MaterialTheme.typography.body1,
+                    modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Right)
             }
 
-            Spacer(Modifier.size(10.dp))
+            //Spacer(Modifier.size(10.dp))
 
             //Row containing the size of the Machine - needs to be updated
-            Row(modifier = Modifier.fillMaxWidth()
-                .padding(horizontal = 10.dp, vertical = 5.dp)) {
+            Row(modifier = Modifier.fillMaxWidth(.9f)
+                .padding(5.dp)
+                .align(Alignment.CenterHorizontally)) {
 
-                Text(text = "Size: ", fontSize = 20.sp)
-                Text(text = "20 loads", fontSize = 20.sp, modifier = Modifier.fillMaxWidth(),
+                Text(text = "Size: ",
+                    style = MaterialTheme.typography.body1)
+
+                Text(text = machine?.nLoadSize.toString(),
+                    style = MaterialTheme.typography.body1,
+                    modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Right)
             }
 
-            Spacer(Modifier.size(10.dp))
+            //Spacer(Modifier.size(10.dp))
 
             //Row containing the price of the Machine - needs to be updated
-            Row(modifier = Modifier.fillMaxWidth()
-                .padding(horizontal = 10.dp, vertical = 5.dp)) {
+            Row(modifier = Modifier.fillMaxWidth(.9f)
+                .padding(5.dp)
+                .align(Alignment.CenterHorizontally)) {
 
-                Text(text = "Price: ", fontSize = 20.sp)
-                Text(text = "$5.00", fontSize = 20.sp, modifier = Modifier.fillMaxWidth(),
+                Text(text = "Price: ",
+                    style = MaterialTheme.typography.body1)
+
+                Text(text = "\$${machine?.nCost}",
+                    style = MaterialTheme.typography.body1,
+                    modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Right)
             }
 
-            Spacer(Modifier.size(10.dp))
+            //Spacer(Modifier.size(10.dp))
 
             //Row containing the cycle length of the Machine - needs to be updated
-            Row(modifier = Modifier.fillMaxWidth()
-                .padding(horizontal = 10.dp, vertical = 5.dp)) {
+            Row(modifier = Modifier.fillMaxWidth(.9f)
+                .padding(5.dp,10.dp)
+                .align(Alignment.CenterHorizontally)) {
 
-                Text(text = "Time: ", fontSize = 20.sp)
-                Text(text = "50 min", fontSize = 20.sp, modifier = Modifier.fillMaxWidth(),
+                Text(text = "Time: ",
+                    style = MaterialTheme.typography.body1)
+
+                Text(text = "${machine?.nRunTime} min",
+                    style = MaterialTheme.typography.body1
+                    , modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Right)
             }
 
