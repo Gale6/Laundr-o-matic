@@ -80,7 +80,7 @@ fun MachineDetailsScreen(navController: NavController)
             }
 
         }
-        Button(onClick = { navController.navigate(Screen.ReservationSuccessful.route) },
+        Button(onClick = { navController.navigate(Screen.ReservationTime.route) },
             modifier=Modifier.padding(10.dp)
                 .fillMaxWidth(.75f)
                 .height(50.dp)

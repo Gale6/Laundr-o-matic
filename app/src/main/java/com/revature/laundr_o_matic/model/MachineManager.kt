@@ -1,7 +1,7 @@
-package com.revature.laundr_o_matic
+package com.revature.laundr_o_matic.model
 
 class MachineManager {
-    private var mMachines = HashMap<Int,AbstractMachine>()
+    private var mMachines = HashMap<Int, AbstractMachine>()
 
     //Initialize the manager with some washers and dryers
     init {
@@ -18,8 +18,8 @@ class MachineManager {
     }
 
     //Retrieve a map of all the Dryers
-    fun getDryers():HashMap<Int,Dryer>{
-        val mDryers = HashMap<Int,Dryer>()
+    fun getDryers():HashMap<Int, Dryer>{
+        val mDryers = HashMap<Int, Dryer>()
         for(item in mMachines){
             if(item.value is Dryer) mDryers[item.key] = item.value as Dryer
         }
@@ -27,8 +27,8 @@ class MachineManager {
 
     }
     //Retrieve a map of all the Washers
-    fun getWashers():HashMap<Int,Washer>{
-        val mWashers = HashMap<Int,Washer>()
+    fun getWashers():HashMap<Int, Washer>{
+        val mWashers = HashMap<Int, Washer>()
         for(item in mMachines){
             if(item.value is Washer) mWashers[item.key] = item.value as Washer
         }
