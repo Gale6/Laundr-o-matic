@@ -23,14 +23,17 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
+//Shows the details of a selected machine
 @Composable
 fun MachineDetailsScreen(navController: NavController)
 {
-    var context = LocalContext.current
 
     Column {
+
+        //Top Bar for the screen
         TopAppBar(title = {Text("Machine Details")})
 
+        //Image of the Machine Selected - needs to be updated
         Image(painter = painterResource(id = R.drawable.washer),
             contentDescription = "Machine Image",
             modifier = Modifier
@@ -38,6 +41,7 @@ fun MachineDetailsScreen(navController: NavController)
                 .padding(20.dp)
                 .align(Alignment.CenterHorizontally))
 
+        //Column holding machine Information
         Column(modifier = Modifier
             .padding(20.dp)
             .border(5.dp, Color.Black,
@@ -47,6 +51,8 @@ fun MachineDetailsScreen(navController: NavController)
             .align(Alignment.CenterHorizontally)){
 
             Spacer(Modifier.size(10.dp))
+
+            //Row containing our Machine's Unique ID - needs to be updated
             Row(modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 10.dp, vertical = 5.dp)) {
 
@@ -54,7 +60,10 @@ fun MachineDetailsScreen(navController: NavController)
                 Text(text = "Washer 1", fontSize = 20.sp, modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Right)
             }
+
             Spacer(Modifier.size(10.dp))
+
+            //Row containing the size of the Machine - needs to be updated
             Row(modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 10.dp, vertical = 5.dp)) {
 
@@ -62,7 +71,10 @@ fun MachineDetailsScreen(navController: NavController)
                 Text(text = "20 loads", fontSize = 20.sp, modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Right)
             }
+
             Spacer(Modifier.size(10.dp))
+
+            //Row containing the price of the Machine - needs to be updated
             Row(modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 10.dp, vertical = 5.dp)) {
 
@@ -70,7 +82,10 @@ fun MachineDetailsScreen(navController: NavController)
                 Text(text = "$5.00", fontSize = 20.sp, modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Right)
             }
+
             Spacer(Modifier.size(10.dp))
+
+            //Row containing the cycle length of the Machine - needs to be updated
             Row(modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = 10.dp, vertical = 5.dp)) {
 
@@ -80,6 +95,8 @@ fun MachineDetailsScreen(navController: NavController)
             }
 
         }
+
+        //Button to start reservation of the machine - needs to be updated
         Button(onClick = { navController.navigate(Screen.ReservationTime.route) },
             modifier=Modifier.padding(10.dp)
                 .fillMaxWidth(.75f)

@@ -2,6 +2,12 @@ package com.revature.laundr_o_matic.model
 
 import kotlin.collections.ArrayList
 
+
+/**
+ * Class to represent a reservation's Day
+ *
+ * Contains an arraylist of TimeSlots, each representing an hour in the day
+ */
 class DateSlot(var sDate: String ) {
 
     /*
@@ -22,18 +28,49 @@ class DateSlot(var sDate: String ) {
         }
     }
 
-    //Get a specific TimeSlot hour
-    //Pass the hour you want in 24hour format
+    /**
+     * Get a specific TimeSlot hour
+     *
+     * Pass the hour you want in 24hour format
+     * */
     fun getHour(hour:Int): TimeSlot = mHours[hour-1]
 
+    /**
+     * Add a reservation at the hour passed to the target machine's ID
+     *
+     * Pass the hour you want in 24hour format
+     */
     fun addReservation(hour:Int,machineID:Int){
         mHours[hour-1].addReservation(machineID)
     }
+
+    /**
+     * Remove a reservation at the hour passed to the target machine's ID
+     *
+     * Pass the hour you want in 24hour format
+     */
     fun removeReservation(hour:Int,machineID:Int){
         mHours[hour-1].removeReservation(machineID)
     }
+
+    /**
+     * Retrieve the TimeSlot Arraylist this Date holds
+     */
     fun getHours():ArrayList<TimeSlot> = mHours
+
+
+    /**
+     * Returns the ArrayList of reservations at the Hour given
+     *
+     * Pass the hour you want in 24hour format
+     */
     fun getReservations(hour:Int):ArrayList<Int> = mHours[hour-1].getReservations()
+
+    /**
+     * Checks if the machine passed has an available reservation at the Hour given
+     *
+     * Pass the hour you want in 24hour format
+     */
     fun checkReservation(hour:Int,machineID: Int):Boolean = mHours[hour-1].checkReservation(machineID)
 
 }
