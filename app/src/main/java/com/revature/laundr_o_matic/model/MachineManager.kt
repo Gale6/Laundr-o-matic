@@ -53,6 +53,16 @@ class MachineManager {
     }
 
     /**
+     * Retrieve a map of all machines
+     *
+     * Machines are in AbstractMachine class -
+     * check type using is Washer or is Dryer
+     */
+    fun getMachines():HashMap<Int,AbstractMachine>{
+        return mMachines
+    }
+
+    /**
      * Access a machine in the map with the machine's ID
      *
      * Only returns an abstract machine, must check for machine type when received
