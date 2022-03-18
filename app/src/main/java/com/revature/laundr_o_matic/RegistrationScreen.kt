@@ -59,7 +59,7 @@ fun RegistrationScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .padding(8.dp)
-            .background(color = colorResource(id = R.color.lightCream,))
+            .background(color = colorResource(id = R.color.lightCream), RectangleShape)
             .fillMaxSize()
     )
     {
