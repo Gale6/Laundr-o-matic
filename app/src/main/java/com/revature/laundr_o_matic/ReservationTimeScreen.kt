@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,12 +33,19 @@ fun ReservationTimeScreen(navController: NavController,viewModel:MainViewModel)
 
     viewModel.selectedDate = remember { mutableStateOf(viewModel.selectedMachine.reservations.days.first()) }
 
+    Surface(modifier = Modifier
+        .fillMaxSize(),
+    color  = colorResource(id = R.color.lightCream)) {
+
     //Column to start our screen
     Column(modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally) {
 
         //Top bar of screen
-        TopAppBar(title = { Text("Reservation Time") })
+        TopAppBar(
+            title = { Text("Reservation Time", color = colorResource(id = R.color.customDarkBrown)) },
+            backgroundColor = colorResource(id = R.color.animalCrossingGreen))
+
 
         //Call our function that creates the Date Buttons
         dateSelection(viewModel)
@@ -52,8 +61,9 @@ fun ReservationTimeScreen(navController: NavController,viewModel:MainViewModel)
             )
         }
         //Display our LazyColumn of times for the selected date
-        TimeList(navController,viewModel.selectedDate)
+        TimeList(navController,viewModel)
 
+    }
     }
 
 }
@@ -72,12 +82,17 @@ fun dateSelection( viewModel: MainViewModel)
         viewModel.selectedMachine.reservations.days.forEach {
 
             //Button for the day
-            Button(onClick = {
+            Button(
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = colorResource(id = R.color.tealGreen)
+                ),onClick = {
 
                 //On clicking a button, change our selected date to the new date
                 viewModel.selectedDate.value = it
             },
-                modifier = Modifier.padding(5.dp).size(width = 75.dp, height = 35.dp)){
+                modifier = Modifier
+                    .padding(5.dp)
+                    .size(width = 75.dp, height = 35.dp)){
 
                 //Display the date in the button
                 //Text(it.Date.toString())
@@ -92,7 +107,7 @@ fun dateSelection( viewModel: MainViewModel)
 
 
 @Composable
-fun TimeList(navController : NavController, date : MutableState<DateSlot>)
+fun TimeList(navController : NavController, viewModel: MainViewModel)
 {
 
     //Create a state for the lazy column
@@ -101,9 +116,9 @@ fun TimeList(navController : NavController, date : MutableState<DateSlot>)
     //Create our lazy column
     LazyColumn(state = state, modifier = Modifier.fillMaxSize()){
 
-        items(date.value.reservation_times.size) {
+        items(viewModel.selectedDate.value.reservation_times.size) {
 
-            if (!date.value.reservation_times[it].bReserved) {
+            if (!viewModel.selectedDate.value.reservation_times[it].bReserved) {
                 //Create our rows in the column
                 Row(modifier = Modifier
                     .fillMaxWidth()
@@ -111,14 +126,25 @@ fun TimeList(navController : NavController, date : MutableState<DateSlot>)
                     .clickable {
 
                         //When clicked, change screen
-                        date.value.reservation_times[it].bReserved = true
+
+                        //Set the selected Time in the viewModel
+                        viewModel.selectedTime= viewModel.selectedDate.value.reservation_times[it].hour
+
+                        //Reserve the time
+                        viewModel.selectedDate.value.reservation_times[it].bReserved = true
+
+                        //Add the reservation
+                        viewModel.user.reservations.addReservation(viewModel.selectedTime,
+                            viewModel.selectedDate.value.Date
+                            ,viewModel.selectedMachine.id)
+
                         navController.navigate(Screen.ReservationSuccessful.route)
 
                     }) {
 
                     //Display the time
                     Text(
-                        text = date.value.reservation_times[it].hour.toString(),
+                        text = viewModel.selectedDate.value.reservation_times[it].hour.toString(),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)
