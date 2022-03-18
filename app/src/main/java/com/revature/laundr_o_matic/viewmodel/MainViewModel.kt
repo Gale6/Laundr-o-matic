@@ -18,8 +18,7 @@ class MainViewModel:ViewModel() {
     lateinit var selectedTime: LocalTime
 
     //User
-    lateinit var user: User
-
+     var user: User? = null
 
 
 }

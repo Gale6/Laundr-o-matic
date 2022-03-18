@@ -170,6 +170,7 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
             onClick = {
 
                 if (checkLoginInfo(username,password,context,viewModel)) {
+                    viewModel.user = readFromFile(filePath = "${context.filesDir.toString()}/${username}.ser")
                     navController.navigate(Screen.MainMenu.route)
                 } else {
                     loginStat = "Invalid login information"
@@ -214,7 +215,7 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
 }
 
 fun checkLoginInfo (inUsername:String,inPassword:String,context: Context, viewModel:MainViewModel): Boolean {
-    var filePath = "${context.getFilesDir().toString()}/${inUsername}.ser"
+    var filePath = "${context.filesDir.toString()}/${inUsername}.ser"
     var file = File(filePath)
     if ( !file.exists()){
         return false

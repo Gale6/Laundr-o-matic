@@ -134,7 +134,7 @@ fun TimeList(navController : NavController, viewModel: MainViewModel)
                         viewModel.selectedDate.value.reservation_times[it].bReserved = true
 
                         //Add the reservation
-                        viewModel.user.reservations.addReservation(viewModel.selectedTime,
+                        viewModel.user!!.reservations.addReservation(viewModel.selectedTime,
                             viewModel.selectedDate.value.Date
                             ,viewModel.selectedMachine.id)
 

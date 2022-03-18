@@ -49,7 +49,7 @@ fun SetupNavGraph(navController: NavHostController){
             UpcomingReservationScreen(navController = navController)
         }
         composable(route = Screen.UserProfile.route){
-            UserProfileScreen(navController = navController)
+            UserProfileScreen(navController = navController,viewModel)
         }
         composable(route = Screen.Wallet.route){
             WalletScreen(navController = navController)

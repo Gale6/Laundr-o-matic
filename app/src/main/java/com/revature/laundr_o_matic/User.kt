@@ -5,6 +5,6 @@ import java.io.Serializable
 
 data class User (
     val username:String,
-    val password:String,
+    var password:String,
     val reservations:UserReservations = UserReservations()
 ) :Serializable
