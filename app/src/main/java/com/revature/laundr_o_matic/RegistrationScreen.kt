@@ -59,16 +59,15 @@ fun RegistrationScreen(navController: NavController) {
 
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-
             .padding(8.dp)
-            .background(color = colorResource(id = R.color.lightCream, RectangleShape)
+            //.background(color = colorResource(id = R.color.lightCream, RectangleShape))
             .fillMaxSize()
     )
     {
 
         Text("Registration",
             fontSize = 40.sp,
-            color = colorResource(id = R.color.customDarkBrown),
+            //color = colorResource(id = R.color.customDarkBrown),
             fontWeight = FontWeight.Bold
         )
 
@@ -92,8 +91,9 @@ fun RegistrationScreen(navController: NavController) {
                         colors = TextFieldDefaults.
                         outlinedTextFieldColors(
 
-                        focusedBorderColor = colorResource(id = R.color.customDarkBrown),
-                focusedLabelColor = colorResource(id = R.color.customDarkBrown)),
+                        //focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                //focusedLabelColor = colorResource(id = R.color.customDarkBrown)
+                        ),
 
             )
 
@@ -120,8 +120,9 @@ fun RegistrationScreen(navController: NavController) {
                 colors = TextFieldDefaults.
                 outlinedTextFieldColors(
 
-                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
-                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)),
+                    //focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                    //focusedLabelColor = colorResource(id = R.color.customDarkBrown)
+                    ),
                 trailingIcon = {
                     IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
                         Icon(
@@ -153,8 +154,9 @@ fun RegistrationScreen(navController: NavController) {
                 colors = TextFieldDefaults.
                 outlinedTextFieldColors(
 
-                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
-                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)),
+                    //focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                    //focusedLabelColor = colorResource(id = R.color.customDarkBrown)
+                ),
                 value = rePassword,
                 onValueChange = {
 
@@ -189,7 +191,7 @@ fun RegistrationScreen(navController: NavController) {
         // Registration button
         Button(
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = colorResource(id = R.color.tealGreen)
+                //backgroundColor = colorResource(id = R.color.tealGreen)
             ),
             modifier = Modifier.height(50.dp),
             onClick = {
@@ -204,8 +206,8 @@ fun RegistrationScreen(navController: NavController) {
         {
             Text(
                 text = "Register",
-                fontSize = 30.sp,
-                color = colorResource(id = R.color.customDarkBrown)
+                fontSize = 10.sp,
+                //color = colorResource(id = R.color.customDarkBrown)
             )
         }
     }
