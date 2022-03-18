@@ -61,7 +61,7 @@ fun ReservationTimeScreen(navController: NavController,viewModel:MainViewModel)
             )
         }
         //Display our LazyColumn of times for the selected date
-        TimeList(navController,viewModel.selectedDate)
+        TimeList(navController,viewModel)
 
     }
     }
@@ -107,7 +107,7 @@ fun dateSelection( viewModel: MainViewModel)
 
 
 @Composable
-fun TimeList(navController : NavController, date : MutableState<DateSlot>)
+fun TimeList(navController : NavController, viewModel: MainViewModel)
 {
 
     //Create a state for the lazy column
@@ -116,9 +116,9 @@ fun TimeList(navController : NavController, date : MutableState<DateSlot>)
     //Create our lazy column
     LazyColumn(state = state, modifier = Modifier.fillMaxSize()){
 
-        items(date.value.reservation_times.size) {
+        items(viewModel.selectedDate.value.reservation_times.size) {
 
-            if (!date.value.reservation_times[it].bReserved) {
+            if (!viewModel.selectedDate.value.reservation_times[it].bReserved) {
                 //Create our rows in the column
                 Row(modifier = Modifier
                     .fillMaxWidth()
@@ -126,14 +126,25 @@ fun TimeList(navController : NavController, date : MutableState<DateSlot>)
                     .clickable {
 
                         //When clicked, change screen
-                        date.value.reservation_times[it].bReserved = true
+
+                        //Set the selected Time in the viewModel
+                        viewModel.selectedTime= viewModel.selectedDate.value.reservation_times[it].hour
+
+                        //Reserve the time
+                        viewModel.selectedDate.value.reservation_times[it].bReserved = true
+
+                        //Add the reservation
+                        viewModel.user.reservations.addReservation(viewModel.selectedTime,
+                            viewModel.selectedDate.value.Date
+                            ,viewModel.selectedMachine.id)
+
                         navController.navigate(Screen.ReservationSuccessful.route)
 
                     }) {
 
                     //Display the time
                     Text(
-                        text = date.value.reservation_times[it].hour.toString(),
+                        text = viewModel.selectedDate.value.reservation_times[it].hour.toString(),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)

@@ -38,11 +38,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.readFromFile
 import com.revature.laundr_o_matic.ui.theme.writeToFile
+import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 
 // Washing machine icon
 @Composable
-fun LogInScreen(navController: NavController) {
+fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
 
     val context = LocalContext.current
     val initUser = User("user","pass")
@@ -178,7 +179,7 @@ fun LogInScreen(navController: NavController) {
             modifier = Modifier.height(60.dp),
             onClick = {
 
-                if (checkLoginInfo(username,password,context)) {
+                if (checkLoginInfo(username,password,context,viewModel)) {
                     navController.navigate(Screen.MainMenu.route)
                 } else {
                     loginStat = "Invalid login information"
@@ -222,10 +223,17 @@ fun LogInScreen(navController: NavController) {
     }
 }
 
-fun checkLoginInfo (inUsername:String,inPassword:String,context: Context): Boolean {
+fun checkLoginInfo (inUsername:String,inPassword:String,context: Context, viewModel:MainViewModel): Boolean {
     var filePath = "${context.getFilesDir().toString()}/${inUsername}.ser"
     val myUser = readFromFile(filePath = filePath)
-    return (myUser.password == inPassword)
+
+    return if (myUser.password == inPassword)  {
+        viewModel.user = myUser
+        true
+    } else {
+        false
+    }
+    //return (myUser.password == inPassword)
 
 }
 
@@ -234,5 +242,5 @@ fun checkLoginInfo (inUsername:String,inPassword:String,context: Context): Boole
 @Composable
 fun PreviewLogInScreen()
 {
-    LogInScreen(navController = rememberNavController())
+    LogInScreen(navController = rememberNavController(),MainViewModel())
 }
