@@ -26,14 +26,15 @@ import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.model.Washer
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
+import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 //Shows a list of machines for selecting reservations
 @Composable
-fun MachineReservationScreen(navController: NavController)
+fun MachineReservationScreen(navController: NavController, viewModel:MainViewModel)
 {
 
 
-    val machines = MachineManager()
+    //var viewModel = MainViewModel()
 
     Column {
 
@@ -48,16 +49,17 @@ fun MachineReservationScreen(navController: NavController)
         LazyColumn(state = state){
 
             //for each item in the machine array
-            items(machines.getMachines().size)
+            items(viewModel.machineManager.getMachines().size)
             {
-
+                var machine = viewModel.machineManager.getMachine(it)
                 //Image ID based on if machine is Dryer or Washer -
                 //needs to be updated//
-                var machineImage:Int = if (machines.getMachine(it) is Washer) R.drawable.washer else R.drawable.dryer
+                var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
 
                 //Row displaying machine
                 Row(modifier = Modifier.background(MaterialTheme.colors.background)
                     .clickable {
+                        viewModel.selectedMachine = machine!!
                         navController.navigate(Screen.MachineDetails.route)}) {
 
                     //Image of machine
@@ -74,20 +76,20 @@ fun MachineReservationScreen(navController: NavController)
 
                         //Machine's name -
                         //needs to be updated
-                        var sName:String = if (machines.getMachine(it) is Washer ) "Washer" else "Dryer"
+                        var sName:String = if (machine is Washer ) "Washer" else "Dryer"
 
                         Row(modifier = Modifier.padding(5.dp)
                             .fillMaxWidth()) {
                             Text(
                                 sName, //machineArray[it],
-                                fontSize = 20.sp
+                                style = MaterialTheme.typography.h5
                             )
 
                             Spacer(Modifier.size(20.dp))
 
                             Text(
-                                "Machine ID: ${machines.getMachine(it)?.id}",
-                                fontSize = 20.sp
+                                "Machine ID: ${machine?.id}",
+                                 style = MaterialTheme.typography.h5
                             )
                         }
 
@@ -97,11 +99,11 @@ fun MachineReservationScreen(navController: NavController)
                         //needs to be updated
                         Row(modifier = Modifier.padding(5.dp)
                             .fillMaxWidth()) {
-                            Text("Cost: \$${machines.getMachine(it)?.nCost}")
+                            Text("Cost: \$${machine?.nCost}")
                             Spacer(Modifier.size(10.dp))
-                            Text("Load: ${machines.getMachine(it)?.nLoadSize}")
+                            Text("Load: ${machine?.nLoadSize}")
                             Spacer(Modifier.size(10.dp))
-                            Text("Time: ${machines.getMachine(it)?.nRunTime}")
+                            Text("Time: ${machine?.nRunTime}")
                         }
                     }
 
@@ -124,5 +126,5 @@ fun MachineReservationScreen(navController: NavController)
 @Composable
 fun PreviewReservation()
 {
-    MachineReservationScreen(navController = rememberNavController())
+    MachineReservationScreen(navController = rememberNavController(),MainViewModel())
 }

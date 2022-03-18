@@ -25,16 +25,17 @@ import com.revature.laundr_o_matic.model.AbstractMachine
 import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.model.Washer
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
+import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 //Shows the details of a selected machine
 @Composable
-fun MachineDetailsScreen(navController: NavController)
+fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
 {
 
     //Temp machine for placeholder -
     //needs to be updated\
-    val machineManager = MachineManager()
-    val machine = machineManager.getMachine(3)
+//    val machineManager = MachineManager()
+    val machine = viewModel.selectedMachine
 
     Column {
 
@@ -162,5 +163,5 @@ fun MachineDetailsScreen(navController: NavController)
 @Composable
 fun PreviewMachineDetails()
 {
-    MachineDetailsScreen(navController = rememberNavController())
+    MachineDetailsScreen(navController = rememberNavController(), MainViewModel())
 }

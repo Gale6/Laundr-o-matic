@@ -10,15 +10,19 @@ class MachineManager {
 
     //Initialize the manager with some washers and dryers
     init {
+
         //Load in some quick washers
         for(i in 1..6){
+
             val nKey = getUniqueID()
-            mMachines[nKey] = Washer(nKey)
+            mMachines[nKey] = Washer(nKey, Reservations())
         }
+
         //Load in some quick dryers
         for(i in 1..6){
+
             val nKey = getUniqueID()
-            mMachines[nKey] = Dryer(nKey)
+            mMachines[nKey] = Dryer(nKey,Reservations())
         }
     }
 
@@ -83,4 +87,9 @@ class MachineManager {
         //return the key when we find a free key value
         return nNewKey
     }
+
+    /**
+     * Returns the passed in machine's reservation list
+     */
+    fun getMachineReservations(machineID:Int):Reservations? = getMachine(machineID)?.reservations
 }

@@ -19,10 +19,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
+import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 //Screen showing Successful reservation of machine
 @Composable
-fun ReservationSuccessfulScreen(navController: NavController)
+fun ReservationSuccessfulScreen(navController: NavController,viewModel:MainViewModel)
 {
 
     Column {
@@ -64,5 +65,5 @@ fun ReservationSuccessfulScreen(navController: NavController)
 @Composable
 fun PreviewReservationSuccessful()
 {
-    ReservationSuccessfulScreen(navController = rememberNavController())
+    ReservationSuccessfulScreen(navController = rememberNavController(),MainViewModel())
 }
