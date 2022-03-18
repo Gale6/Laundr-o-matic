@@ -35,7 +35,7 @@ fun UserProfileScreen(navController: NavController) {
     ) {
         Spacer(modifier = Modifier.size(50.dp))
         Image(
-            painter = painterResource(R.drawable.usericon),
+            painter = painterResource(R.drawable.grey_user_icon),
             contentDescription = "userIcon",
             modifier = Modifier
                 .size(150.dp)
