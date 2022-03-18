@@ -10,11 +10,10 @@ import java.time.LocalTime
 
 class MainViewModel:ViewModel() {
 
+    //Reservation Selection Variables
     var machineManager = MachineManager()
     lateinit var selectedMachine:AbstractMachine
     lateinit var selectedDate: MutableState<DateSlot>
     lateinit var selectedTime: LocalTime
 
-    fun clearMachineSelection(){
-    }
 }
