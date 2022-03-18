@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.revature.laundr_o_matic.model.DateSlot
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun ReservationTimeScreen(navController: NavController,viewModel:MainViewModel)
@@ -64,7 +65,8 @@ fun dateSelection( viewModel: MainViewModel)
 
     //Row for the Different Date Buttons
     Row(modifier = Modifier
-        .padding(10.dp)){
+        .padding(10.dp)
+        .fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
 
         //for each day our reservation manager holds
         viewModel.selectedMachine.reservations.days.forEach {
@@ -75,10 +77,11 @@ fun dateSelection( viewModel: MainViewModel)
                 //On clicking a button, change our selected date to the new date
                 viewModel.selectedDate.value = it
             },
-                modifier = Modifier.padding(10.dp),){
+                modifier = Modifier.padding(5.dp).size(width = 75.dp, height = 35.dp)){
 
                 //Display the date in the button
-                Text(it.Date.toString())
+                //Text(it.Date.toString())
+                Text(it.Date.format(DateTimeFormatter.ofPattern("dd/MM")))
             }
 
         }
