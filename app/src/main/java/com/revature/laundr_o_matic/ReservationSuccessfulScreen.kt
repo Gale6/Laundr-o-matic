@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,9 +25,17 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 fun ReservationSuccessfulScreen(navController: NavController)
 {
     var context = LocalContext.current
-    Column {
-        TopAppBar(title = {Text("Reservation Successful!")})
-        Spacer(Modifier.padding(10.dp))
+    Column()
+    {
+        TopAppBar(
+            title = {
+                Text("Reservation Successful!",
+                    color = colorResource(id = R.color.customDarkBrown))},
+            backgroundColor = colorResource(id = R.color.animalCrossingGreen)
+        )
+
+        Spacer(Modifier.height(20.dp))
+
         Image(painter = painterResource(id = R.drawable.washer),
             contentDescription = "Reservation Success",
             modifier = Modifier
@@ -37,12 +46,18 @@ fun ReservationSuccessfulScreen(navController: NavController)
         Text(text = "Success!",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp), fontSize = 30.sp, textAlign = TextAlign.Center)
+                .height(50.dp),
+            fontSize = 30.sp,
+            textAlign = TextAlign.Center,
+            color = colorResource(id = R.color.customDarkBrown),
+        )
+
         Button(onClick = {navController.navigate(Screen.MainMenu.route)},
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .height(40.dp)
-                .fillMaxWidth(.75f))
+                .fillMaxWidth(.75f),
+        )
         {
             Text("Return to Main Menu")
         }

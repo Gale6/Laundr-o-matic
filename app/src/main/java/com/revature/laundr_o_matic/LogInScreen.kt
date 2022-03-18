@@ -24,10 +24,12 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.Typeface
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -60,9 +62,12 @@ fun LogInScreen(navController: NavController) {
 
         Text(
             text = "Laundr-o-matic",
-            fontSize = 40.sp,
+            fontSize = 45.sp,
             color = colorResource(id = R.color.customDarkBrown),
-            fontFamily = FontFamily.Serif
+            fontFamily = FontFamily.Serif,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(horizontal = 5.dp)
         )
 
         Spacer(modifier = Modifier.height(30.dp))
@@ -160,7 +165,7 @@ fun LogInScreen(navController: NavController) {
                 backgroundColor = colorResource(id = R.color.tealGreen)
             ),
 
-            modifier = Modifier.height(50.dp),
+            modifier = Modifier.height(60.dp),
             onClick = {
                 if (checkLoginInfo(username,password)) {
                     navController.navigate(Screen.MainMenu.route)
@@ -171,8 +176,9 @@ fun LogInScreen(navController: NavController) {
         {
             Text(
                 text = "Login",
-                fontSize = 20.sp,
-                color = colorResource(id = R.color.customDarkBrown)
+                fontSize = 30.sp,
+                color = colorResource(id = R.color.customDarkBrown),
+                textAlign = TextAlign.Center
             )
 
         }
@@ -188,7 +194,7 @@ fun LogInScreen(navController: NavController) {
                 backgroundColor = colorResource(id = R.color.tealGreen)
             ),
             modifier = Modifier
-                .height(50.dp),
+                .height(60.dp),
             onClick = { navController.navigate(Screen.Registration.route) },
         )
 //        button_name.setBackgroundResource(R.drawable.custom_button_file_name)
@@ -196,9 +202,10 @@ fun LogInScreen(navController: NavController) {
 
         {
             Text(
-                text = "Register For New Account",
-                fontSize = 20.sp,
-                color = colorResource(id = R.color.customDarkBrown)
+                text = "Register For Account",
+                fontSize = 30.sp,
+                color = colorResource(id = R.color.customDarkBrown),
+                textAlign = TextAlign.Center
             )
         }
     }

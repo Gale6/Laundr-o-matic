@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,8 +44,8 @@ fun MachineReservationScreen(navController: NavController)
 
     val context = LocalContext.current
 
-    Column {
-        TopAppBar(title = {Text("Select a Machine")})
+    Column (Modifier.background(color = colorResource(id = R.color.lightCream))){
+        TopAppBar(title = {Text("Select a Machine", color = colorResource(id = R.color.customDarkBrown))}, backgroundColor = colorResource(id = R.color.animalCrossingGreen))
 
         var state = rememberLazyListState()
         LazyColumn(state = state){
@@ -55,9 +56,10 @@ fun MachineReservationScreen(navController: NavController)
                 var iMachine: Int = if (machineArray.get(it)
                         .startsWith('D')
                 ) R.drawable.dryer else R.drawable.washer
-                Row(modifier = Modifier.background(MaterialTheme.colors.background)
+                Row(modifier = Modifier
                     .clickable {
-                        navController.navigate(Screen.MachineDetails.route)})
+                        navController.navigate(Screen.MachineDetails.route)
+                    })
                 {
                     Image(
                         painter = painterResource(id = iMachine),
@@ -69,23 +71,24 @@ fun MachineReservationScreen(navController: NavController)
                     Column {
                         Text(
                             machineArray[it], modifier = Modifier
-                                .padding(5.dp)
+                                .padding(horizontal = 5.dp, vertical = 10.dp)
                                 .fillMaxWidth()
                                 .fillMaxHeight(),
+                            color = colorResource(id = R.color.customDarkBrown),
                             fontSize = 20.sp
                         )
                         Spacer(Modifier.size(10.dp))
                         Row() {
-                            Text("Cost: $5.00")
+                            Text("Cost: $5.00", color = colorResource(id = R.color.customDarkBrown))
                             Spacer(Modifier.size(10.dp))
-                            Text("Load: 20")
+                            Text("Load: 20", color = colorResource(id = R.color.customDarkBrown))
                             Spacer(Modifier.size(10.dp))
-                            Text("Time: 50min")
+                            Text("Time: 50min", color = colorResource(id = R.color.customDarkBrown))
                         }
                     }
 
                 }
-                Divider(color = Color.Gray)
+                Divider(color = colorResource(id = R.color.tealGreen))
             }
 
         }
