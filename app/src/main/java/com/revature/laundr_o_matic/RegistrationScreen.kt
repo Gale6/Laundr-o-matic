@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.google.android.material.R
 import com.revature.laundr_o_matic.ui.theme.writeToFile
 
 @Composable
@@ -44,15 +43,15 @@ fun RegistrationScreen(navController: NavController) {
     var matchText by rememberSaveable{ mutableStateOf("")}
     var passwordVisibility by remember { mutableStateOf(false) }
     val icon = if (passwordVisibility) {
-        painterResource(id = R.drawable.design_ic_visibility)
+        painterResource(id = com.google.android.material.R.drawable.design_ic_visibility)
     } else {
-        painterResource(id = R.drawable.design_ic_visibility_off)
+        painterResource(id = com.google.android.material.R.drawable.design_ic_visibility_off)
     }
     var passwordVisibility1 by remember { mutableStateOf(false) }
     val icon1 = if (passwordVisibility1) {
-        painterResource(id = R.drawable.design_ic_visibility)
+        painterResource(id = com.google.android.material.R.drawable.design_ic_visibility)
     } else {
-        painterResource(id = R.drawable.design_ic_visibility_off)
+        painterResource(id = com.google.android.material.R.drawable.design_ic_visibility_off)
     }
 
     Column(
@@ -60,14 +59,14 @@ fun RegistrationScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .padding(8.dp)
-            //.background(color = colorResource(id = R.color.lightCream, RectangleShape))
+            .background(color = colorResource(id = R.color.lightCream,))
             .fillMaxSize()
     )
     {
 
         Text("Registration",
             fontSize = 40.sp,
-            //color = colorResource(id = R.color.customDarkBrown),
+            color = colorResource(id = R.color.customDarkBrown),
             fontWeight = FontWeight.Bold
         )
 
@@ -91,8 +90,8 @@ fun RegistrationScreen(navController: NavController) {
                         colors = TextFieldDefaults.
                         outlinedTextFieldColors(
 
-                        //focusedBorderColor = colorResource(id = R.color.customDarkBrown),
-                //focusedLabelColor = colorResource(id = R.color.customDarkBrown)
+                        focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                focusedLabelColor = colorResource(id = R.color.customDarkBrown)
                         ),
 
             )
@@ -120,8 +119,8 @@ fun RegistrationScreen(navController: NavController) {
                 colors = TextFieldDefaults.
                 outlinedTextFieldColors(
 
-                    //focusedBorderColor = colorResource(id = R.color.customDarkBrown),
-                    //focusedLabelColor = colorResource(id = R.color.customDarkBrown)
+                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)
                     ),
                 trailingIcon = {
                     IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
@@ -154,8 +153,8 @@ fun RegistrationScreen(navController: NavController) {
                 colors = TextFieldDefaults.
                 outlinedTextFieldColors(
 
-                    //focusedBorderColor = colorResource(id = R.color.customDarkBrown),
-                    //focusedLabelColor = colorResource(id = R.color.customDarkBrown)
+                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)
                 ),
                 value = rePassword,
                 onValueChange = {
@@ -191,7 +190,7 @@ fun RegistrationScreen(navController: NavController) {
         // Registration button
         Button(
             colors = ButtonDefaults.buttonColors(
-                //backgroundColor = colorResource(id = R.color.tealGreen)
+                backgroundColor = colorResource(id = R.color.tealGreen)
             ),
             modifier = Modifier.height(50.dp),
             onClick = {
@@ -207,7 +206,7 @@ fun RegistrationScreen(navController: NavController) {
             Text(
                 text = "Register",
                 fontSize = 10.sp,
-                //color = colorResource(id = R.color.customDarkBrown)
+                color = colorResource(id = R.color.customDarkBrown)
             )
         }
     }
