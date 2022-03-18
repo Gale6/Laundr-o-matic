@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,12 +33,19 @@ fun ReservationTimeScreen(navController: NavController,viewModel:MainViewModel)
 
     viewModel.selectedDate = remember { mutableStateOf(viewModel.selectedMachine.reservations.days.first()) }
 
+    Surface(modifier = Modifier
+        .fillMaxSize(),
+    color  = colorResource(id = R.color.lightCream)) {
+
     //Column to start our screen
     Column(modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally) {
 
         //Top bar of screen
-        TopAppBar(title = { Text("Reservation Time") })
+        TopAppBar(
+            title = { Text("Reservation Time", color = colorResource(id = R.color.customDarkBrown)) },
+            backgroundColor = colorResource(id = R.color.animalCrossingGreen))
+
 
         //Call our function that creates the Date Buttons
         dateSelection(viewModel)
@@ -55,6 +64,7 @@ fun ReservationTimeScreen(navController: NavController,viewModel:MainViewModel)
         TimeList(navController,viewModel.selectedDate)
 
     }
+    }
 
 }
 @Composable
@@ -72,12 +82,17 @@ fun dateSelection( viewModel: MainViewModel)
         viewModel.selectedMachine.reservations.days.forEach {
 
             //Button for the day
-            Button(onClick = {
+            Button(
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = colorResource(id = R.color.tealGreen)
+                ),onClick = {
 
                 //On clicking a button, change our selected date to the new date
                 viewModel.selectedDate.value = it
             },
-                modifier = Modifier.padding(5.dp).size(width = 75.dp, height = 35.dp)){
+                modifier = Modifier
+                    .padding(5.dp)
+                    .size(width = 75.dp, height = 35.dp)){
 
                 //Display the date in the button
                 //Text(it.Date.toString())
