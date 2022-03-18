@@ -12,83 +12,109 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.MachineManager
+import com.revature.laundr_o_matic.model.Washer
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
+import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
+//Shows a list of machines for selecting reservations
 @Composable
-fun MachineReservationScreen(navController: NavController)
+fun MachineReservationScreen(navController: NavController, viewModel:MainViewModel)
 {
-    //temp list of machines
-    var machineArray = ArrayList<String>()
-    machineArray.add("Washer 1")
-    machineArray.add("Washer 2")
-    machineArray.add("Washer 3")
-    machineArray.add("Washer 4")
-    machineArray.add("Washer 5")
-    machineArray.add("Washer 6")
-    machineArray.add("Dryer 1")
-    machineArray.add("Dryer 2")
-    machineArray.add("Dryer 3")
-    machineArray.add("Dryer 4")
-    machineArray.add("Dryer 5")
-    machineArray.add("Dryer 6")
 
-    val context = LocalContext.current
+
+    //var viewModel = MainViewModel()
 
     Column (Modifier.background(color = colorResource(id = R.color.lightCream))){
         TopAppBar(title = {Text("Select a Machine", color = colorResource(id = R.color.customDarkBrown))}, backgroundColor = colorResource(id = R.color.animalCrossingGreen))
 
+
+        //LazyColumn state
         var state = rememberLazyListState()
+
+        //Lazy Column of all our machines -
+        //needs to be updated for functionality with Machine Manager
         LazyColumn(state = state){
-            items(machineArray.size)
+
+            //for each item in the machine array
+            items(viewModel.machineManager.getMachines().size)
             {
-                //id of the machine we are using, currently
-                //only changes if the machine starts with a D
-                var iMachine: Int = if (machineArray.get(it)
-                        .startsWith('D')
-                ) R.drawable.dryer else R.drawable.washer
-                Row(modifier = Modifier
+                var machine = viewModel.machineManager.getMachine(it)
+                //Image ID based on if machine is Dryer or Washer -
+                //needs to be updated//
+                var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
+
+                //Row displaying machine
+                Row(modifier = Modifier.background(MaterialTheme.colors.background)
                     .clickable {
-                        navController.navigate(Screen.MachineDetails.route)
-                    })
-                {
+                        viewModel.selectedMachine = machine!!
+                        navController.navigate(Screen.MachineDetails.route)}) {
+
+                    //Image of machine
+
                     Image(
-                        painter = painterResource(id = iMachine),
+                        painter = painterResource(id = machineImage),
                         contentDescription = "Machine Icon",
                         modifier = Modifier
                             .size(100.dp)
                             .padding(10.dp)
                     )
-                    Column {
-                        Text(
-                            machineArray[it], modifier = Modifier
-                                .padding(horizontal = 5.dp, vertical = 10.dp)
-                                .fillMaxWidth()
-                                .fillMaxHeight(),
-                            color = colorResource(id = R.color.customDarkBrown),
-                            fontSize = 20.sp
-                        )
+
+                    //Column of the machine's name and details
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+                        //Machine's name -
+                        //needs to be updated
+                        var sName:String = if (machine is Washer ) "Washer" else "Dryer"
+
+                        Row(modifier = Modifier.padding(5.dp)
+                            .fillMaxWidth()) {
+                            Text(
+                                sName, //machineArray[it],
+                                style = MaterialTheme.typography.h5,
+                               color = colorResource(id = R.color.customDarkBrown)
+                            )
+
+                            Spacer(Modifier.size(20.dp))
+
+                            Text(
+                                "Machine ID: ${machine?.id}",
+                                 style = MaterialTheme.typography.h5,
+                               color = colorResource(id = R.color.customDarkBrown)
+                            )
+                        }
+
                         Spacer(Modifier.size(10.dp))
-                        Row() {
-                            Text("Cost: $5.00", color = colorResource(id = R.color.customDarkBrown))
+
+                        //Row containing the details of the machine -
+                        //needs to be updated
+                        Row(modifier = Modifier.padding(5.dp)
+                            .fillMaxWidth()) {
+                            Text("Cost: \$${machine?.nCost}", color = colorResource(id = R.color.customDarkBrown))
                             Spacer(Modifier.size(10.dp))
-                            Text("Load: 20", color = colorResource(id = R.color.customDarkBrown))
+                            Text("Load: ${machine?.nLoadSize}", color = colorResource(id = R.color.customDarkBrown))
                             Spacer(Modifier.size(10.dp))
-                            Text("Time: 50min", color = colorResource(id = R.color.customDarkBrown))
+                            Text("Time: ${machine?.nRunTime}", color = colorResource(id = R.color.customDarkBrown))
+
                         }
                     }
 
                 }
+
                 Divider(color = colorResource(id = R.color.tealGreen))
+
             }
 
         }
@@ -104,5 +130,5 @@ fun MachineReservationScreen(navController: NavController)
 @Composable
 fun PreviewReservation()
 {
-    MachineReservationScreen(navController = rememberNavController())
+    MachineReservationScreen(navController = rememberNavController(),MainViewModel())
 }

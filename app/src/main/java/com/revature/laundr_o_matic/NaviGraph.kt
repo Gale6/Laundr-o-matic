@@ -4,9 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 @Composable
 fun SetupNavGraph(navController: NavHostController){
+
+    var viewModel = MainViewModel()
 
     NavHost(navController = navController, startDestination = Screen.Login.route){
         composable(route= Screen.CurrentMachine.route){
@@ -16,10 +19,10 @@ fun SetupNavGraph(navController: NavHostController){
             LogInScreen(navController = navController)
         }
         composable(route = Screen.MachineDetails.route){
-            MachineDetailsScreen(navController = navController)
+            MachineDetailsScreen(navController = navController,viewModel)
         }
         composable(route = Screen.MachineReservation.route){
-            MachineReservationScreen(navController = navController)
+            MachineReservationScreen(navController = navController,viewModel)
         }
         composable(route = Screen.MachineInUse.route){
             MachinesInUseScreen(navController = navController)
@@ -37,10 +40,10 @@ fun SetupNavGraph(navController: NavHostController){
             RegistrationSuccessfulScreen(navController = navController)
         }
         composable(route = Screen.ReservationSuccessful.route){
-            ReservationSuccessfulScreen(navController = navController)
+            ReservationSuccessfulScreen(navController = navController,viewModel)
         }
         composable(route = Screen.ReservationTime.route){
-            ReservationTimeScreen(navController = navController)
+            ReservationTimeScreen(navController = navController,viewModel)
         }
         composable(route = Screen.UpcomingReservation.route){
             UpcomingReservationScreen(navController = navController)

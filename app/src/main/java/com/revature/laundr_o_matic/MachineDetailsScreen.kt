@@ -23,12 +23,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.AbstractMachine
+import com.revature.laundr_o_matic.model.MachineManager
+import com.revature.laundr_o_matic.model.Washer
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
+import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
+//Shows the details of a selected machine
 @Composable
-fun MachineDetailsScreen(navController: NavController)
+fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
 {
-    var context = LocalContext.current
+
+    //Temp machine for placeholder -
+    //needs to be updated\
+//    val machineManager = MachineManager()
+    val machine = viewModel.selectedMachine
+
 
     Column(
         Modifier.background(
@@ -47,139 +57,133 @@ fun MachineDetailsScreen(navController: NavController)
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            Image(
-                painter = painterResource(id = R.drawable.washer),
-                contentDescription = "Machine Image",
-                modifier = Modifier
-                    .size(250.dp)
-                    .align(Alignment.CenterHorizontally)
-            )
+          //Image of the Machine Selected - needs to be updated
+          var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
+
+          Image(painter = painterResource(id = machineImage),
+              contentDescription = "Machine Image",
+              modifier = Modifier
+                  .size(250.dp)
+                  .padding(20.dp)
+                  .align(Alignment.CenterHorizontally))
 
             Spacer(modifier = Modifier.height(10.dp))
-
-            Column(
-                modifier = Modifier
-                    .padding(20.dp)
-                    .border(
-                        5.dp,
-                        color = colorResource(id = R.color.customDarkBrown),
-                        RoundedCornerShape(5.dp)
-                    )
-                    .size(width = 300.dp, height = 200.dp)
-                    .align(Alignment.CenterHorizontally)
-            )
-            {
+            
+                 //Column holding machine Information
+            Column(modifier = Modifier
+                .padding(10.dp)
+                .border(5.dp, color = colorResource(id = R.color.customDarkBrown),
+                    RoundedCornerShape(5.dp)
+                )
+                //.size(width =  250.dp, height = 200.dp)
+                .fillMaxWidth(.75f)
+                .align(Alignment.CenterHorizontally)){
 
                 Spacer(Modifier.size(10.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(
-                            horizontal = 10.dp
-                        )
-                )
-                {
+                
+                //Row displaying type of machine
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp)
+                    .align(Alignment.CenterHorizontally)) {
 
-                    Text(
-                        text = "Machine: ",
-                        fontSize = 25.sp,
-                        color = colorResource(id = R.color.customDarkBrown)
-                    )
-                    Text(
-                        text = "Washer 1",
-                        fontSize = 25.sp,
+                    val sType = if (machine is Washer) "Washer" else "Dryer"
+                    Text(text = sType,
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        color = colorResource(id = R.color.customDarkBrown))
+                }     
+
+                  //Row containing our Machine's Unique ID - needs to be updated
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp)
+                    .align(Alignment.CenterHorizontally)) {
+
+                    Text(text = "Machine ID: ",
+                        style = MaterialTheme.typography.body1,
+                        textAlign = TextAlign.Left,
+                        color = colorResource(id = R.color.customDarkBrown))
+
+                    Text(text = machine?.id.toString(),
+                        style = MaterialTheme.typography.body1,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
-                        color = colorResource(id = R.color.customDarkBrown)
-                    )
+                        color = colorResource(id = R.color.customDarkBrown))
                 }
-                Spacer(Modifier.size(10.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp)
-                )
-                {
 
-                    Text(
-                        text = "Size: ",
-                        fontSize = 25.sp,
-                        color = colorResource(id = R.color.customDarkBrown)
-                    )
-                    Text(
-                        text = "20 loads",
-                        fontSize = 25.sp,
+                    Spacer(Modifier.size(10.dp))
+
+                //Row containing the size of the Machine - needs to be updated
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp)
+                    .align(Alignment.CenterHorizontally)) {
+
+                    Text(text = "Size: ",
+                        style = MaterialTheme.typography.body1,
+                        color = colorResource(id = R.color.customDarkBrown))
+
+                    Text(text = machine?.nLoadSize.toString(),
+                        style = MaterialTheme.typography.body1,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
-                        color = colorResource(id = R.color.customDarkBrown)
-                    )
+                        color = colorResource(id = R.color.customDarkBrown))
                 }
-                Spacer(Modifier.size(10.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp, vertical = 5.dp)
-                )
-                {
+                    Spacer(Modifier.size(10.dp))
 
-                    Text(
-                        text = "Price: ",
-                        fontSize = 25.sp,
-                        color = colorResource(id = R.color.customDarkBrown)
-                    )
-                    Text(
-                        text = "$5.00",
-                        fontSize = 25.sp,
+                //Row containing the price of the Machine - needs to be updated
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp)
+                    .align(Alignment.CenterHorizontally)) {
+
+                    Text(text = "Price: ",
+                        style = MaterialTheme.typography.body1,
+                        color = colorResource(id = R.color.customDarkBrown))
+
+                    Text(text = "\$${machine?.nCost}",
+                        style = MaterialTheme.typography.body1,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
-                        color = colorResource(id = R.color.customDarkBrown)
-                    )
+                        color = colorResource(id = R.color.customDarkBrown))
                 }
-                Spacer(Modifier.size(10.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp)
-                )
-                {
 
-                    Text(
-                        text = "Time: ",
-                        fontSize = 25.sp,
-                        color = colorResource(id = R.color.customDarkBrown)
-                    )
-                    Text(
-                        text = "50 min",
-                        fontSize = 25.sp,
-                        modifier = Modifier.fillMaxWidth(),
+                    Spacer(Modifier.size(10.dp))
+
+                      //Row containing the cycle length of the Machine - needs to be updated
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp,10.dp)
+                    .align(Alignment.CenterHorizontally)) {
+
+                    Text(text = "Time: ",
+                        style = MaterialTheme.typography.body1,
+                        color = colorResource(id = R.color.customDarkBrown))
+
+                    Text(text = "${machine?.nRunTime} min",
+                        style = MaterialTheme.typography.body1
+                        , modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
-                        color = colorResource(id = R.color.customDarkBrown)
-                    )
-                    Spacer(modifier = Modifier.height(5.dp))
+                        color = colorResource(id = R.color.customDarkBrown))
                 }
+                
 
             }
-            Button(
-                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
-                onClick =
-                { navController.navigate(Screen.ReservationSuccessful.route) },
-                modifier = Modifier
-                    .padding(10.dp)
-                    .width(150.dp)
-                    .height(60.dp)
-                    .align(Alignment.CenterHorizontally)
-            )
-            {
-                Text(
-                    "Reserve",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    color = colorResource(id = R.color.customDarkBrown),
-                    fontSize = 30.sp,
-                )
-            }
+            
+          //Button to start reservation of the machine - needs to be updated
+          Button(colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                 onClick = { navController.navigate(Screen.ReservationTime.route) },
+              modifier=Modifier.padding(10.dp)
+                  .fillMaxWidth(.75f)
+                  .height(50.dp)
+                  .align(Alignment.CenterHorizontally)){
+              Text("Reserve",
+                  modifier = Modifier.fillMaxWidth(),
+                  textAlign = TextAlign.Center,
+                  color = colorResource(id = R.color.customDarkBrown))
+          }
+           
+         
 
         }
+
 
     }
 }
@@ -187,5 +191,5 @@ fun MachineDetailsScreen(navController: NavController)
 @Composable
 fun PreviewMachineDetails()
 {
-    MachineDetailsScreen(navController = rememberNavController())
+    MachineDetailsScreen(navController = rememberNavController(), MainViewModel())
 }
