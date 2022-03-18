@@ -1,32 +1,21 @@
 package com.revature.laundr_o_matic
 
 import android.content.Context
-import android.content.Intent
-
-import android.os.Bundle
-import android.text.style.BackgroundColorSpan
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.Typeface
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -38,6 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.readFromFile
 import com.revature.laundr_o_matic.ui.theme.writeToFile
+import java.io.File
 
 
 // Washing machine icon
@@ -47,14 +37,14 @@ fun LogInScreen(navController: NavController) {
     val context = LocalContext.current
     val initUser = User("user","pass")
 
-    writeToFile(context,initUser)
+    writeToFile(context,initUser) //hard coding a user into local storage
 
     var username by remember { mutableStateOf ("") }
     var password by rememberSaveable { mutableStateOf ("") }
     var loginStat by rememberSaveable { mutableStateOf ("") }
 
     Column(
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .background(MaterialTheme.colors.surface, RectangleShape)
@@ -80,7 +70,7 @@ fun LogInScreen(navController: NavController) {
             modifier = Modifier.padding(horizontal = 5.dp)
         )
 
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         // Background of washing machine image
 
@@ -88,12 +78,10 @@ fun LogInScreen(navController: NavController) {
             Image(
                 painter = painterResource(id = R.drawable.washing_machine),
                 contentDescription = "Kawaii washing machine",
-                Modifier.size(200.dp)
+                Modifier.size(150.dp)
             )
 
-
-
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
         // Username surrounding box
         Surface(
@@ -121,7 +109,7 @@ fun LogInScreen(navController: NavController) {
 
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         // Password surrounding box
         Surface(
@@ -224,6 +212,10 @@ fun LogInScreen(navController: NavController) {
 
 fun checkLoginInfo (inUsername:String,inPassword:String,context: Context): Boolean {
     var filePath = "${context.getFilesDir().toString()}/${inUsername}.ser"
+    var file = File(filePath)
+    if ( !file.exists()){
+        return false
+    }
     val myUser = readFromFile(filePath = filePath)
     return (myUser.password == inPassword)
 
