@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.revature.laundr_o_matic"
-        minSdk 21
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
