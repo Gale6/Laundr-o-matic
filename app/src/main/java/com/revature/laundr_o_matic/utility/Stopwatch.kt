@@ -25,7 +25,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun Timer(totalTimeInSeconds: Int, initialProgress: Float) {
-    var context = LocalContext.current
+    val context = LocalContext.current
 
     var progress by remember {
         mutableStateOf(initialProgress)
@@ -51,7 +51,9 @@ fun Timer(totalTimeInSeconds: Int, initialProgress: Float) {
     val timeMinutes = (timeRemaining / 60)
     val timeSeconds = (timeRemaining % 60)
 
-
+    if(timeRemaining == 300) {
+        Toast.makeText(context, "Your laundry will be done in 5 minutes!", Toast.LENGTH_LONG).show()
+    }
 
 
     Box(modifier = Modifier

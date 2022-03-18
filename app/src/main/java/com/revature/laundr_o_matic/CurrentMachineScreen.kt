@@ -50,7 +50,7 @@ fun CurrentMachineScreen(navController: NavController)
                     )
                     Spacer(modifier = Modifier.height(7.dp))
                     Text(
-                        text = "Your clothes are currently \nwashing.",
+                        text = "Your clothes are currently \ncycling.",
                         fontSize = 25.sp,
                         color = colorResource(id = R.color.customDarkBrown),
                         textAlign = TextAlign.Center
