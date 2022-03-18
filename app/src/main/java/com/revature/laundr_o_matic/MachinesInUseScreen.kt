@@ -12,6 +12,7 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
@@ -44,12 +45,12 @@ fun MachinesInUseScreen(navController: NavController)
             Box(modifier = Modifier
                 .fillMaxSize()
                 .background(color = colorResource(id = R.color.lightCream)),
-                contentAlignment = TopCenter
+                contentAlignment = Center
             )
             {
                 Column(
                     horizontalAlignment = CenterHorizontally,
-                    verticalArrangement = Arrangement.Top, modifier = Modifier.fillMaxSize()
+                    verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()
                 )
                 {
                     Spacer(modifier = Modifier.height(10.dp))
@@ -61,7 +62,7 @@ fun MachinesInUseScreen(navController: NavController)
                         textAlign = TextAlign.Center,
                         color = colorResource(id = R.color.customDarkBrown)
                     )
-                    Spacer(modifier = Modifier.height(1.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
                     Text(
                         text = "Currently Running:",
                         fontSize = 25.sp,
@@ -69,11 +70,11 @@ fun MachinesInUseScreen(navController: NavController)
                         textAlign = TextAlign.Center
                     )
 
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(5.dp))
 
                     Column(
                         horizontalAlignment = CenterHorizontally,
-                        verticalArrangement = Arrangement.Top,
+                        verticalArrangement = Arrangement.Center,
                         modifier = Modifier
                             .fillMaxWidth()
                             .fillMaxHeight(0.80f)
@@ -85,7 +86,7 @@ fun MachinesInUseScreen(navController: NavController)
                             onClick =
                             { navController.navigate(Screen.CurrentMachine.route)},
                             modifier = Modifier
-                                .width(320.dp)
+                                .width(327.dp)
                                 .height(50.dp)
                         )
                         {
@@ -103,7 +104,7 @@ fun MachinesInUseScreen(navController: NavController)
                             colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
                             onClick = { navController.navigate(Screen.CurrentMachine.route)},
                             modifier = Modifier
-                                .width(320.dp)
+                                .width(327.dp)
                                 .height(50.dp)
                         )
                         {
@@ -131,7 +132,7 @@ fun MachinesInUseScreen(navController: NavController)
                             onClick =
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
-                                .width(320.dp)
+                                .width(327.dp)
                                 .height(60.dp)
                         )
                         {
@@ -148,7 +149,7 @@ fun MachinesInUseScreen(navController: NavController)
                             onClick =
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
-                                .width(320.dp)
+                                .width(327.dp)
                                 .height(60.dp)
                         )
                         {
@@ -158,7 +159,7 @@ fun MachinesInUseScreen(navController: NavController)
                                 fontSize = 20.sp
                             )
                         }
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         Text(text = "Exit:",
                             fontSize = 25.sp,
@@ -172,16 +173,18 @@ fun MachinesInUseScreen(navController: NavController)
                             onClick =
                             {navController.navigate(Screen.MainMenu.route)},
                             modifier = Modifier
-                                .width(320.dp)
+                                .width(200.dp)
                                 .height(60.dp)
                         )
                         {
                             Text("Main Menu",
                                 color = colorResource(id = R.color.customDarkBrown),
                                 textAlign = TextAlign.Center,
-                                fontSize = 20.sp
+                                fontSize = 25.sp
                             )
                         }
+                        
+                        Spacer(modifier = Modifier.height(30.dp))
                     }
                 }
 

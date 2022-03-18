@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,9 +35,10 @@ fun RegistrationSuccessfulScreen(navController: NavController)
     )
     {
 
-        Text("Congratulations",
+        Text("Congratulations!",
             fontSize = 40.sp,
-            color = colorResource(id = R.color.animalCrossingGreen)
+            color = colorResource(id = R.color.animalCrossingGreen),
+            fontWeight = FontWeight.Bold
         )
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -63,13 +65,15 @@ fun RegistrationSuccessfulScreen(navController: NavController)
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = colorResource(id = R.color.tealGreen)
             ),
-            modifier = Modifier.height(50.dp),
+            modifier = Modifier
+                .height(60.dp)
+                .width(360.dp),
             onClick = { navController.navigate(Screen.Login.route)})
 
         {
             Text(
                 text = "Click here to log back in",
-                fontSize = 20.sp,
+                fontSize = 27.sp,
                 color = colorResource(id = R.color.customDarkBrown)
             )
         }

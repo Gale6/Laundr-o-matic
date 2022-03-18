@@ -9,15 +9,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,20 +32,36 @@ import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
 @Composable
-fun MissedReservationScreen(navController: NavController) {
+fun MissedReservationScreen(navController: NavController)
+{
 
     val context = LocalContext.current
-    Column {
+    Column (
+        modifier = Modifier
+            .background(color = colorResource(id = R.color.lightCream)),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    )
+    {
 
-        TopAppBar(title = { Text("Missed Reservation") })
+        TopAppBar(title =
+        {
+            Text(
+                "Missed Reservation",
+                color = colorResource(id = R.color.customDarkBrown))
+        },
+            backgroundColor = colorResource(id = R.color.animalCrossingGreen)
+        )
 
+        Spacer(modifier = Modifier.height(40.dp))
+        
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = TopCenter) {
             Box(modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White),
+                .fillMaxSize(),
                 contentAlignment = TopCenter
-            ) {
-              Image(
+            )
+            {
+                Image(
                     painter = painterResource(id = R.drawable.frowning_face),
                     contentDescription = "frowning face",
                     modifier = Modifier.size(250.dp)
@@ -54,16 +73,28 @@ fun MissedReservationScreen(navController: NavController) {
                     .fillMaxWidth()
                     .fillMaxHeight()
             ) {
-                Spacer(modifier = Modifier.height(200.dp))
 
-                Text(text = "Oh no!",
-                    style = TextStyle(color = Color.Red,
-                    fontWeight = FontWeight.Bold),
-                    fontSize = 50.sp)
-                Text(text = "You missed your reservation.",
-                    fontSize = 25.sp)
-                Text(text = "Would you like to reschedule?",
-                    fontSize = 25.sp)
+                Spacer(modifier = Modifier.height(220.dp))
+
+                Text(
+                    text = "Oh no!",
+                    style =
+                    TextStyle
+                        (fontWeight = FontWeight.Bold),
+                    fontSize = 50.sp,
+                    color = colorResource(id = R.color.customDarkBrown)
+                )
+
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = "You missed your reservation." +
+                            "\nWould you like to reschedule?",
+                    fontSize = 25.sp,
+                    color = colorResource(id = R.color.customDarkBrown)
+                )
+
+                Spacer(modifier = Modifier.height(20.dp))
+
 
                 Column(
                     horizontalAlignment = CenterHorizontally,
@@ -73,24 +104,39 @@ fun MissedReservationScreen(navController: NavController) {
                         .fillMaxHeight(0.60f)
                         .clip(RoundedCornerShape(30.dp))
                         .padding(10.dp)
-                ) {
+                )
+                {
                     Button(
+                        colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
                         onClick = {navController.navigate(Screen.MachineReservation.route)},
                         modifier = Modifier
-                            .fillMaxWidth(0.8f)
+                            .width(200.dp)
                             .height(50.dp)
-                    ) {
-                        Text("Reschedule")
+
+                    )
+                    {
+                        Text(
+                            "Reschedule",
+                            color = colorResource(id = R.color.customDarkBrown),
+                            fontSize = 25.sp
+                        )
                     }
-                    Spacer(modifier = Modifier.padding(10.dp))
+
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     Button(
+                        colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
                         onClick = {navController.navigate(Screen.MainMenu.route)},
                         modifier = Modifier
-                            .fillMaxWidth(0.8f)
                             .height(50.dp)
-                    ) {
-                        Text("Main Menu")
+                            .width(200.dp)
+                    )
+                    {
+                        Text(
+                            "Main Menu",
+                            color = colorResource(id = R.color.customDarkBrown),
+                            fontSize = 25.sp
+                        )
                     }
                 }
             }

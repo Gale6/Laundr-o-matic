@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,7 +38,8 @@ fun RegistrationScreen(navController: NavController) {
 
         Text("Registration",
             fontSize = 40.sp,
-            color = colorResource(id = R.color.customDarkBrown)
+            color = colorResource(id = R.color.customDarkBrown),
+            fontWeight = FontWeight.Bold
         )
 
         Spacer(modifier = Modifier.height(50.dp))
@@ -131,13 +133,13 @@ fun RegistrationScreen(navController: NavController) {
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = colorResource(id = R.color.tealGreen)
             ),
-            modifier = Modifier.height(50.dp),
+            modifier = Modifier.height(60.dp),
             onClick = {navController.navigate(Screen.RegistrationSuccessful.route)})
 
         {
             Text(
                 text = "Register",
-                fontSize = 20.sp,
+                fontSize = 30.sp,
                 color = colorResource(id = R.color.customDarkBrown)
             )
         }

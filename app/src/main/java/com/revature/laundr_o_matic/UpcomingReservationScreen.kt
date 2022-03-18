@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
@@ -17,7 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,70 +32,100 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 fun UpcomingReservationScreen(navController: NavController) {
     val context = LocalContext.current
 
-    Column {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.background(color = colorResource(id = R.color.lightCream)).background(color = colorResource(id = R.color.lightCream))
+    )
+    {
 
-        TopAppBar(title = { Text("Upcoming Reservation") })
+        TopAppBar(
+            title =
+            {
+                Text(
+                    "Upcoming Reservation",
+                    color = colorResource(id = R.color.customDarkBrown)
+                )
+            },
+            backgroundColor = colorResource(id = R.color.animalCrossingGreen)
+        )
 
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White),
-                contentAlignment = Alignment.TopCenter
-            ) {
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        )
+        {
+
+
+
                 Image(
                     painter = painterResource(id = R.drawable.washing_machine),
                     contentDescription = "Machine icon",
                     modifier = Modifier.size(250.dp)
                 )
-            }
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-            ) {
-                Spacer(modifier = Modifier.height(250.dp))
 
 
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(0.60f)
-                        .clip(RoundedCornerShape(30.dp))
-                        .padding(10.dp)
-                ) {
-                    Text(text = "Size: 20 loads",
-                        fontSize = 25.sp,)
-                    Text(text = "Price: $5.00",
-                        fontSize = 25.sp)
-                    Text(text = "Cycle Time: 50 min",
-                        fontSize = 25.sp)
 
-                    Spacer(modifier = Modifier.height(10.dp))
+
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    Text(
+                        text = "Size: 20 loads",
+                        fontSize = 25.sp,
+                        color = colorResource(id = R.color.customDarkBrown)
+                    )
+                    Text(
+                        text = "Price: $5.00",
+                        fontSize = 25.sp,
+                        color = colorResource(id = R.color.customDarkBrown)
+                    )
+                    Text(
+                        text = "Cycle Time: 50 min",
+                        fontSize = 25.sp,
+                        color = colorResource(id = R.color.customDarkBrown)
+                    )
+
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     Button(
+                        colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
                         onClick = { /*TODO cancels current reservation*/ }, modifier = Modifier
                             .fillMaxWidth(0.8f)
-                            .height(50.dp)
-                    ) {
-                        Text("Cancel Reservation")
+                            .height(60.dp)
+                    )
+                    {
+                        Text(
+                            "Cancel Reservation",
+                            color = colorResource(id = R.color.customDarkBrown),
+                            fontSize = 30.sp,
+                            textAlign = TextAlign.Center
+                        )
                     }
                     Spacer(modifier = Modifier.padding(10.dp))
 
-                    Button(onClick = {navController.navigate(Screen.MainMenu.route)}, modifier = Modifier
-                        .fillMaxWidth(0.8f)
-                        .height(50.dp)
-                    ) {
-                        Text("Main Menu")
+                    Button(
+                        colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                        onClick = { navController.navigate(Screen.MainMenu.route) },
+                        modifier = Modifier
+                            .fillMaxWidth(0.8f)
+                            .height(60.dp)
+                    )
+                    {
+                        Text(
+                            "Main Menu",
+                            color = colorResource(id = R.color.customDarkBrown),
+                            fontSize = 30.sp,
+                            textAlign = TextAlign.Center
+                        )
                     }
                 }
             }
         }
-    }
-}
+
+
 
 @Preview(showBackground = true)
 @Composable
