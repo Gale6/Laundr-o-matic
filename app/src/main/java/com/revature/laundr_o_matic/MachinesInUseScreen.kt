@@ -40,27 +40,19 @@ fun MachinesInUseScreen(navController: NavController)
             title = { Text("Machines in use", color = colorResource(id = R.color.customDarkBrown)) },
             backgroundColor = colorResource(id = R.color.animalCrossingGreen))
 
-        Box(
-            modifier = Modifier
+
+            Box(modifier = Modifier
                 .fillMaxSize()
                 .background(color = colorResource(id = R.color.lightCream)),
-            contentAlignment = TopCenter,
-        )
-        {
-            Box(modifier = Modifier
-                .fillMaxSize(),
                 contentAlignment = TopCenter
             )
             {
                 Column(
                     horizontalAlignment = CenterHorizontally,
-                    verticalArrangement = Arrangement.Top,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
+                    verticalArrangement = Arrangement.Top, modifier = Modifier.fillMaxSize()
                 )
                 {
-                    Spacer(modifier = Modifier.height(70.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
                     Text(
                         text = "Your Machines",
@@ -69,6 +61,7 @@ fun MachinesInUseScreen(navController: NavController)
                         textAlign = TextAlign.Center,
                         color = colorResource(id = R.color.customDarkBrown)
                     )
+                    Spacer(modifier = Modifier.height(1.dp))
                     Text(
                         text = "Currently Running:",
                         fontSize = 25.sp,
@@ -76,7 +69,7 @@ fun MachinesInUseScreen(navController: NavController)
                         textAlign = TextAlign.Center
                     )
 
-                    Spacer(modifier = Modifier.padding(10.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
                     Column(
                         horizontalAlignment = CenterHorizontally,
@@ -93,7 +86,7 @@ fun MachinesInUseScreen(navController: NavController)
                             { navController.navigate(Screen.CurrentMachine.route)},
                             modifier = Modifier
                                 .width(320.dp)
-                                .height(60.dp)
+                                .height(50.dp)
                         )
                         {
                             Text(
@@ -111,7 +104,7 @@ fun MachinesInUseScreen(navController: NavController)
                             onClick = { navController.navigate(Screen.CurrentMachine.route)},
                             modifier = Modifier
                                 .width(320.dp)
-                                .height(60.dp)
+                                .height(50.dp)
                         )
                         {
                             Text(
@@ -122,7 +115,7 @@ fun MachinesInUseScreen(navController: NavController)
                             )
                         }
 
-                        Spacer(modifier = Modifier.padding(20.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         Text(
                             text = "Reservations:",
@@ -131,7 +124,7 @@ fun MachinesInUseScreen(navController: NavController)
                             textAlign = TextAlign.Center
                         )
 
-                        Spacer(modifier = Modifier.padding(20.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         Button(
                             colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
@@ -149,7 +142,7 @@ fun MachinesInUseScreen(navController: NavController)
                             )
                         }
 
-                        Spacer(modifier = Modifier.padding(20.dp))
+                        Spacer(modifier = Modifier.padding(10.dp))
 
                         Button( colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
                             onClick =
@@ -172,6 +165,8 @@ fun MachinesInUseScreen(navController: NavController)
                             color = colorResource(id = R.color.customDarkBrown),
                             textAlign = TextAlign.Center
                         )
+
+                        Spacer(modifier = Modifier.height(10.dp))
                         Button(
                             colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
                             onClick =
@@ -189,7 +184,7 @@ fun MachinesInUseScreen(navController: NavController)
                         }
                     }
                 }
-            }
+
         }
     }
 }

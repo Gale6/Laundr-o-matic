@@ -61,15 +61,16 @@ fun CurrentMachineScreen(navController: NavController)
                         .fillMaxHeight()
                 )
                 {
+                    Spacer(modifier = Modifier.height(7.dp))
                     Text(
                         text = "Progress",
-                        fontSize = 50.sp,
+                        fontSize = 40.sp,
                         color = colorResource(id = R.color.customDarkBrown),
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.ExtraBold
                     )
 
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(7.dp))
 
                     Text(
                         text = "Your clothes are currently \nwashing.",
@@ -86,7 +87,7 @@ fun CurrentMachineScreen(navController: NavController)
                         color = colorResource(id = R.color.customDarkBrown),
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
                     Image(
                         painter = painterResource(id = R.drawable.washing_machine),
@@ -94,15 +95,15 @@ fun CurrentMachineScreen(navController: NavController)
                         Modifier.size(250.dp)
                     )
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
                     Text(
                         text = "50% Complete",
-                        fontSize = 50.sp,
+                        fontSize = 40.sp,
                         color = colorResource(id = R.color.customDarkBrown),
                         fontWeight = Bold
                     )
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(7.dp))
 
                     Text(
                         text = "You will be notified five minutes\n before your cycle ends.",
@@ -111,7 +112,7 @@ fun CurrentMachineScreen(navController: NavController)
                         color = colorResource(id = R.color.customDarkBrown),
                     )
 
-                    Spacer(modifier = Modifier.padding(10.dp))
+                    Spacer(modifier = Modifier.padding(5.dp))
 
                     Button(onClick =
                     { navController.navigate(route = Screen.MainMenu.route)},
