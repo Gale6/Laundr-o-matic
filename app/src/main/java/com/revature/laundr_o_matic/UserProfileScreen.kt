@@ -110,9 +110,10 @@ fun UserProfileScreen(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview2() {
-    LaundromaticTheme {
+fun DefaultPreview2()
+{
+    LaundromaticTheme()
+    {
         UserProfileScreen(navController = rememberNavController())
-
     }
 }

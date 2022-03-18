@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,10 +37,9 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
 
     //var viewModel = MainViewModel()
 
-    Column {
+    Column (Modifier.background(color = colorResource(id = R.color.lightCream))){
+        TopAppBar(title = {Text("Select a Machine", color = colorResource(id = R.color.customDarkBrown))}, backgroundColor = colorResource(id = R.color.animalCrossingGreen))
 
-        //TopBar of our screen
-        TopAppBar(title = {Text("Select a Machine")})
 
         //LazyColumn state
         var state = rememberLazyListState()
@@ -63,6 +63,7 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
                         navController.navigate(Screen.MachineDetails.route)}) {
 
                     //Image of machine
+
                     Image(
                         painter = painterResource(id = machineImage),
                         contentDescription = "Machine Icon",
@@ -82,14 +83,16 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
                             .fillMaxWidth()) {
                             Text(
                                 sName, //machineArray[it],
-                                style = MaterialTheme.typography.h5
+                                style = MaterialTheme.typography.h5,
+                               color = colorResource(id = R.color.customDarkBrown)
                             )
 
                             Spacer(Modifier.size(20.dp))
 
                             Text(
                                 "Machine ID: ${machine?.id}",
-                                 style = MaterialTheme.typography.h5
+                                 style = MaterialTheme.typography.h5,
+                               color = colorResource(id = R.color.customDarkBrown)
                             )
                         }
 
@@ -99,18 +102,19 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
                         //needs to be updated
                         Row(modifier = Modifier.padding(5.dp)
                             .fillMaxWidth()) {
-                            Text("Cost: \$${machine?.nCost}")
+                            Text("Cost: \$${machine?.nCost}", color = colorResource(id = R.color.customDarkBrown))
                             Spacer(Modifier.size(10.dp))
-                            Text("Load: ${machine?.nLoadSize}")
+                            Text("Load: ${machine?.nLoadSize}", color = colorResource(id = R.color.customDarkBrown))
                             Spacer(Modifier.size(10.dp))
-                            Text("Time: ${machine?.nRunTime}")
+                            Text("Time: ${machine?.nRunTime}", color = colorResource(id = R.color.customDarkBrown))
+
                         }
                     }
 
                 }
 
-                //Divider for spacing between machines
-                Divider(color = Color.Gray)
+                Divider(color = colorResource(id = R.color.tealGreen))
+
             }
 
         }

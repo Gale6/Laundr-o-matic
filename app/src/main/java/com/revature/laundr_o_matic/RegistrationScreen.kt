@@ -16,7 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.res.painterResource
+
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -54,13 +59,18 @@ fun RegistrationScreen(navController: NavController) {
 
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
+
             .padding(8.dp)
-            .background(MaterialTheme.colors.surface, RectangleShape)
+            .background(color = colorResource(id = R.color.lightCream, RectangleShape)
             .fillMaxSize()
     )
     {
 
-        Text("Registration", fontSize = 40.sp)
+        Text("Registration",
+            fontSize = 40.sp,
+            color = colorResource(id = R.color.customDarkBrown),
+            fontWeight = FontWeight.Bold
+        )
 
         Spacer(modifier = Modifier.height(25.dp))
 
@@ -75,9 +85,16 @@ fun RegistrationScreen(navController: NavController) {
         {
             // Username box input
             TextField(
+
                 value = username,
-                onValueChange = { username = it },
-                label = { Text("Enter your username") }
+                 onValueChange = { username = it },
+                label = { Text("Enter your username") },
+                        colors = TextFieldDefaults.
+                        outlinedTextFieldColors(
+
+                        focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                focusedLabelColor = colorResource(id = R.color.customDarkBrown)),
+
             )
 
         }
@@ -100,6 +117,11 @@ fun RegistrationScreen(navController: NavController) {
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Enter your desired password") },
+                colors = TextFieldDefaults.
+                outlinedTextFieldColors(
+
+                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)),
                 trailingIcon = {
                     IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
                         Icon(
@@ -110,6 +132,7 @@ fun RegistrationScreen(navController: NavController) {
                 },
 
                 visualTransformation = if(passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
         }
@@ -127,6 +150,11 @@ fun RegistrationScreen(navController: NavController) {
             // Password box input
 
             TextField(
+                colors = TextFieldDefaults.
+                outlinedTextFieldColors(
+
+                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)),
                 value = rePassword,
                 onValueChange = {
 
@@ -160,6 +188,9 @@ fun RegistrationScreen(navController: NavController) {
 
         // Registration button
         Button(
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colorResource(id = R.color.tealGreen)
+            ),
             modifier = Modifier.height(50.dp),
             onClick = {
                 if(rePassword == password){
@@ -173,7 +204,9 @@ fun RegistrationScreen(navController: NavController) {
         {
             Text(
                 text = "Register",
-                fontSize = 20.sp)
+                fontSize = 30.sp,
+                color = colorResource(id = R.color.customDarkBrown)
+            )
         }
     }
 }

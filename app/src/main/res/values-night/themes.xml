@@ -2,15 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.Apartmentlaundryapp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/mediumLavender</item>
+        <item name="colorPrimaryVariant">@color/deepPurple</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/tealGreen</item>
+        <item name="colorSecondaryVariant">@color/forestGreen</item>
+        <item name="colorOnSecondary">@color/tealGreen</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnSecondary</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

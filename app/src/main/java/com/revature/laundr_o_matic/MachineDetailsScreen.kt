@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,127 +39,153 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
 //    val machineManager = MachineManager()
     val machine = viewModel.selectedMachine
 
-    Column {
 
-        //Top Bar for the screen
-        TopAppBar(title = {Text("Machine Details")})
+    Column(
+        Modifier.background(
+            color = colorResource(id = R.color.lightCream)
+        )
+    )
+    {
+        TopAppBar(
+            title =
+            { Text("Machine Details", color = colorResource(id = R.color.customDarkBrown)) },
+            backgroundColor = colorResource(id = R.color.animalCrossingGreen)
+        )
 
-        //Image of the Machine Selected - needs to be updated
-        var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
-
-        Image(painter = painterResource(id = machineImage),
-            contentDescription = "Machine Image",
-            modifier = Modifier
-                .size(250.dp)
-                .padding(20.dp)
-                .align(Alignment.CenterHorizontally))
-
-        //Column holding machine Information
-        Column(modifier = Modifier
-            .padding(10.dp)
-            .border(5.dp, Color.Black,
-                RoundedCornerShape(5.dp)
-            )
-            //.size(width =  250.dp, height = 200.dp)
-            .fillMaxWidth(.75f)
-            .align(Alignment.CenterHorizontally)){
-
-            //Spacer(Modifier.size(10.dp))
-
-            //Row displaying type of machine
-            Row(modifier = Modifier.fillMaxWidth(.9f)
-                .padding(5.dp)
-                .align(Alignment.CenterHorizontally)) {
-
-                val sType = if (machine is Washer) "Washer" else "Dryer"
-                Text(text = sType,
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center)
-            }
+        Column(Modifier.fillMaxSize()) {
 
 
-           // Spacer(Modifier.size(10.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
-            //Row containing our Machine's Unique ID - needs to be updated
-            Row(modifier = Modifier.fillMaxWidth(.9f)
-                .padding(5.dp)
-                .align(Alignment.CenterHorizontally)) {
+          //Image of the Machine Selected - needs to be updated
+          var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
 
-                Text(text = "Machine ID: ",
-                    style = MaterialTheme.typography.body1,
-                    textAlign = TextAlign.Left)
+          Image(painter = painterResource(id = machineImage),
+              contentDescription = "Machine Image",
+              modifier = Modifier
+                  .size(250.dp)
+                  .padding(20.dp)
+                  .align(Alignment.CenterHorizontally))
 
-                Text(text = machine?.id.toString(),
-                    style = MaterialTheme.typography.body1,
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Right)
-            }
-
-            //Spacer(Modifier.size(10.dp))
-
-            //Row containing the size of the Machine - needs to be updated
-            Row(modifier = Modifier.fillMaxWidth(.9f)
-                .padding(5.dp)
-                .align(Alignment.CenterHorizontally)) {
-
-                Text(text = "Size: ",
-                    style = MaterialTheme.typography.body1)
-
-                Text(text = machine?.nLoadSize.toString(),
-                    style = MaterialTheme.typography.body1,
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Right)
-            }
-
-            //Spacer(Modifier.size(10.dp))
-
-            //Row containing the price of the Machine - needs to be updated
-            Row(modifier = Modifier.fillMaxWidth(.9f)
-                .padding(5.dp)
-                .align(Alignment.CenterHorizontally)) {
-
-                Text(text = "Price: ",
-                    style = MaterialTheme.typography.body1)
-
-                Text(text = "\$${machine?.nCost}",
-                    style = MaterialTheme.typography.body1,
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Right)
-            }
-
-            //Spacer(Modifier.size(10.dp))
-
-            //Row containing the cycle length of the Machine - needs to be updated
-            Row(modifier = Modifier.fillMaxWidth(.9f)
-                .padding(5.dp,10.dp)
-                .align(Alignment.CenterHorizontally)) {
-
-                Text(text = "Time: ",
-                    style = MaterialTheme.typography.body1)
-
-                Text(text = "${machine?.nRunTime} min",
-                    style = MaterialTheme.typography.body1
-                    , modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Right)
-            }
-
-        }
-
-        //Button to start reservation of the machine - needs to be updated
-        Button(onClick = { navController.navigate(Screen.ReservationTime.route) },
-            modifier=Modifier.padding(10.dp)
+            Spacer(modifier = Modifier.height(10.dp))
+            
+                 //Column holding machine Information
+            Column(modifier = Modifier
+                .padding(10.dp)
+                .border(5.dp, color = colorResource(id = R.color.customDarkBrown),
+                    RoundedCornerShape(5.dp)
+                )
+                //.size(width =  250.dp, height = 200.dp)
                 .fillMaxWidth(.75f)
-                .height(50.dp)
                 .align(Alignment.CenterHorizontally)){
-            Text("Reserve",
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center)
+
+                Spacer(Modifier.size(10.dp))
+                
+                //Row displaying type of machine
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp)
+                    .align(Alignment.CenterHorizontally)) {
+
+                    val sType = if (machine is Washer) "Washer" else "Dryer"
+                    Text(text = sType,
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        color = colorResource(id = R.color.customDarkBrown))
+                }     
+
+                  //Row containing our Machine's Unique ID - needs to be updated
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp)
+                    .align(Alignment.CenterHorizontally)) {
+
+                    Text(text = "Machine ID: ",
+                        style = MaterialTheme.typography.body1,
+                        textAlign = TextAlign.Left,
+                        color = colorResource(id = R.color.customDarkBrown))
+
+                    Text(text = machine?.id.toString(),
+                        style = MaterialTheme.typography.body1,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Right,
+                        color = colorResource(id = R.color.customDarkBrown))
+                }
+
+                    Spacer(Modifier.size(10.dp))
+
+                //Row containing the size of the Machine - needs to be updated
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp)
+                    .align(Alignment.CenterHorizontally)) {
+
+                    Text(text = "Size: ",
+                        style = MaterialTheme.typography.body1,
+                        color = colorResource(id = R.color.customDarkBrown))
+
+                    Text(text = machine?.nLoadSize.toString(),
+                        style = MaterialTheme.typography.body1,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Right,
+                        color = colorResource(id = R.color.customDarkBrown))
+                }
+                    Spacer(Modifier.size(10.dp))
+
+                //Row containing the price of the Machine - needs to be updated
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp)
+                    .align(Alignment.CenterHorizontally)) {
+
+                    Text(text = "Price: ",
+                        style = MaterialTheme.typography.body1,
+                        color = colorResource(id = R.color.customDarkBrown))
+
+                    Text(text = "\$${machine?.nCost}",
+                        style = MaterialTheme.typography.body1,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Right,
+                        color = colorResource(id = R.color.customDarkBrown))
+                }
+
+                    Spacer(Modifier.size(10.dp))
+
+                      //Row containing the cycle length of the Machine - needs to be updated
+                Row(modifier = Modifier.fillMaxWidth(.9f)
+                    .padding(5.dp,10.dp)
+                    .align(Alignment.CenterHorizontally)) {
+
+                    Text(text = "Time: ",
+                        style = MaterialTheme.typography.body1,
+                        color = colorResource(id = R.color.customDarkBrown))
+
+                    Text(text = "${machine?.nRunTime} min",
+                        style = MaterialTheme.typography.body1
+                        , modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Right,
+                        color = colorResource(id = R.color.customDarkBrown))
+                }
+                
+
+            }
+            
+          //Button to start reservation of the machine - needs to be updated
+          Button(colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                 onClick = { navController.navigate(Screen.ReservationTime.route) },
+              modifier=Modifier.padding(10.dp)
+                  .fillMaxWidth(.75f)
+                  .height(50.dp)
+                  .align(Alignment.CenterHorizontally)){
+              Text("Reserve",
+                  modifier = Modifier.fillMaxWidth(),
+                  textAlign = TextAlign.Center,
+                  color = colorResource(id = R.color.customDarkBrown))
+          }
+           
+         
+
         }
+
 
     }
-
-
 }
 @Preview
 @Composable
