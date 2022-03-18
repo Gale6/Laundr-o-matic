@@ -60,6 +60,8 @@ fun LogInScreen(navController: NavController) {
 //        val context = LocalContext.current
 //        val typeface = ResourcesCompat.getFont(context, R.font.fresh_lychee)
 
+        Spacer(modifier = Modifier.height(10.dp))
+
         Text(
             text = "Laundr-o-matic",
             fontSize = 45.sp,
@@ -89,7 +91,7 @@ fun LogInScreen(navController: NavController) {
         Surface(
             modifier = Modifier
 //                .height(30.dp)
-                .width(300.dp),
+                .width(350.dp),
             shape = RectangleShape,
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f),
         )
@@ -104,7 +106,7 @@ fun LogInScreen(navController: NavController) {
 
                     focusedBorderColor = colorResource(id = R.color.customDarkBrown),
                     focusedLabelColor = colorResource(id = R.color.customDarkBrown)
-                )
+                ),
             )
 //                    (colorResource(id = R.color.mintGreen))
 
@@ -117,7 +119,7 @@ fun LogInScreen(navController: NavController) {
         Surface(
             modifier = Modifier
 //                .height(20.dp)
-                .width(300.dp),
+                .width(350.dp),
             shape = RectangleShape,
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
         )
@@ -157,7 +159,7 @@ fun LogInScreen(navController: NavController) {
             )
         }
         Text(text = loginStat)
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         // Login button
         Button(
@@ -219,6 +221,7 @@ fun checkLoginInfo (inUsername:String,inPassword:String): Boolean {
 
 @Preview
 @Composable
-fun PreviewLogInScreen() {
+fun PreviewLogInScreen()
+{
     LogInScreen(navController = rememberNavController())
 }

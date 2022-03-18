@@ -60,7 +60,7 @@ fun MachinesInUseScreen(navController: NavController)
                         .fillMaxHeight()
                 )
                 {
-                    Spacer(modifier = Modifier.height(100.dp))
+                    Spacer(modifier = Modifier.height(70.dp))
 
                     Text(
                         text = "Your Machines",
@@ -93,7 +93,7 @@ fun MachinesInUseScreen(navController: NavController)
                             { navController.navigate(Screen.CurrentMachine.route)},
                             modifier = Modifier
                                 .width(320.dp)
-                                .height(55.dp)
+                                .height(60.dp)
                         )
                         {
                             Text(
@@ -111,7 +111,7 @@ fun MachinesInUseScreen(navController: NavController)
                             onClick = { navController.navigate(Screen.CurrentMachine.route)},
                             modifier = Modifier
                                 .width(320.dp)
-                                .height(50.dp)
+                                .height(60.dp)
                         )
                         {
                             Text(
@@ -139,7 +139,7 @@ fun MachinesInUseScreen(navController: NavController)
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
                                 .width(320.dp)
-                                .height(50.dp)
+                                .height(60.dp)
                         )
                         {
                             Text(text = "Washer 2: 10:00 on 03/22/22",
@@ -156,7 +156,7 @@ fun MachinesInUseScreen(navController: NavController)
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
                                 .width(320.dp)
-                                .height(50.dp)
+                                .height(60.dp)
                         )
                         {
                             Text(text = "Drier 2: 11:00 on 03/22/22",
@@ -178,7 +178,7 @@ fun MachinesInUseScreen(navController: NavController)
                             {navController.navigate(Screen.MainMenu.route)},
                             modifier = Modifier
                                 .width(320.dp)
-                                .height(50.dp)
+                                .height(60.dp)
                         )
                         {
                             Text("Main Menu",

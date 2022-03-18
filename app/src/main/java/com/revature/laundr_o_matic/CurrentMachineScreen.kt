@@ -116,9 +116,8 @@ fun CurrentMachineScreen(navController: NavController)
                     Button(onClick =
                     { navController.navigate(route = Screen.MainMenu.route)},
                         modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .height(70.dp)
-                            .width(20.dp),
+                            .height(60.dp)
+                            .width(200.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = colorResource(id = R.color.tealGreen))
                     )

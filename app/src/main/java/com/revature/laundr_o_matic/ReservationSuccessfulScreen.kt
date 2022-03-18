@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,42 +30,74 @@ fun ReservationSuccessfulScreen(navController: NavController)
     Column()
     {
         TopAppBar(
-            title = {
-                Text("Reservation Successful!",
-                    color = colorResource(id = R.color.customDarkBrown))},
-            backgroundColor = colorResource(id = R.color.animalCrossingGreen)
+            title =
+            { Text("Reservation Successful!",
+                color = colorResource(id = R.color.customDarkBrown))}, backgroundColor = colorResource(id = R.color.animalCrossingGreen)
+        )
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .background(color = colorResource(id = R.color.lightCream)),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
+    )
+    {
+        Spacer(Modifier.height(80.dp))
+
+        Text(
+            text = "Congratulations!",
+            color = colorResource(id = R.color.customDarkBrown),
+            fontSize = 40.sp,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold
         )
 
-        Spacer(Modifier.height(20.dp))
-
-        Image(painter = painterResource(id = R.drawable.washer),
+        Spacer(modifier = Modifier.height(10.dp))
+        Image(
+            painter = painterResource(id = R.drawable.washer),
             contentDescription = "Reservation Success",
             modifier = Modifier
                 .padding(10.dp)
                 .size(200.dp)
-                .align(Alignment.CenterHorizontally))
+                .align(Alignment.CenterHorizontally)
+        )
 
-        Text(text = "Success!",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Text(
+            text = "Your reservation was a",
+            color = colorResource(id = R.color.customDarkBrown),
+            fontSize = 30.sp,
+            textAlign = TextAlign.Center
+        )
+
+        Text(
+            text = "success!",
+            color = colorResource(id = R.color.customDarkBrown),
             fontSize = 30.sp,
             textAlign = TextAlign.Center,
-            color = colorResource(id = R.color.customDarkBrown),
+            fontWeight = FontWeight.Bold
         )
 
-        Button(onClick = {navController.navigate(Screen.MainMenu.route)},
+        Spacer(modifier = Modifier.height(50.dp))
+
+        Button(
+            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+            onClick = { navController.navigate(Screen.MainMenu.route) },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .height(40.dp)
-                .fillMaxWidth(.75f),
+                .height(60.dp)
+                .width(350.dp)
         )
         {
-            Text("Return to Main Menu")
+            Text(
+                "Return to Main Menu",
+                color = colorResource(id = R.color.customDarkBrown),
+                fontSize = 30.sp
+            )
         }
 
 
-
+    }
     }
 }
 
