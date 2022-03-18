@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.Washer
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
@@ -33,9 +34,16 @@ fun ReservationSuccessfulScreen(navController: NavController,viewModel:MainViewM
 
         Spacer(Modifier.padding(10.dp))
 
+
+        var machine = viewModel.selectedMachine
+        //Image ID based on if machine is Dryer or Washer -
+        //needs to be updated//
+        var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
+
+
         //Image of machine -
         //needs to be updated
-        Image(painter = painterResource(id = R.drawable.washer),
+        Image(painter = painterResource(id = machineImage),
             contentDescription = "Reservation Success",
             modifier = Modifier
                 .padding(10.dp)
