@@ -1,9 +1,5 @@
 package com.revature.laundr_o_matic
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,13 +10,10 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +26,7 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 @Composable
 fun MachinesInUseScreen(navController: NavController)
 {
-    val context = LocalContext.current
+    LocalContext.current
 
     Column {
 
@@ -128,7 +121,7 @@ fun MachinesInUseScreen(navController: NavController)
                         Spacer(modifier = Modifier.height(10.dp))
 
                         Button(
-                            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.customDarkBrown)),
                             onClick =
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
@@ -137,7 +130,7 @@ fun MachinesInUseScreen(navController: NavController)
                         )
                         {
                             Text(text = "Washer 2: 10:00 on 03/22/22",
-                                color = colorResource(id = R.color.customDarkBrown),
+                                color = colorResource(id = R.color.tealGreen),
                                 textAlign = TextAlign.Center,
                                 fontSize = 20.sp
                             )
@@ -145,7 +138,7 @@ fun MachinesInUseScreen(navController: NavController)
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button( colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                        Button( colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.customDarkBrown)),
                             onClick =
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
@@ -154,7 +147,7 @@ fun MachinesInUseScreen(navController: NavController)
                         )
                         {
                             Text(text = "Drier 2: 11:00 on 03/22/22",
-                                color = colorResource(id = R.color.customDarkBrown),
+                                color = colorResource(id = R.color.tealGreen),
                                 textAlign = TextAlign.Center,
                                 fontSize = 20.sp
                             )
