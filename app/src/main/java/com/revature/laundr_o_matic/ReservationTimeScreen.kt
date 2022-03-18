@@ -17,16 +17,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.revature.laundr_o_matic.model.DateSlot
-import com.revature.laundr_o_matic.model.ReservationManager
+import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 @Composable
-fun ReservationTimeScreen(navController: NavController)
+fun ReservationTimeScreen(navController: NavController,viewModel:MainViewModel)
 {
     //temporary create Reservation Manager, should come from ViewModel
-    val reservationMng = ReservationManager()
+    //val reservationMng = ReservationManager()
 
     //Create a temp variable to hold our current selected date
-    var selectedDate:MutableState<DateSlot> = remember { mutableStateOf(reservationMng.mDays[0]) }
+    //var selectedDate:MutableState<DateSlot> = remember { mutableStateOf(reservationMng.mDays[0]) }
+
+    viewModel.selectedDate = remember { mutableStateOf(viewModel.selectedMachine.reservations.days.first()) }
 
     //Column to start our screen
     Column(modifier = Modifier.fillMaxWidth(),
@@ -36,57 +38,56 @@ fun ReservationTimeScreen(navController: NavController)
         TopAppBar(title = { Text("Reservation Time") })
 
         //Call our function that creates the Date Buttons
-        selectedDate = dateSelection(select = selectedDate, reservationMng)
+        dateSelection(viewModel)
 
         //Display the currently selected date
         Box(modifier=Modifier.fillMaxWidth())
         {
             Text(
-                "Selected Date: \t${selectedDate.value.sDate}", modifier = Modifier
+                "Selected Date: \t${viewModel.selectedDate.value.Date}", modifier = Modifier
                     .padding(5.dp)
                     .fillMaxWidth()
                     .border(1.dp, Color.Black, RoundedCornerShape(5.dp)), fontSize = 30.sp, textAlign = TextAlign.Center
             )
         }
         //Display our LazyColumn of times for the selected date
-        TimeList(navController,selectedDate)
+        TimeList(navController,viewModel.selectedDate)
 
     }
 
 }
 @Composable
-fun dateSelection( select: MutableState<DateSlot>, reservationMng:ReservationManager): MutableState<DateSlot>
+fun dateSelection( viewModel: MainViewModel)
 {
     //Store our passed in date for use
-    var selectedDate = select
+    //var selectedDate =
 
     //Row for the Different Date Buttons
     Row(modifier = Modifier
         .padding(10.dp)){
 
         //for each day our reservation manager holds
-        for(item in reservationMng.mDays)
-        {
+        viewModel.selectedMachine.reservations.days.forEach {
 
             //Button for the day
             Button(onClick = {
 
                 //On clicking a button, change our selected date to the new date
-                selectedDate.value = item
+                viewModel.selectedDate.value = it
             },
                 modifier = Modifier.padding(10.dp),){
 
                 //Display the date in the button
-                Text(item.sDate)
+                Text(it.Date.toString())
             }
 
         }
 
     }
-    //Return our new date
-    return selectedDate
 
 }
+
+
 @Composable
 fun TimeList(navController : NavController, date : MutableState<DateSlot>)
 {
@@ -97,32 +98,37 @@ fun TimeList(navController : NavController, date : MutableState<DateSlot>)
     //Create our lazy column
     LazyColumn(state = state, modifier = Modifier.fillMaxSize()){
 
-        items(date.value.getHours().size){
+        items(date.value.reservation_times.size) {
 
-            //Create our rows in the column
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-                .clickable {
+            if (!date.value.reservation_times[it].bReserved) {
+                //Create our rows in the column
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .clickable {
 
-                    //When clicked, change screen
-                    navController.navigate(Screen.ReservationSuccessful.route)
+                        //When clicked, change screen
+                        date.value.reservation_times[it].bReserved = true
+                        navController.navigate(Screen.ReservationSuccessful.route)
 
-                }) {
+                    }) {
 
-                //Display the time
-                Text(text = date.value.getHour(it+1).sHour,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp)
-                        .fillMaxHeight(),
-                    fontSize = 20.sp,
-                    textAlign = TextAlign.Center)
+                    //Display the time
+                    Text(
+                        text = date.value.reservation_times[it].hour.toString(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp)
+                            .fillMaxHeight(),
+                        fontSize = 20.sp,
+                        textAlign = TextAlign.Center
+                    )
 
-                //Add a bar to divide
-                Divider(color = Color.Gray)
+                    //Add a bar to divide
+                    Divider(color = Color.Gray)
+                }
+
             }
-
         }
     }
 }
