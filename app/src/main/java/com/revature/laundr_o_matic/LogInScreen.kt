@@ -170,7 +170,9 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
                     ),
                 keyboardActions = KeyboardActions(onDone = {
                     focusManager.clearFocus()
-        }))
+                }
+                )
+            )
         }
         Text(text = loginStat, color = Red)
         Spacer(modifier = Modifier.height(10.dp))
@@ -183,7 +185,7 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
 
             modifier = Modifier.height(60.dp),
             onClick = {
-
+                focusManager.clearFocus()
                 if (checkLoginInfo(username,password,context,viewModel)) {
                     viewModel.user = readFromFile(filePath = "${context.filesDir.toString()}/${username}.ser")
                     navController.navigate(Screen.MainMenu.route)

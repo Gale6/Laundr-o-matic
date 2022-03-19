@@ -1,18 +1,23 @@
 package com.revature.laundr_o_matic
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -28,6 +33,8 @@ import com.revature.laundr_o_matic.viewmodel.MainViewModel
 fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
 
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
+
     var password by rememberSaveable { mutableStateOf ("") }
     var rePassword by rememberSaveable { mutableStateOf("") }
     var matchText by rememberSaveable{ mutableStateOf("")}
@@ -49,7 +56,8 @@ fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
 
     Column(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .clickable { focusManager.clearFocus() },
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -94,7 +102,13 @@ fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
                 },
                 visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
 
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Next,
+                    keyboardType = KeyboardType.Password),
+                keyboardActions = KeyboardActions(onNext = {
+                    focusManager.moveFocus(FocusDirection.Down)
+                }
+                )
             )
         }
         Text(text = userPasswordInvalidText, color = Color.Red)
@@ -141,7 +155,13 @@ fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
                 label = { Text("Re-enter your password again") },
 
                 visualTransformation = if(passwordVisibility1) VisualTransformation.None else PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Done,
+                    keyboardType = KeyboardType.Password),
+                keyboardActions = KeyboardActions(onDone = {
+                    focusManager.clearFocus()
+                }
+                )
             )
 
         }
@@ -150,13 +170,14 @@ fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
         Text(text = passwordChanged)
 
         Button(onClick = {
+            focusManager.clearFocus()
             if(rePassword == password && password.length >= 4){
                 viewModel.user!!.password = password
                 writeToFile(context = context,viewModel.user!!)
                 passwordChanged = "Password change successful"
             }
                          },
-            modifier = Modifier.width(150.dp)) {
+            modifier = Modifier.wrapContentWidth()) {
             Text(text = "Change password")
         }
         Spacer(modifier = Modifier.height(32.dp))
