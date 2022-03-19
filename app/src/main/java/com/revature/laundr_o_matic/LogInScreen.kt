@@ -3,20 +3,25 @@ package com.revature.laundr_o_matic
 import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -38,6 +43,7 @@ import com.revature.laundr_o_matic.viewmodel.MainViewModel
 fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
 
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
     val initUser = User("user","pass")
 
     writeToFile(context,initUser) //hard coding a user into local storage
@@ -53,6 +59,7 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
             .background(MaterialTheme.colors.surface, RectangleShape)
             .fillMaxSize()
             .background(color = colorResource(id = R.color.lightCream))
+            .clickable { focusManager.clearFocus() }
     )
     {
 
@@ -102,10 +109,13 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
                 label = { Text("Username") },
                 colors = TextFieldDefaults.
                 outlinedTextFieldColors(
-
                     focusedBorderColor = colorResource(id = R.color.customDarkBrown),
                     focusedLabelColor = colorResource(id = R.color.customDarkBrown)
                 ),
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
+                keyboardActions = KeyboardActions(onNext = {
+                    focusManager.moveFocus(FocusDirection.Down)
+                })
             )
 //                    (colorResource(id = R.color.mintGreen))
 
@@ -154,8 +164,13 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
                     }
                 },
                 visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-            )
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                    ),
+                keyboardActions = KeyboardActions(onDone = {
+                    focusManager.clearFocus()
+        }))
         }
         Text(text = loginStat, color = Red)
         Spacer(modifier = Modifier.height(10.dp))
