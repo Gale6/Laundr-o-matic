@@ -7,21 +7,26 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.EnterTransition.Companion.None
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
 
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -37,6 +42,7 @@ import com.revature.laundr_o_matic.ui.theme.writeToFile
 fun RegistrationScreen(navController: NavController) {
 
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
 
     var username by remember { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
@@ -45,6 +51,7 @@ fun RegistrationScreen(navController: NavController) {
     var passwordVisibility by remember { mutableStateOf(false) }
     var userNameInvalidText by rememberSaveable{ mutableStateOf("")}
     var userPasswordInvalidText by rememberSaveable{ mutableStateOf("")}
+
 
     val icon = if (passwordVisibility) {
         painterResource(id = com.google.android.material.R.drawable.design_ic_visibility)
@@ -65,6 +72,7 @@ fun RegistrationScreen(navController: NavController) {
             .padding(8.dp)
             .background(color = colorResource(id = R.color.lightCream), RectangleShape)
             .fillMaxSize()
+            .clickable { focusManager.clearFocus() }
     )
     {
 
@@ -104,7 +112,11 @@ fun RegistrationScreen(navController: NavController) {
                         focusedBorderColor = colorResource(id = R.color.customDarkBrown),
                 focusedLabelColor = colorResource(id = R.color.customDarkBrown)
                         ),
-            )
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
+                keyboardActions = KeyboardActions(onNext = {
+                    focusManager.moveFocus(FocusDirection.Down)
+                }
+            ))
         }
         Text(text = userNameInvalidText, color = Color.Red)
 
@@ -146,8 +158,13 @@ fun RegistrationScreen(navController: NavController) {
                     }
                 },
                 visualTransformation = if(passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
-
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Next,
+                    keyboardType = KeyboardType.Password),
+                keyboardActions = KeyboardActions(onNext = {
+                    focusManager.moveFocus(FocusDirection.Down)
+                }
+                )
             )
         }
         Text(text = userPasswordInvalidText, color = Color.Red)
@@ -194,7 +211,15 @@ fun RegistrationScreen(navController: NavController) {
                 label = { Text("Re-enter your password again") },
 
                 visualTransformation = if(passwordVisibility1) VisualTransformation.None else PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(onDone = {
+                    focusManager.clearFocus()
+                }
+                )
+
             )
 
         }
@@ -209,6 +234,7 @@ fun RegistrationScreen(navController: NavController) {
             ),
             modifier = Modifier.width(200.dp),
             onClick = {
+                focusManager.clearFocus()
                 if(rePassword == password && username.length >= 4 && password.length >= 4){
                     val userObject = User(username = username, password = password)
                     writeToFile(context = context,userObject)
