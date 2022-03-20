@@ -42,7 +42,6 @@ fun readMachines(filePath: String):MachineManager{
 
 fun writeToFile(context:Context,user: User){
     var filePath = "${context.getFilesDir().toString()}/${user.username}.ser"
-    Log.d("filePath",filePath)
     val fileExist =  File(filePath)
     if (!fileExist.exists())
     {

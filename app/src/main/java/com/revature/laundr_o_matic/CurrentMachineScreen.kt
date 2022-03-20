@@ -1,6 +1,5 @@
 package com.revature.laundr_o_matic
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -129,10 +128,8 @@ fun CurrentMachineScreen(navController: NavController)
 
 @Preview (showBackground = true)
 @Composable
-fun CurrentMachineScreenPreview()
-{
-    LaundromaticTheme()
-    {
+fun CurrentMachineScreenPreview() {
+    LaundromaticTheme {
         CurrentMachineScreen(navController = rememberNavController())
     }
 }
