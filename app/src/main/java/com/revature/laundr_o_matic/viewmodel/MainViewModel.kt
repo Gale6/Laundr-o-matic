@@ -6,13 +6,16 @@ import com.revature.laundr_o_matic.User
 import com.revature.laundr_o_matic.model.AbstractMachine
 import com.revature.laundr_o_matic.model.DateSlot
 import com.revature.laundr_o_matic.model.MachineManager
+import com.revature.laundr_o_matic.ui.theme.readMachines
+import com.revature.laundr_o_matic.ui.theme.writeMachines
+import com.revature.laundr_o_matic.utility.Constants
 import java.time.LocalDateTime
 import java.time.LocalTime
 
 class MainViewModel:ViewModel() {
 
     //Reservation Selection Variables
-    var machineManager = MachineManager()
+    var machineManager:MachineManager = readMachines(Constants.FILEPATH_MACHINES)
     lateinit var selectedMachine:AbstractMachine
     lateinit var selectedDate: MutableState<DateSlot>
     lateinit var selectedTime: LocalTime
@@ -90,6 +93,10 @@ class MainViewModel:ViewModel() {
                 }
             }
         }
+    }
+
+    fun saveMachines(){
+        writeMachines(machineManager)
     }
 
 }

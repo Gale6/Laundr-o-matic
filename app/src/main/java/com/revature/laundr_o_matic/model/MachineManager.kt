@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic.model
 
+import java.io.Serializable
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -10,7 +11,7 @@ import kotlin.collections.HashMap
 /**
  * Manager class to control our different machines
  */
-class MachineManager {
+class MachineManager: Serializable {
 
     //Map of all our machines
     private var mMachines = HashMap<Int, AbstractMachine>()
