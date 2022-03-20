@@ -156,6 +156,7 @@ fun TimeList(navController : NavController, viewModel: MainViewModel)
                         writeToFile(context,viewModel.user!!)
 
                         navController.navigate(Screen.ReservationSuccessful.route)
+                        navController.popBackStack(Screen.MainMenu.route, false)
 
                     }) {
 
