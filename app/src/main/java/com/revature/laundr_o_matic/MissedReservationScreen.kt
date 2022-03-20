@@ -56,8 +56,8 @@ fun MissedReservationScreen(navController: NavController)
             )
             {
                 Image(
-                    painter = painterResource(id = R.drawable.frowning_face),
-                    contentDescription = "frowning face",
+                    painter = painterResource(id = R.drawable.grey_sad_face_icon),
+                    contentDescription = "Sad face",
                     modifier = Modifier.size(250.dp)
                 )
             }
@@ -76,7 +76,7 @@ fun MissedReservationScreen(navController: NavController)
                     TextStyle
                         (fontWeight = FontWeight.Bold),
                     fontSize = 50.sp,
-                    color = colorResource(id = R.color.customDarkBrown)
+                    color = colorResource(id = R.color.animalCrossingGreen)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -84,7 +84,7 @@ fun MissedReservationScreen(navController: NavController)
                     text = "You missed your reservation." +
                             "\nWould you like to reschedule?",
                     fontSize = 25.sp,
-                    color = colorResource(id = R.color.customDarkBrown)
+                    color = colorResource(id = R.color.brownGrey)
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -123,7 +123,7 @@ fun MissedReservationScreen(navController: NavController)
                         onClick = {navController.navigate(Screen.MainMenu.route)},
                         modifier = Modifier
                             .height(50.dp)
-                            .width(200.dp)
+                            .width(170.dp)
                     )
                     {
                         Text(

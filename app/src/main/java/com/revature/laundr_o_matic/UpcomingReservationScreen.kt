@@ -105,7 +105,7 @@ fun UpcomingReservationScreen(navController: NavController) {
                         colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
                         onClick = { navController.navigate(Screen.MainMenu.route) },
                         modifier = Modifier
-                            .fillMaxWidth(0.8f)
+                            .width(200.dp)
                             .height(60.dp)
                     )
                     {

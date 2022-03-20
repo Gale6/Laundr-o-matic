@@ -139,7 +139,7 @@ fun MainMenuScreen(navController: NavController)
                         text = "Current Machines",
                         fontFamily = FontFamily.Serif,
                         fontWeight = FontWeight.Bold,
-                        color = colorResource(id = R.color.customDarkBrown),
+                        color = colorResource(id = R.color.brownGrey),
                         textAlign = TextAlign.Center
                     )
                 }
@@ -163,7 +163,7 @@ fun MainMenuScreen(navController: NavController)
                         text = "Personal Info",
                         fontFamily = FontFamily.Serif,
                         fontWeight = FontWeight.Bold,
-                        color = colorResource(id = R.color.customDarkBrown),
+                        color = colorResource(id = R.color.brownGrey),
                         textAlign = TextAlign.Center
                     )
                 }
