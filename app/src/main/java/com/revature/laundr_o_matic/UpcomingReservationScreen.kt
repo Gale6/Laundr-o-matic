@@ -30,7 +30,9 @@ fun UpcomingReservationScreen(navController: NavController,viewModel:MainViewMod
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier.background(color = colorResource(id = R.color.lightCream)).background(color = colorResource(id = R.color.lightCream))
+        modifier = Modifier
+            .background(color = colorResource(id = R.color.lightCream))
+            .background(color = colorResource(id = R.color.lightCream))
     )
     {
 

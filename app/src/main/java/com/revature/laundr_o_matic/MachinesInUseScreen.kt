@@ -119,7 +119,7 @@ fun MachinesInUseScreen(navController: NavController)
                         Spacer(modifier = Modifier.height(10.dp))
 
                         Button(
-                            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.customDarkBrown)),
                             onClick =
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
@@ -128,7 +128,7 @@ fun MachinesInUseScreen(navController: NavController)
                         )
                         {
                             Text(text = "Washer 2: 10:00 on 03/22/22",
-                                color = colorResource(id = R.color.customDarkBrown),
+                                color = colorResource(id = R.color.tealGreen),
                                 textAlign = TextAlign.Center,
                                 fontSize = 20.sp
                             )
@@ -136,7 +136,7 @@ fun MachinesInUseScreen(navController: NavController)
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button( colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                        Button( colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.customDarkBrown)),
                             onClick =
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
@@ -145,7 +145,7 @@ fun MachinesInUseScreen(navController: NavController)
                         )
                         {
                             Text(text = "Drier 2: 11:00 on 03/22/22",
-                                color = colorResource(id = R.color.customDarkBrown),
+                                color = colorResource(id = R.color.tealGreen),
                                 textAlign = TextAlign.Center,
                                 fontSize = 20.sp
                             )

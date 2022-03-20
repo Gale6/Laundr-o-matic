@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class User (
     val username:String,
-    val password:String,
+    var password:String,
     var runningWasher: ReservedSlot? = null,
     var runningDryer:ReservedSlot? = null,
     var reservedWasher:ReservedSlot? = null,
