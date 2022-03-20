@@ -58,7 +58,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
             Spacer(modifier = Modifier.height(40.dp))
 
           //Image of the Machine Selected - needs to be updated
-          var machineImage:Int = if (machine is Washer) R.drawable.grey_washing_machine_1 else R.drawable.grey_dryer_1
+          var machineImage:Int = if (machine is Washer) R.drawable.grey_washing_machine_1 else R.drawable.grey_dryer_icon_2
 
           Image(painter = painterResource(id = machineImage),
               contentDescription = "Machine Image",

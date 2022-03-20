@@ -56,9 +56,9 @@ fun MissedReservationScreen(navController: NavController)
             )
             {
                 Image(
-                    painter = painterResource(id = R.drawable.grey_sad_face_icon),
+                    painter = painterResource(id = R.drawable.grey_sad_face_icon_2),
                     contentDescription = "Sad face",
-                    modifier = Modifier.size(250.dp)
+                    modifier = Modifier.size(180.dp)
                 )
             }
             Column(
@@ -68,7 +68,7 @@ fun MissedReservationScreen(navController: NavController)
                     .fillMaxHeight()
             ) {
 
-                Spacer(modifier = Modifier.height(220.dp))
+                Spacer(modifier = Modifier.height(160.dp))
 
                 Text(
                     text = "Oh no!",

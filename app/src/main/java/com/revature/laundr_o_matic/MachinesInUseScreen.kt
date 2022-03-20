@@ -53,13 +53,13 @@ fun MachinesInUseScreen(navController: NavController)
                         fontWeight = FontWeight.Bold,
                         fontSize = 50.sp,
                         textAlign = TextAlign.Center,
-                        color = colorResource(id = R.color.customDarkBrown)
+                        color = colorResource(id = R.color.animalCrossingGreen)
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
                         text = "Currently Running:",
                         fontSize = 25.sp,
-                        color = colorResource(id = R.color.customDarkBrown),
+                        color = colorResource(id = R.color.brownGrey),
                         textAlign = TextAlign.Center
                     )
 
@@ -114,14 +114,14 @@ fun MachinesInUseScreen(navController: NavController)
                         Text(
                             text = "Reservations:",
                             fontSize = 25.sp,
-                            color = colorResource(id = R.color.customDarkBrown),
+                            color = colorResource(id = R.color.brownGrey),
                             textAlign = TextAlign.Center
                         )
 
                         Spacer(modifier = Modifier.height(10.dp))
 
                         Button(
-                            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.customDarkBrown)),
+                            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.brownGrey)),
                             onClick =
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
@@ -138,7 +138,7 @@ fun MachinesInUseScreen(navController: NavController)
 
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        Button( colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.customDarkBrown)),
+                        Button( colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.brownGrey)),
                             onClick =
                             {navController.navigate(Screen.UpcomingReservation.route)},
                             modifier = Modifier
@@ -156,7 +156,7 @@ fun MachinesInUseScreen(navController: NavController)
 
                         Text(text = "Exit:",
                             fontSize = 25.sp,
-                            color = colorResource(id = R.color.customDarkBrown),
+                            color = colorResource(id = R.color.brownGrey),
                             textAlign = TextAlign.Center
                         )
 

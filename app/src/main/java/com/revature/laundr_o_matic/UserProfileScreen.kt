@@ -20,8 +20,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
@@ -36,7 +38,8 @@ fun UserProfileScreen(navController: NavController) {
             .background(color = colorResource(id = R.color.lightCream)),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    )
+    {
         Spacer(modifier = Modifier.size(50.dp))
         Image(
             painter = painterResource(R.drawable.grey_user_icon),
@@ -47,7 +50,9 @@ fun UserProfileScreen(navController: NavController) {
         Spacer(modifier = Modifier.size(50.dp))
 
         var username by remember { mutableStateOf("Username") }
-        TextField(value = username,
+
+        TextField(
+            value = username,
             onValueChange = { username = it },
             label = { Text(text = "Enter Username") }
         )
@@ -64,11 +69,10 @@ fun UserProfileScreen(navController: NavController) {
 
         TextField(
             value = password,
-            onValueChange = {
-                password = it
-            },
+            onValueChange = { password = it },
             label = { Text(text = "Password") },
-            trailingIcon = {
+            trailingIcon =
+            {
                 IconButton(onClick = {
                     passwordVisibility = !passwordVisibility
                 }) {
@@ -83,30 +87,71 @@ fun UserProfileScreen(navController: NavController) {
             ),
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation()
         )
+
         Spacer(modifier = Modifier.height(32.dp))
 
-        Button(onClick = { /*TODO*/ }, modifier = Modifier.width(150.dp)) {
-            Text(text = "Edit profile")
+        Button(
+            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+            onClick = { /*TODO*/ },
+            modifier = Modifier.width(200.dp)
+        )
+        {
+            Text(
+                text = "Edit profile",
+                color = colorResource(id = R.color.customDarkBrown),
+                fontSize = 30.sp,
+                textAlign = TextAlign.Center
+            )
         }
 
         Spacer(modifier = Modifier.height(32.dp))
-        Row{
-            Button(onClick = {navController.navigate(Screen.Wallet.route) }, modifier = Modifier.width(100.dp)) {
-                Text(text = "Wallet")
+
+        Row()
+        {
+            Button(
+                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                onClick = {navController.navigate(Screen.Wallet.route) },
+                modifier = Modifier.width(130.dp)
+            )
+            {
+                Text(
+                    text = "Wallet",
+                    color = colorResource(id = R.color.customDarkBrown),
+                    fontSize = 30.sp,
+                    textAlign = TextAlign.Center
+                )
             }
             Spacer(modifier = Modifier.width(32.dp))
-            Button(onClick = {navController.navigate(Screen.MainMenu.route)}, modifier = Modifier.width(100.dp)) {
-                Text(text = "Main")
+            Button(
+                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                onClick = {navController.navigate(Screen.MainMenu.route)},
+                modifier = Modifier.width(130.dp)
+            )
+            {
+                Text(
+                    text = "Main",
+                    color = colorResource(id = R.color.customDarkBrown),
+                    fontSize = 30.sp,
+                    textAlign = TextAlign.Center
+                )
             }
         }
 
 
         Spacer(modifier = Modifier.height(50.dp))
 
-        Button(onClick = { /*todo*/ }, modifier = Modifier
-            .width(100.dp)
-           ) {
-            Text(text = "Sign out")
+        Button(
+            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.brownGrey)),
+            onClick = { /*todo*/ },
+            modifier = Modifier.width(170.dp)
+        )
+        {
+            Text(
+                text = "Sign out",
+                color = colorResource(id = R.color.tealGreen),
+                fontSize = 30.sp,
+                textAlign = TextAlign.Center
+            )
         }
 
     }
