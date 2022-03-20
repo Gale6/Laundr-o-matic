@@ -27,9 +27,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
+import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 @Composable
-fun UpcomingReservationScreen(navController: NavController) {
+fun UpcomingReservationScreen(navController: NavController,viewModel:MainViewModel) {
+
+    viewModel.update()
+
     val context = LocalContext.current
 
     Column(
@@ -90,6 +94,24 @@ fun UpcomingReservationScreen(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(20.dp))
 
+
+                    // If within 5 min, allow for starting the machine
+                    Button(
+                        colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+                        onClick = { /*TODO cancels current reservation*/ }, modifier = Modifier
+                            .fillMaxWidth(0.8f)
+                            .height(60.dp)
+                    )
+                    {
+                        Text(
+                            "Start Machine",
+                            color = colorResource(id = R.color.customDarkBrown),
+                            fontSize = 30.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+
+
                     Button(
                         colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
                         onClick = { /*TODO cancels current reservation*/ }, modifier = Modifier
@@ -131,6 +153,6 @@ fun UpcomingReservationScreen(navController: NavController) {
 @Composable
 fun UpcomingReservationScreenPreview() {
     LaundromaticTheme {
-        UpcomingReservationScreen(navController = rememberNavController())
+        UpcomingReservationScreen(navController = rememberNavController(),MainViewModel())
     }
 }

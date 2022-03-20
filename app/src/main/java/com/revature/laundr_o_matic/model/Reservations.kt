@@ -5,7 +5,7 @@ import java.time.LocalDate
 /**\
  * Holds an array for the next 4 days
  */
-class Reservations() {
+class Reservations {
 
     //ArrayList of 4 DateSlots
     var days = ArrayList<DateSlot>()

@@ -19,17 +19,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.revature.laundr_o_matic.model.DateSlot
+import com.revature.laundr_o_matic.model.ReservedSlot
+import com.revature.laundr_o_matic.model.Washer
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 @Composable
 fun ReservationTimeScreen(navController: NavController,viewModel:MainViewModel)
 {
-    //temporary create Reservation Manager, should come from ViewModel
-    //val reservationMng = ReservationManager()
-
-    //Create a temp variable to hold our current selected date
-    //var selectedDate:MutableState<DateSlot> = remember { mutableStateOf(reservationMng.mDays[0]) }
+    viewModel.update()
 
     viewModel.selectedDate = remember { mutableStateOf(viewModel.selectedMachine.reservations.days.first()) }
 
@@ -128,15 +127,28 @@ fun TimeList(navController : NavController, viewModel: MainViewModel)
                         //When clicked, change screen
 
                         //Set the selected Time in the viewModel
-                        viewModel.selectedTime= viewModel.selectedDate.value.reservation_times[it].hour
+                        viewModel.selectedTime =
+                            viewModel.selectedDate.value.reservation_times[it].hour
 
                         //Reserve the time
                         viewModel.selectedDate.value.reservation_times[it].bReserved = true
 
-                        //Add the reservation
-                        viewModel.user.reservations.addReservation(viewModel.selectedTime,
-                            viewModel.selectedDate.value.Date
-                            ,viewModel.selectedMachine.id)
+                        //Add the reservation ot the correct user reservation slot
+                        if (viewModel.selectedMachine is Washer) {
+                            viewModel.user?.reservedWasher = ReservedSlot(
+                                LocalDateTime.of(
+                                    viewModel.selectedDate.value.Date,
+                                    viewModel.selectedTime),
+                                viewModel.selectedMachine)
+
+                        } else {
+                            viewModel.user?.reservedDryer =ReservedSlot(
+                                LocalDateTime.of(
+                                    viewModel.selectedDate.value.Date,
+                                    viewModel.selectedTime),
+                                viewModel.selectedMachine)
+
+                        }
 
                         navController.navigate(Screen.ReservationSuccessful.route)
 

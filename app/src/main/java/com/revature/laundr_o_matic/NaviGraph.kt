@@ -46,7 +46,7 @@ fun SetupNavGraph(navController: NavHostController){
             ReservationTimeScreen(navController = navController,viewModel)
         }
         composable(route = Screen.UpcomingReservation.route){
-            UpcomingReservationScreen(navController = navController)
+            UpcomingReservationScreen(navController = navController,viewModel)
         }
         composable(route = Screen.UserProfile.route){
             UserProfileScreen(navController = navController)
