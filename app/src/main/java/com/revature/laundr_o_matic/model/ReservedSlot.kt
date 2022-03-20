@@ -4,4 +4,4 @@ import java.io.Serializable
 import java.time.LocalDateTime
 
 data class ReservedSlot( var reservationTime:LocalDateTime,
-                         var machineID:Int): Serializable
+                         var machine:AbstractMachine): Serializable

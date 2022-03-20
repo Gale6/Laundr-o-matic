@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.Dryer
 import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.model.Washer
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
@@ -34,11 +35,15 @@ import com.revature.laundr_o_matic.viewmodel.MainViewModel
 fun MachineReservationScreen(navController: NavController, viewModel:MainViewModel)
 {
 
+    viewModel.update()
 
     //var viewModel = MainViewModel()
 
     Column (Modifier.background(color = colorResource(id = R.color.lightCream))){
-        TopAppBar(title = {Text("Select a Machine", color = colorResource(id = R.color.customDarkBrown))}, backgroundColor = colorResource(id = R.color.animalCrossingGreen))
+
+        TopAppBar(title = {Text("Select a Machine",
+            color = colorResource(id = R.color.customDarkBrown))},
+            backgroundColor = colorResource(id = R.color.animalCrossingGreen))
 
 
         //LazyColumn state
@@ -51,80 +56,95 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
             //for each item in the machine array
             items(viewModel.machineManager.getMachines().size)
             {
+
+
                 var machine = viewModel.machineManager.getMachine(it)
-                //Image ID based on if machine is Dryer or Washer -
-                //needs to be updated//
-                var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
 
-                //Row displaying machine
-                Row(modifier = Modifier.background(MaterialTheme.colors.background)
-                    .clickable {
-                        viewModel.selectedMachine = machine!!
-                        navController.navigate(Screen.MachineDetails.route)}) {
+                if ((machine is Washer && viewModel.user?.reservedWasher == null) ||
+                    (machine is Dryer && viewModel.user?.reservedDryer == null)
+                )
+                {
+                    //Image ID based on if machine is Dryer or Washer -
+                    //needs to be updated//
+                    var machineImage: Int =
+                        if (machine is Washer) R.drawable.washer else R.drawable.dryer
 
-                    //Image of machine
+                    //Row displaying machine
+                    Row(modifier = Modifier.background(MaterialTheme.colors.background)
+                        .clickable {
+                            viewModel.selectedMachine = machine!!
+                            navController.navigate(Screen.MachineDetails.route)
+                        }) {
 
-                    Image(
-                        painter = painterResource(id = machineImage),
-                        contentDescription = "Machine Icon",
-                        modifier = Modifier
-                            .size(100.dp)
-                            .padding(10.dp)
-                    )
+                        //Image of machine
 
-                    //Column of the machine's name and details
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Image(
+                            painter = painterResource(id = machineImage),
+                            contentDescription = "Machine Icon",
+                            modifier = Modifier
+                                .size(100.dp)
+                                .padding(10.dp)
+                        )
 
-                        //Machine's name -
-                        //needs to be updated
-                        var sName:String = if (machine is Washer ) "Washer" else "Dryer"
+                        //Column of the machine's name and details
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-                        Row(modifier = Modifier.padding(5.dp)
-                            .fillMaxWidth()) {
-                            Text(
-                                sName, //machineArray[it],
-                                style = MaterialTheme.typography.h5,
-                               color = colorResource(id = R.color.customDarkBrown)
-                            )
+                            //Machine's name -
+                            //needs to be updated
+                            var sName: String = if (machine is Washer) "Washer" else "Dryer"
 
-                            Spacer(Modifier.size(20.dp))
+                            Row(
+                                modifier = Modifier.padding(5.dp)
+                                    .fillMaxWidth()
+                            ) {
+                                Text(
+                                    sName, //machineArray[it],
+                                    style = MaterialTheme.typography.h5,
+                                    color = colorResource(id = R.color.customDarkBrown)
+                                )
 
-                            Text(
-                                "Machine ID: ${machine?.id}",
-                                 style = MaterialTheme.typography.h5,
-                               color = colorResource(id = R.color.customDarkBrown)
-                            )
+                                Spacer(Modifier.size(20.dp))
+
+                                Text(
+                                    "Machine ID: ${machine?.id}",
+                                    style = MaterialTheme.typography.h5,
+                                    color = colorResource(id = R.color.customDarkBrown)
+                                )
+                            }
+
+                            Spacer(Modifier.size(10.dp))
+
+                            //Row containing the details of the machine -
+                            //needs to be updated
+                            Row(
+                                modifier = Modifier.padding(5.dp)
+                                    .fillMaxWidth()
+                            ) {
+                                Text(
+                                    "Cost: \$${machine?.nCost}",
+                                    color = colorResource(id = R.color.customDarkBrown)
+                                )
+                                Spacer(Modifier.size(10.dp))
+                                Text(
+                                    "Load: ${machine?.nLoadSize}",
+                                    color = colorResource(id = R.color.customDarkBrown)
+                                )
+                                Spacer(Modifier.size(10.dp))
+                                Text(
+                                    "Time: ${machine?.nRunTime}",
+                                    color = colorResource(id = R.color.customDarkBrown)
+                                )
+
+                                }
+                            }
+
                         }
 
-                        Spacer(Modifier.size(10.dp))
-
-                        //Row containing the details of the machine -
-                        //needs to be updated
-                        Row(modifier = Modifier.padding(5.dp)
-                            .fillMaxWidth()) {
-                            Text("Cost: \$${machine?.nCost}", color = colorResource(id = R.color.customDarkBrown))
-                            Spacer(Modifier.size(10.dp))
-                            Text("Load: ${machine?.nLoadSize}", color = colorResource(id = R.color.customDarkBrown))
-                            Spacer(Modifier.size(10.dp))
-                            Text("Time: ${machine?.nRunTime}", color = colorResource(id = R.color.customDarkBrown))
-
-                        }
-                    }
-
+                    Divider(color = colorResource(id = R.color.tealGreen))
                 }
-
-                Divider(color = colorResource(id = R.color.tealGreen))
-
             }
-
         }
-
-
     }
-
-
-
-
 }
 @Preview
 @Composable

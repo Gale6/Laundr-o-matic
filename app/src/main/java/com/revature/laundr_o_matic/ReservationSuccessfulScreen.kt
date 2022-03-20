@@ -29,6 +29,8 @@ import com.revature.laundr_o_matic.viewmodel.MainViewModel
 @Composable
 fun ReservationSuccessfulScreen(navController: NavController,viewModel:MainViewModel)
 {
+    viewModel.update()
+
     var context = LocalContext.current
     Column()
     {

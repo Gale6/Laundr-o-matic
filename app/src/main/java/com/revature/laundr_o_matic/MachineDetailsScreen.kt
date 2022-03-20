@@ -33,6 +33,7 @@ import com.revature.laundr_o_matic.viewmodel.MainViewModel
 @Composable
 fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
 {
+    viewModel.update()
 
     //Temp machine for placeholder -
     //needs to be updated\

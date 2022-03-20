@@ -42,6 +42,7 @@ import com.revature.laundr_o_matic.viewmodel.MainViewModel
 @Composable
 fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
 
+
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
     val initUser = User("user","pass")
