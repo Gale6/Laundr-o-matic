@@ -32,7 +32,7 @@ fun MissedReservationScreen(navController: NavController)
         modifier = Modifier
             .background(color = colorResource(id = R.color.lightCream)),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally
     )
     {
 
