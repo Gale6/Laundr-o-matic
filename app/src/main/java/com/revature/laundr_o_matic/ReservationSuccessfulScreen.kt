@@ -91,7 +91,9 @@ fun ReservationSuccessfulScreen(navController: NavController,viewModel:MainViewM
 
         Button(
             colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
-            onClick = { navController.navigate(Screen.MainMenu.route) },
+            onClick = {
+                navController.popBackStack(Screen.MainMenu.route, false)
+                navController.navigate(Screen.MainMenu.route) },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .height(60.dp)

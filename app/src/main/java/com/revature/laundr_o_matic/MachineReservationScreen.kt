@@ -34,101 +34,117 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
             backgroundColor = colorResource(id = R.color.animalCrossingGreen))
 
 
-        //LazyColumn state
-        val state = rememberLazyListState()
+        if (viewModel.user?.reservedDryer != null && viewModel.user?.reservedWasher != null) {
 
-        //Lazy Column of all our machines -
-        //needs to be updated for functionality with Machine Manager
-        LazyColumn(state = state){
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    "Only 1 reservation per machine type!",
+                    style = MaterialTheme.typography.h6,
+                    color = colorResource(id = R.color.customDarkBrown))
+         }
+        }
+        else {
 
-            //for each item in the machine array
-            items(viewModel.machineManager.getMachines().size)
-            {
+            //LazyColumn state
+            val state = rememberLazyListState()
 
+            //Lazy Column of all our machines -
+            //needs to be updated for functionality with Machine Manager
+            LazyColumn(state = state) {
 
-                val machine = viewModel.machineManager.getMachine(it)
-
-                if ((machine is Washer && viewModel.user?.reservedWasher == null) ||
-                    (machine is Dryer && viewModel.user?.reservedDryer == null)
-                )
+                //for each item in the machine array
+                items(viewModel.machineManager.getMachines().size)
                 {
-                    //Image ID based on if machine is Dryer or Washer -
-                    //needs to be updated//
-                    val machineImage: Int =
-                        if (machine is Washer) R.drawable.washer else R.drawable.dryer
 
-                    //Row displaying machine
-                    Row(modifier = Modifier.background(MaterialTheme.colors.background)
-                        .clickable {
-                            viewModel.selectedMachine = machine
-                            navController.navigate(Screen.MachineDetails.route)
-                        }) {
 
-                        //Image of machine
+                    val machine = viewModel.machineManager.getMachine(it)
 
-                        Image(
-                            painter = painterResource(id = machineImage),
-                            contentDescription = "Machine Icon",
-                            modifier = Modifier
-                                .size(100.dp)
-                                .padding(10.dp)
-                        )
+                    if ((machine is Washer && viewModel.user?.reservedWasher == null) ||
+                        (machine is Dryer && viewModel.user?.reservedDryer == null)
+                    ) {
+                        //Image ID based on if machine is Dryer or Washer -
+                        //needs to be updated//
+                        val machineImage: Int =
+                            if (machine is Washer) R.drawable.washer else R.drawable.dryer
 
-                        //Column of the machine's name and details
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        //Row displaying machine
+                        Row(modifier = Modifier.background(MaterialTheme.colors.background)
+                            .clickable {
+                                viewModel.selectedMachine = machine
+                                navController.navigate(Screen.MachineDetails.route)
+                            }) {
 
-                            //Machine's name -
-                            //needs to be updated
-                            val sName: String = if (machine is Washer) "Washer" else "Dryer"
+                            //Image of machine
 
-                            Row(
-                                modifier = Modifier.padding(5.dp)
-                                    .fillMaxWidth()
-                            ) {
-                                Text(
-                                    sName, //machineArray[it],
-                                    style = MaterialTheme.typography.h5,
-                                    color = colorResource(id = R.color.customDarkBrown)
-                                )
+                            Image(
+                                painter = painterResource(id = machineImage),
+                                contentDescription = "Machine Icon",
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .padding(10.dp)
+                            )
 
-                                Spacer(Modifier.size(20.dp))
+                            //Column of the machine's name and details
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-                                Text(
-                                    "Machine ID: ${machine.id}",
-                                    style = MaterialTheme.typography.h5,
-                                    color = colorResource(id = R.color.customDarkBrown)
-                                )
-                            }
+                                //Machine's name -
+                                //needs to be updated
+                                val sName: String = if (machine is Washer) "Washer" else "Dryer"
 
-                            Spacer(Modifier.size(10.dp))
+                                Row(
+                                    modifier = Modifier.padding(5.dp)
+                                        .fillMaxWidth()
+                                ) {
+                                    Text(
+                                        sName, //machineArray[it],
+                                        style = MaterialTheme.typography.h5,
+                                        color = colorResource(id = R.color.customDarkBrown)
+                                    )
 
-                            //Row containing the details of the machine -
-                            //needs to be updated
-                            Row(
-                                modifier = Modifier.padding(5.dp)
-                                    .fillMaxWidth()
-                            ) {
-                                Text(
-                                    "Cost: \$${machine.nCost}",
-                                    color = colorResource(id = R.color.customDarkBrown)
-                                )
+                                    Spacer(Modifier.size(20.dp))
+
+                                    Text(
+                                        "Machine ID: ${machine.id}",
+                                        style = MaterialTheme.typography.h5,
+                                        color = colorResource(id = R.color.customDarkBrown)
+                                    )
+                                }
+
                                 Spacer(Modifier.size(10.dp))
-                                Text(
-                                    "Load: ${machine.nLoadSize}",
-                                    color = colorResource(id = R.color.customDarkBrown)
-                                )
-                                Spacer(Modifier.size(10.dp))
-                                Text(
-                                    "Time: ${machine.nRunTime}",
-                                    color = colorResource(id = R.color.customDarkBrown)
-                                )
+
+                                //Row containing the details of the machine -
+                                //needs to be updated
+                                Row(
+                                    modifier = Modifier.padding(5.dp)
+                                        .fillMaxWidth()
+                                ) {
+                                    Text(
+                                        "Cost: \$${machine.nCost}",
+                                        color = colorResource(id = R.color.customDarkBrown)
+                                    )
+                                    Spacer(Modifier.size(10.dp))
+                                    Text(
+                                        "Load: ${machine.nLoadSize}",
+                                        color = colorResource(id = R.color.customDarkBrown)
+                                    )
+                                    Spacer(Modifier.size(10.dp))
+                                    Text(
+                                        "Time: ${machine.nRunTime}",
+                                        color = colorResource(id = R.color.customDarkBrown)
+                                    )
 
                                 }
                             }
 
                         }
 
-                    Divider(color = colorResource(id = R.color.tealGreen))
+                        Divider(color = colorResource(id = R.color.tealGreen))
+                    }
+
                 }
             }
         }
