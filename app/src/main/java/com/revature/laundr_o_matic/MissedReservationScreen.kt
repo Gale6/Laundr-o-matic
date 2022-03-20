@@ -9,11 +9,10 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -29,7 +28,6 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 fun MissedReservationScreen(navController: NavController)
 {
 
-    LocalContext.current
     Column (
         modifier = Modifier
             .background(color = colorResource(id = R.color.lightCream)),
@@ -62,7 +60,7 @@ fun MissedReservationScreen(navController: NavController)
                 )
             }
             Column(
-                horizontalAlignment = CenterHorizontally,
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
@@ -91,7 +89,7 @@ fun MissedReservationScreen(navController: NavController)
 
 
                 Column(
-                    horizontalAlignment = CenterHorizontally,
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Top,
                     modifier = Modifier
                         .fillMaxWidth()

@@ -1,5 +1,7 @@
 package com.revature.laundr_o_matic.model
 
+import java.time.LocalTime
+
 
 /**
  * Default Dryer Class
@@ -7,6 +9,5 @@ package com.revature.laundr_o_matic.model
 class Dryer(id:Int,
             reservations: Reservations): AbstractMachine(id
                                                         ,nCost = 4.50f,
-                                                        nRunTime = 50,
-                                                        nLoadSize = 3, reservations) {
-}
+                                                        nRunTime = LocalTime.of(0,50),
+                                                        nLoadSize = 3, reservations)

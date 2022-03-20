@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -26,7 +25,6 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 @Composable
 fun MachinesInUseScreen(navController: NavController)
 {
-    LocalContext.current
 
     Column {
 

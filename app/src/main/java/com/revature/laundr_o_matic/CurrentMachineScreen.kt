@@ -10,7 +10,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,7 +25,6 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 @Composable
 fun CurrentMachineScreen(navController: NavController)
 {
-    LocalContext.current
 
     Column {
 

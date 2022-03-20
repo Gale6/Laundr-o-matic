@@ -1,20 +1,12 @@
 package com.revature.laundr_o_matic
 
-
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -31,7 +23,7 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 @Composable
 fun MainMenuScreen(navController: NavController)
 {
-    var context = LocalContext.current
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center)
@@ -66,7 +58,7 @@ fun MainMenuScreen(navController: NavController)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.time_128),
+                Image(painter = painterResource(R.drawable.time_128),
                     contentDescription = "reservation time icon",
                     modifier = Modifier
                         .clickable { navController.navigate(Screen.MachineReservation.route) }
@@ -80,7 +72,7 @@ fun MainMenuScreen(navController: NavController)
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(64.dp))
-                Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.clipboard_8_128),
+                Image(painter = painterResource(R.drawable.clipboard_8_128),
                     contentDescription = "history clipboard icon",
                     modifier = Modifier
                         .clickable { /* context.startActivity(Intent(context,createNewReservation::Class.java)) */ }
@@ -101,7 +93,7 @@ fun MainMenuScreen(navController: NavController)
                 modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.sandglass_128),
+                Image(painter = painterResource(R.drawable.sandglass_128),
                     contentDescription = "hourglass current machines icon",
                     modifier = Modifier
                         .clickable { navController.navigate(Screen.MachineInUse.route) }
@@ -116,7 +108,7 @@ fun MainMenuScreen(navController: NavController)
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(64.dp))
-                Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.user_128),
+                Image(painter = painterResource(R.drawable.user_128),
                     contentDescription = "personalInfoIcon",
                     modifier = Modifier
                         .clickable {
