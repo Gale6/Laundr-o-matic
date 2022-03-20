@@ -53,6 +53,7 @@ class MachineManager: Serializable {
         var addList = ArrayList<DateSlot>()
 
         var dateItr = dateArray.iterator()
+        var dateAdd:Long = 1
         while (dateItr.hasNext()) {
             var date = dateItr.next()
 
@@ -64,7 +65,8 @@ class MachineManager: Serializable {
                 //dateItr.remove()
 
                 //add new day
-                addList.add(DateSlot(LocalDate.now().plusDays(3)))
+                addList.add(DateSlot(dateArray.last().Date.plusDays(dateAdd)))
+                dateAdd++
                 //dateArray.add(DateSlot(LocalDate.now().plusDays(3)))
             }
             //if the date hasn't passed, check the times
