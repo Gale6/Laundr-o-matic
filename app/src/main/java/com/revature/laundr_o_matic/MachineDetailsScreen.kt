@@ -1,9 +1,5 @@
 package com.revature.laundr_o_matic
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,21 +9,16 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.revature.laundr_o_matic.model.AbstractMachine
-import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.model.Washer
-import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
+import java.time.format.DateTimeFormatter
 
 //Shows the details of a selected machine
 @Composable
@@ -59,7 +50,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
             Spacer(modifier = Modifier.height(40.dp))
 
           //Image of the Machine Selected - needs to be updated
-          var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
+          val machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
 
           Image(painter = painterResource(id = machineImage),
               contentDescription = "Machine Image",
@@ -105,7 +96,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                         textAlign = TextAlign.Left,
                         color = colorResource(id = R.color.customDarkBrown))
 
-                    Text(text = machine?.id.toString(),
+                    Text(text = machine.id.toString(),
                         style = MaterialTheme.typography.body1,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
@@ -123,7 +114,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                         style = MaterialTheme.typography.body1,
                         color = colorResource(id = R.color.customDarkBrown))
 
-                    Text(text = machine?.nLoadSize.toString(),
+                    Text(text = machine.nLoadSize.toString(),
                         style = MaterialTheme.typography.body1,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
@@ -140,7 +131,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                         style = MaterialTheme.typography.body1,
                         color = colorResource(id = R.color.customDarkBrown))
 
-                    Text(text = "\$${machine?.nCost}",
+                    Text(text = "\$${machine.nCost}",
                         style = MaterialTheme.typography.body1,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
@@ -158,7 +149,10 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                         style = MaterialTheme.typography.body1,
                         color = colorResource(id = R.color.customDarkBrown))
 
-                    Text(text = "${machine?.nRunTime} min",
+                    Text(text = "${
+                        
+                        machine.nRunTime.format(DateTimeFormatter.ofPattern("mm"))
+                    } min",
                         style = MaterialTheme.typography.body1
                         , modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,

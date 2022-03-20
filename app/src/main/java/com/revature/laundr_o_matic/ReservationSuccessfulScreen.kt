@@ -1,9 +1,6 @@
 package com.revature.laundr_o_matic
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -11,7 +8,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -22,7 +18,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.model.Washer
-import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 //Screen showing Successful reservation of machine
@@ -31,7 +26,6 @@ fun ReservationSuccessfulScreen(navController: NavController,viewModel:MainViewM
 {
     viewModel.update()
 
-    var context = LocalContext.current
     Column()
     {
         TopAppBar(
@@ -58,10 +52,10 @@ fun ReservationSuccessfulScreen(navController: NavController,viewModel:MainViewM
 
         Spacer(modifier = Modifier.height(10.dp))      
       
-      var machine = viewModel.selectedMachine
+      val machine = viewModel.selectedMachine
         //Image ID based on if machine is Dryer or Washer -
         //needs to be updated//
-        var machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
+        val machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
 
 
         //Image of machine -

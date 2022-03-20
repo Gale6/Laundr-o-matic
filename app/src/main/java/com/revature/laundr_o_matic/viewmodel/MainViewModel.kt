@@ -32,6 +32,8 @@ class MainViewModel:ViewModel() {
         currentTime = LocalDateTime.now()
 
         updateUser()
+
+        machineManager.updateMachines(currentTime)
     }
 
     /**
@@ -64,17 +66,27 @@ class MainViewModel:ViewModel() {
             //update the running machines
             if (user?.runningDryer != null){
                 if (user?.runningDryer?.reservationTime != null) {
-                    if (user?.runningDryer?.reservationTime!! <= currentTime) {
-                        user?.runningDryer = null
-                    }
+
+                    //If the running machine's start time plus its run time is greater than the
+                    // current time, remove the machine
+                    if ((user?.runningDryer?.reservationTime!!.plusMinutes(
+                            user?.runningDryer?.machine!!.nRunTime.minute.toLong())) <= currentTime)
+                            {
+                                user?.runningDryer = null
+                            }
                 }
             }
 
             if (user?.runningWasher != null) {
                 if (user?.runningWasher?.reservationTime != null) {
-                    if (user?.runningWasher?.reservationTime!! <= currentTime) {
-                        user?.runningWasher = null
-                    }
+
+                    //If the running machine's start time plus its run time is greater than the
+                    // current time, remove the machine
+                    if (user?.runningWasher?.reservationTime!!.plusMinutes(
+                            user?.runningWasher?.machine!!.nRunTime.minute.toLong()) <= currentTime)
+                            {
+                                user?.runningWasher = null
+                            }
                 }
             }
         }

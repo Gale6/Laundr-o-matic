@@ -18,4 +18,8 @@ class Reservations {
             days.add(DateSlot(LocalDate.now().plusDays(i.toLong())))
         }
     }
+
+    fun addDate(date: LocalDate){
+        days.add(DateSlot(date))
+    }
 }

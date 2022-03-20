@@ -10,6 +10,4 @@ data class User (
     var runningDryer:ReservedSlot? = null,
     var reservedWasher:ReservedSlot? = null,
     var reservedDryer: ReservedSlot? = null
-//    val reservations:UserReservations = UserReservations(),
-//    val currentMachines:UserRunningMachines = UserRunningMachines()
 ) :Serializable

@@ -1,19 +1,12 @@
 package com.revature.laundr_o_matic
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -26,7 +19,7 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 
 @Composable
 fun UserProfileScreen(navController: NavController) {
-    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxSize(),

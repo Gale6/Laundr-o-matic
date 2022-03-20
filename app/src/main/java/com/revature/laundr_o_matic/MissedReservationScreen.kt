@@ -1,9 +1,5 @@
 package com.revature.laundr_o_matic
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,12 +10,9 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -35,7 +28,6 @@ import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 fun MissedReservationScreen(navController: NavController)
 {
 
-    val context = LocalContext.current
     Column (
         modifier = Modifier
             .background(color = colorResource(id = R.color.lightCream)),
@@ -68,7 +60,7 @@ fun MissedReservationScreen(navController: NavController)
                 )
             }
             Column(
-                horizontalAlignment = CenterHorizontally,
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
@@ -97,7 +89,7 @@ fun MissedReservationScreen(navController: NavController)
 
 
                 Column(
-                    horizontalAlignment = CenterHorizontally,
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Top,
                     modifier = Modifier
                         .fillMaxWidth()

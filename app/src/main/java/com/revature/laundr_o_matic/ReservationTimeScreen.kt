@@ -156,7 +156,8 @@ fun TimeList(navController : NavController, viewModel: MainViewModel)
 
                     //Display the time
                     Text(
-                        text = viewModel.selectedDate.value.reservation_times[it].hour.toString(),
+                        text = viewModel.selectedDate.value.reservation_times[it].hour.format(
+                            DateTimeFormatter.ofPattern("hh:mm a")),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)

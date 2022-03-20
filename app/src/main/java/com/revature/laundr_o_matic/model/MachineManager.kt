@@ -1,5 +1,12 @@
 package com.revature.laundr_o_matic.model
 
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+
 /**
  * Manager class to control our different machines
  */
@@ -26,34 +33,65 @@ class MachineManager {
         }
     }
 
-    /**
-     * Retrieve a map of just our Dryers
-     */
-    fun getDryers():HashMap<Int, Dryer>{
+    fun updateMachines(currentTime:LocalDateTime){
 
-        //Create our Map
-        val mDryers = HashMap<Int, Dryer>()
+        //for each machine
+        val machineItr = mMachines.iterator()
+        while (machineItr.hasNext()){
 
-        //Loop through all machines, checking if they are a Dryer
-        for(item in mMachines){
-            if(item.value is Dryer) mDryers[item.key] = item.value as Dryer
+            val mValue = machineItr.next().value
+
+            //for each day
+            updateDates(currentTime,mValue.reservations.days)
         }
-        return mDryers
     }
 
-    /**
-     * Retrieve a map of all the Washers
-     */
-    fun getWashers():HashMap<Int, Washer>{
+    fun updateDates(currentTime: LocalDateTime,dateArray:ArrayList<DateSlot>) {
 
-        //Create our Map
-        val mWashers = HashMap<Int, Washer>()
+        var removeList = ArrayList<DateSlot>()
+        var addList = ArrayList<DateSlot>()
 
-        //Loop through all machines, checking if they are Washers
-        for(item in mMachines){
-            if(item.value is Washer) mWashers[item.key] = item.value as Washer
+        var dateItr = dateArray.iterator()
+        while (dateItr.hasNext()) {
+            var date = dateItr.next()
+
+            //if the current time is greater than the reservation date
+            if (currentTime >= LocalDateTime.of(date.Date.plusDays(1), LocalTime.of(0, 0))) {
+
+                //remove the date
+                removeList.add(date)
+                //dateItr.remove()
+
+                //add new day
+                addList.add(DateSlot(LocalDate.now().plusDays(3)))
+                //dateArray.add(DateSlot(LocalDate.now().plusDays(3)))
+            }
+            //if the date hasn't passed, check the times
+            else {
+                updateTimes(currentTime, date.reservation_times, date.Date)
+
+            }
         }
-        return mWashers
+        dateArray.removeAll(removeList)
+        dateArray.addAll(addList)
+    }
+
+    fun updateTimes(currentTime: LocalDateTime,timeArray: ArrayList<TimeSlot>, date: LocalDate){
+
+        var removeList = ArrayList<TimeSlot>()
+
+        val timeItr = timeArray.iterator()
+        while (timeItr.hasNext()){
+            var time = timeItr.next()
+            //if the current time is greater than the reservation's time
+            if (currentTime >= LocalDateTime.of(date, time.hour)) {
+
+                //remove that reservation
+                removeList.add(time)
+                //timeItr.remove()
+            }
+        }
+        timeArray.removeAll(removeList)
     }
 
     /**
@@ -87,9 +125,4 @@ class MachineManager {
         //return the key when we find a free key value
         return nNewKey
     }
-
-    /**
-     * Returns the passed in machine's reservation list
-     */
-    fun getMachineReservations(machineID:Int):Reservations? = getMachine(machineID)?.reservations
 }
