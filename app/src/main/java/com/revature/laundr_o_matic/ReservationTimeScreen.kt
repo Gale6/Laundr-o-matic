@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,6 +22,7 @@ import androidx.navigation.NavController
 import com.revature.laundr_o_matic.model.DateSlot
 import com.revature.laundr_o_matic.model.ReservedSlot
 import com.revature.laundr_o_matic.model.Washer
+import com.revature.laundr_o_matic.ui.theme.writeToFile
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -111,6 +113,7 @@ fun TimeList(navController : NavController, viewModel: MainViewModel)
 
     //Create a state for the lazy column
     var state = rememberLazyListState()
+    val context = LocalContext.current
 
     //Create our lazy column
     LazyColumn(state = state, modifier = Modifier.fillMaxSize()){
@@ -149,8 +152,11 @@ fun TimeList(navController : NavController, viewModel: MainViewModel)
                                 viewModel.selectedMachine)
 
                         }
+                        viewModel.saveMachines()
+                        writeToFile(context,viewModel.user!!)
 
                         navController.navigate(Screen.ReservationSuccessful.route)
+                        navController.popBackStack(Screen.MainMenu.route, false)
 
                     }) {
 

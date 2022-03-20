@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic.model
 
+import java.io.Serializable
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -9,7 +10,7 @@ import kotlin.collections.ArrayList
 /**
  * Class to represent a reservation's Day
  */
-class DateSlot(var Date: LocalDate) {
+class DateSlot(var Date: LocalDate): Serializable {
 
     var reservation_times = ArrayList<TimeSlot>()
 
