@@ -81,7 +81,7 @@ fun MachinesInUseScreen(navController: NavController)
                         )
                         {
                             Text(
-                                text = "Washer 1: Time Left: 20 min",
+                                text = "Washer 1",
                                 color = colorResource(id = R.color.customDarkBrown),
                                 textAlign = TextAlign.Center,
                                 fontSize = 20.sp
@@ -99,7 +99,7 @@ fun MachinesInUseScreen(navController: NavController)
                         )
                         {
                             Text(
-                                text = "Drier 1: Time Left: 40 min",
+                                text = "Drier 1",
                                 color = colorResource(id = R.color.customDarkBrown),
                                 textAlign = TextAlign.Center,
                                 fontSize = 20.sp
