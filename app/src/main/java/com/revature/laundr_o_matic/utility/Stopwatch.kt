@@ -1,148 +1,117 @@
 package com.revature.laundr_o_matic.utility
 
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import android.widget.Toast
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Surface
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PointMode
-import androidx.compose.ui.graphics.StrokeCap.Companion.Round
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.revature.laundr_o_matic.R
 import kotlinx.coroutines.delay
-import java.lang.Math.PI
 
 
 @Composable
-fun Timer(
-    totalTime: Long,
-    handleColor: Color,
-    inactiveBarColor: Color,
-    activeBarColor: Color,
-    initialValue: Float = 0f,
-    strokeWidth: Dp = 5.dp
-) {
+fun Timer(totalTimeInSeconds: Int, initialProgress: Float) {
+    val context = LocalContext.current
 
-    var size by remember {
-        mutableStateOf(IntSize.Zero)
+    var progress by remember {
+        mutableStateOf(initialProgress)
     }
-    var value by remember {
-        mutableStateOf(initialValue)
+    var timeElapsed by remember {
+        mutableStateOf(totalTimeInSeconds)
     }
-    var currentTime by remember {
-        mutableStateOf(totalTime)
+    var timeRemaining by remember {       //variable for the current time
+        mutableStateOf(totalTimeInSeconds)
     }
-    var isTimerRunning by remember {
+    var isTimerRunning by remember {    //variable for isTimerRunning
         mutableStateOf(false)
     }
-    LaunchedEffect(key1 = currentTime, key2 = isTimerRunning) {
-        if(currentTime > 0 && isTimerRunning) {
-            delay(100L)
-            currentTime -= 100L
-            value = currentTime / totalTime.toFloat()
+
+    LaunchedEffect(key1 = timeRemaining, key2 = isTimerRunning) {
+        if (timeRemaining > 0 && isTimerRunning) {
+            delay(1000L)
+            timeRemaining -= 1
+            timeElapsed = totalTimeInSeconds - timeRemaining
+            progress = (initialProgress + timeElapsed) / totalTimeInSeconds
         }
     }
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.onSizeChanged {
-            size = it
-        }
+    val timeMinutes = (timeRemaining / 60)
+    val timeSeconds = (timeRemaining % 60)
+
+    if(timeRemaining == 300) {
+        Toast.makeText(context, "Your laundry will be done in 5 minutes!", Toast.LENGTH_LONG).show()
+    }
+
+
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .height(200.dp)
+        .padding(5.dp)
     ) {
-        Canvas(modifier = Modifier) {
-
-            drawArc(
-                color = inactiveBarColor,
-                startAngle = -215f,
-                sweepAngle = 250f,
-                useCenter = false,
-                size = Size(size.width.toFloat(), size.height.toFloat()),
-                style = Stroke(strokeWidth.toPx(), cap = Round)
-            )
-            drawArc(
-                color = activeBarColor,
-                startAngle = -215f,
-                sweepAngle = 250f * value,
-                useCenter = false,
-                size = Size(size.width.toFloat(), size.height.toFloat()),
-                style = Stroke(strokeWidth.toPx(), cap = Round)
-            )
-            val center = Offset(size.width / 2f, size.height / 2f)
-            val beta = (250f * value + 145f) * (PI / 180f)
-            val radius = size.width / 2f
-            val a = kotlin.math.cos(beta) * radius
-            val b = kotlin.math.sin(beta) * radius
-
-            drawPoints(
-                listOf(Offset(((center.x + a).toFloat()), ((center.y + b).toFloat()))),
-                pointMode = PointMode.Points,
-                color = handleColor,
-                strokeWidth = (strokeWidth * 3f).toPx(),
-                cap = Round
-            )
-        }
-        Text(
-            text = (currentTime / 1000L).toString(),
-            fontSize = 44.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White
-        )
-        Button(
-            onClick = {
-                      if(currentTime <= 0L) {
-                          currentTime = totalTime
-                          isTimerRunning = true
-                      } else {
-                          isTimerRunning = !isTimerRunning
-                      }
-            },
-            modifier = Modifier.align(Alignment.BottomCenter),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = if(!isTimerRunning || currentTime <= 0L) {
-                    Color.Green
-                } else {
-                    Color.Red
-                }
-            )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top,
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .clip(RoundedCornerShape(30.dp))
+                .padding(10.dp)
         ) {
-            Text(text = if(isTimerRunning && currentTime >= 0) "Stop"
-                else if(!isTimerRunning && currentTime >= 0L) "Start"
-                else "Restart"
-            )
-        }
+            val timeDisplay = if (timeMinutes < 10 && timeSeconds < 10) {
+                "0$timeMinutes:0$timeSeconds"
+            } else if (timeMinutes < 10) {
+                "0$timeMinutes:$timeSeconds"
+            } else if (timeSeconds < 10) {
+                "$timeMinutes:0$timeSeconds"
+            } else "$timeMinutes:$timeSeconds"
 
+            Text(
+                text = (timeDisplay),
+                fontSize = 44.sp,
+                color = Color.Black,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+            if (!isTimerRunning) {
+                Button(     //Button to stop and start the timer
+                    onClick = { isTimerRunning = true },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen))
+                ) {
+                    Text(
+                        text = "Start"
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(5.dp))
+            LinearProgressIndicator(
+                progress = progress,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(15.dp),
+                backgroundColor = Color.LightGray,
+                color = colorResource(id = R.color.customDarkBrown)
+            )
+            val percentCompleted = (progress * 100).toInt()
+            Text(text = "$percentCompleted% complete.")
+        }
     }
 }
-
 @Preview
 @Composable
 fun PreviewTimer() {
-    Surface(
-        color = Color(0xFF101010),
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Box(
-            contentAlignment = Alignment.Center
-        ) {
-            Timer(
-                totalTime = 100L * 1000L,
-                handleColor = Color.Green,
-                inactiveBarColor = Color.DarkGray,
-                activeBarColor = Color(0xFF37B900)
-            )
-        }
-    }
+    Timer(3000,0f)
 }
