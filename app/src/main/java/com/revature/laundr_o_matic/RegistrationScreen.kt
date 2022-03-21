@@ -68,9 +68,8 @@ fun RegistrationScreen(navController: NavController) {
     Column(
 
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .padding(8.dp)
-            .background(color = colorResource(id = R.color.lightCream), RectangleShape)
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.background(color = colorResource(id = R.color.lightCream), RectangleShape)
             .fillMaxSize()
             .clickable { focusManager.clearFocus() }
     )
@@ -247,7 +246,7 @@ fun RegistrationScreen(navController: NavController) {
         {
             Text(
                 text = "Register",
-                fontSize = 10.sp,
+                fontSize = 30.sp,
                 color = colorResource(id = R.color.customDarkBrown)
             )
         }

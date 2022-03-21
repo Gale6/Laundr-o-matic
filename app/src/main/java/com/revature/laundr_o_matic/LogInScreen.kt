@@ -56,7 +56,7 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel)
     var loginStat by rememberSaveable { mutableStateOf ("") }
 
     Column(
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .background(MaterialTheme.colors.surface, RectangleShape)
@@ -83,7 +83,7 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel)
             modifier = Modifier.padding(horizontal = 5.dp)
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         // Background of washing machine image
 
