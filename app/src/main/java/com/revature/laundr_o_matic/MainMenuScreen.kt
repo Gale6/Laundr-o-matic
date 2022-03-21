@@ -5,10 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -16,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalContext
@@ -74,16 +72,23 @@ fun MainMenuScreen(navController: NavController)
 
                 Surface(
                     modifier = Modifier
-                        .height(180.dp)
-                        .width(150.dp))
+                        .height(165.dp)
+                        .width(145.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = colorResource(id = R.color.animalCrossingGreen)
+                    )
+                )
                 {
 
                     Spacer(modifier = Modifier.height(10.dp))
+
                     Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.grey_reservation_icon),
                         contentDescription = "Reservation time icon",
                         modifier = Modifier
                             .clickable { navController.navigate(Screen.MachineReservation.route) }
-                            .size(150.dp)
+                            .size(150.dp),
+                        alignment = Alignment.BottomCenter
                     )
                     Text(
                         text = "New Reservation",
@@ -94,19 +99,27 @@ fun MainMenuScreen(navController: NavController)
                     )
                 }
                 Spacer(modifier = Modifier.height(64.dp))
+
                 Surface(
                     modifier = Modifier
-                        .height(180.dp)
-                        .width(150.dp))
+                        .height(165.dp)
+                        .width(145.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = colorResource(id = R.color.animalCrossingGreen)
+                    )
+                )
                 {
+
                     Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.grey_wallet_icon),
                         contentDescription = "Wallet icon",
                         modifier = Modifier
                             .clickable {  /*context.startActivity(Intent(context,createNewReservation::Class.java))*/ } // change to user wallet
-                            .size(150.dp)
+                            .size(150.dp),
+                        alignment = Alignment.BottomCenter
                     )
                     Text(
-                        text = "History",
+                        text = "Wallet",
                         fontFamily = FontFamily.Serif,
                         fontWeight = FontWeight.Bold,
                         color = colorResource(id = R.color.brownGrey),
@@ -121,18 +134,26 @@ fun MainMenuScreen(navController: NavController)
                 horizontalAlignment = Alignment.CenterHorizontally
             )
             {
-            Surface(
-                modifier = Modifier
-                .height(180.dp)
-                .width(250.dp)
-            )
-            {
+                Spacer(modifier = Modifier.height(15.dp))
+
+                Surface(
+                    modifier = Modifier
+                        .height(165.dp)
+                        .width(250.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = colorResource(id = R.color.animalCrossingGreen)
+                    )
+
+                )
+                {
 
                     Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.grey_hour_glass_icon),
                         contentDescription = "Hourglass current machines icon",
                         modifier = Modifier
                             .clickable { navController.navigate(Screen.MachineInUse.route) }
-                            .size(150.dp)
+                            .size(150.dp),
+                        alignment = Alignment.BottomCenter
                     )
 
                     Text(
@@ -145,19 +166,26 @@ fun MainMenuScreen(navController: NavController)
                 }
 
                 Spacer(modifier = Modifier.height(64.dp))
+
                 Surface(
                     modifier = Modifier
-                    .height(180.dp)
-                    .width(250.dp)
+                        .height(165.dp)
+                        .width(250.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = colorResource(id = R.color.animalCrossingGreen)
+                    )
                 )
                 {
+
                     Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.grey_user_icon),
                         contentDescription = "Personal info icon",
                         modifier = Modifier
                             .clickable {
                                 navController.navigate(Screen.UserProfile.route)
                             }
-                            .size(150.dp)
+                            .size(150.dp).padding(5.dp),
+                        alignment = Alignment.BottomCenter
                     )
                     Text(
                         text = "Personal Info",
