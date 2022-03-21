@@ -4,12 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 @Composable
-fun SetupNavGraph(navController: NavHostController){
+fun SetupNavGraph(navController: NavHostController, machines: MachineManager){
 
-    var viewModel = MainViewModel()
+    var viewModel = MainViewModel(machines)
 
     NavHost(navController = navController, startDestination = Screen.Login.route)
     {

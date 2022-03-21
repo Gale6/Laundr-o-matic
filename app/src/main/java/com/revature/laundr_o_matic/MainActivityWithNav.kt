@@ -7,9 +7,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
+import com.revature.laundr_o_matic.ui.theme.readMachines
+import com.revature.laundr_o_matic.utility.Constants
 
 class MainActivityWithNav : ComponentActivity() {
 
@@ -26,7 +30,8 @@ class MainActivityWithNav : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     navController = rememberNavController()
-                    SetupNavGraph(navController = navController)
+                    var machines:MachineManager = readMachines(LocalContext.current,Constants.FILEPATH_MACHINES)
+                    SetupNavGraph(navController = navController,machines)
                 }
             }
         }

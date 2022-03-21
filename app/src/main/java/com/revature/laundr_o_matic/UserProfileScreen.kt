@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 import com.revature.laundr_o_matic.ui.theme.writeToFile
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
@@ -309,6 +310,8 @@ fun DefaultPreview2()
 {
     LaundromaticTheme()
     {
-        UserProfileScreen(navController = rememberNavController(), viewModel = MainViewModel())
+        UserProfileScreen(navController = rememberNavController(), viewModel = MainViewModel(
+            MachineManager()
+        ))
     }
 }

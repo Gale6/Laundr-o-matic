@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.revature.laundr_o_matic.model.Dryer
+import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.model.Washer
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
@@ -166,5 +167,5 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
 @Composable
 fun PreviewReservation()
 {
-    MachineReservationScreen(navController = rememberNavController(),MainViewModel())
+    MachineReservationScreen(navController = rememberNavController(),MainViewModel(MachineManager()))
 }

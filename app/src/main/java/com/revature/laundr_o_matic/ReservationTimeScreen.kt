@@ -152,7 +152,7 @@ fun TimeList(navController : NavController, viewModel: MainViewModel)
                                 viewModel.selectedMachine)
 
                         }
-                        viewModel.saveMachines()
+                        viewModel.saveMachines(context)
                         writeToFile(context,viewModel.user!!)
 
                         navController.navigate(Screen.ReservationSuccessful.route)

@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
@@ -143,6 +144,8 @@ fun UpcomingReservationScreen(navController: NavController,viewModel:MainViewMod
 @Composable
 fun UpcomingReservationScreenPreview() {
     LaundromaticTheme {
-        UpcomingReservationScreen(navController = rememberNavController(),MainViewModel())
+        UpcomingReservationScreen(navController = rememberNavController(),MainViewModel(
+            MachineManager()
+        ))
     }
 }

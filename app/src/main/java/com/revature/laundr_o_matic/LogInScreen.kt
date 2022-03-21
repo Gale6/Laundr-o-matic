@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.ui.theme.readFromFile
 import com.revature.laundr_o_matic.ui.theme.writeToFile
 import java.io.File
@@ -269,5 +270,5 @@ fun checkLoginInfo (inUsername:String,inPassword:String,context: Context, viewMo
 @Composable
 fun PreviewLogInScreen()
 {
-    LogInScreen(navController = rememberNavController(),MainViewModel())
+    LogInScreen(navController = rememberNavController(),MainViewModel(MachineManager()))
 }

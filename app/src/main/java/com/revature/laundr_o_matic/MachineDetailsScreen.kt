@@ -196,5 +196,5 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
 @Composable
 fun PreviewMachineDetails()
 {
-    MachineDetailsScreen(navController = rememberNavController(), MainViewModel())
+    MachineDetailsScreen(navController = rememberNavController(), MainViewModel(MachineManager()))
 }

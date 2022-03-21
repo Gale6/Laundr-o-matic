@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic.viewmodel
 
+import android.content.Context
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import com.revature.laundr_o_matic.User
@@ -12,10 +13,10 @@ import com.revature.laundr_o_matic.utility.Constants
 import java.time.LocalDateTime
 import java.time.LocalTime
 
-class MainViewModel:ViewModel() {
+class MainViewModel(var machineManager:MachineManager):ViewModel() {
 
     //Reservation Selection Variables
-    var machineManager:MachineManager = readMachines(Constants.FILEPATH_MACHINES)
+    //var machineManager:MachineManager = readMachines(Constants.FILEPATH_MACHINES)
     lateinit var selectedMachine:AbstractMachine
     lateinit var selectedDate: MutableState<DateSlot>
     lateinit var selectedTime: LocalTime
@@ -95,8 +96,8 @@ class MainViewModel:ViewModel() {
         }
     }
 
-    fun saveMachines(){
-        writeMachines(machineManager)
+    fun saveMachines(context: Context){
+        writeMachines(context,machineManager)
     }
 
 }
