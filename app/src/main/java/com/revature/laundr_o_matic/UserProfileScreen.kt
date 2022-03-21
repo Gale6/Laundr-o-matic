@@ -1,5 +1,6 @@
 package com.revature.laundr_o_matic
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -76,19 +77,11 @@ fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
             modifier = Modifier
                 .size(150.dp)
         )
-        Spacer(modifier = Modifier.size(50.dp))
 
-        var username by remember { mutableStateOf("Username") }
-
-        TextField(
-            value = username,
-            onValueChange = { username = it },
-            label = { Text(text = "Enter Username") }
-        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        var password by remember { mutableStateOf("Enter Password") }
+        var password by remember { mutableStateOf("") }
         var passwordVisibility by remember { mutableStateOf(false) }
         val icon = if (passwordVisibility)
             painterResource(id = com.google.android.material.R.drawable.design_ic_visibility)
@@ -97,8 +90,20 @@ fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
 
 
         TextField(
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+
+                focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                focusedLabelColor = colorResource(id = R.color.customDarkBrown)
+            ),
             value = password,
-            onValueChange = { password = it },
+            onValueChange = {
+                password = it
+                if (password.length<4){
+                    userPasswordInvalidText = "user password can not be shorter then 4"
+                }else{
+                    userPasswordInvalidText = ""
+                }
+                            },
             label = { Text(text = "Password") },
             trailingIcon =
             {
@@ -116,55 +121,68 @@ fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
             ),
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation()
         )
-
-        Spacer(modifier = Modifier.height(32.dp))
-        Spacer(modifier = Modifier.size(25.dp))
-        Surface(
-            modifier = Modifier
-//                .height(20.dp)
-                .width(300.dp),
-            shape = RectangleShape,
-            color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
-        ) {
-            TextField(
-                value = password,
-                onValueChange = {
-                    password = it
-                    userPasswordInvalidText = if (password.length >= 4) {
-                        ""
-                    } else {
-                        "Password has to be longer then 4 character"
-                    }
-                },
-                label = { Text("Enter your desired password") },
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-
-                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
-                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)
-                ),
-                trailingIcon = {
-                    IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
-                        Icon(
-                            painter = icon,
-                            contentDescription = "visibility icon"
-                        )
-                    }
-                },
-                visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
-
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Password
-                ),
-                keyboardActions = KeyboardActions(onNext = {
-                    focusManager.moveFocus(FocusDirection.Down)
-                }
-                )
-            )
-        }
         Text(text = userPasswordInvalidText, color = Color.Red)
+        TextField(
+            colors = TextFieldDefaults.outlinedTextFieldColors(
 
-        // Re-enter password surrounding box
+                focusedBorderColor = colorResource(id = R.color.customDarkBrown),
+                focusedLabelColor = colorResource(id = R.color.customDarkBrown)
+            ),
+            value = rePassword,
+            onValueChange = {
+
+                rePassword = it
+                matchText = if (rePassword != password) {
+                    "re-entered password does not match"
+                } else {
+                    ""
+                }
+            },
+            trailingIcon = {
+                IconButton(onClick = {
+                    passwordVisibility1 = !passwordVisibility1
+                }) {
+                    Icon(
+                        painter = icon1,
+                        contentDescription = "visibility icon1"
+                    )
+                }
+            },
+
+            label = { Text("Re-enter your password again") },
+
+            visualTransformation = if (passwordVisibility1) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Done,
+                keyboardType = KeyboardType.Password
+            ),
+            keyboardActions = KeyboardActions(onDone = {
+                focusManager.clearFocus()
+            }
+            )
+        )
+        Text(text = matchText, color = Color.Red)
+        Text(text = passwordChanged)
+        Button(
+            onClick = {
+                focusManager.clearFocus()
+                if (rePassword == password && password.length >= 4) {
+                    viewModel.user!!.password = password
+                    writeToFile(context = context, viewModel.user!!)
+                    passwordChanged = "Password change successful"
+                }
+            },
+            modifier = Modifier.wrapContentWidth(),
+            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
+        ) {
+            Text(text = "Change password",
+                color = colorResource(id = R.color.brownGrey
+                ),
+                fontSize = 30.sp,
+                textAlign = TextAlign.Center)
+        }
+
+        Spacer(modifier = Modifier.size(25.dp))
         Surface(
             modifier = Modifier
 //                .height(20.dp)
@@ -173,116 +191,35 @@ fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
         )
         {
-            // Password box input
-
-            TextField(
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-
-                    focusedBorderColor = colorResource(id = R.color.customDarkBrown),
-                    focusedLabelColor = colorResource(id = R.color.customDarkBrown)
-                ),
-                value = rePassword,
-                onValueChange = {
-
-                    rePassword = it
-                    matchText = if (rePassword != password) {
-                        "re-entered password does not match"
-                    } else {
-                        ""
-                    }
-                },
-                trailingIcon = {
-                    IconButton(onClick = {
-                        passwordVisibility1 = !passwordVisibility1
-                    }) {
-                        Icon(
-                            painter = icon1,
-                            contentDescription = "visibility icon1"
-                        )
-                    }
-                },
-
-                label = { Text("Re-enter your password again") },
-
-                visualTransformation = if (passwordVisibility1) VisualTransformation.None else PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Done,
-                    keyboardType = KeyboardType.Password
-                ),
-                keyboardActions = KeyboardActions(onDone = {
-                    focusManager.clearFocus()
-                }
-                )
-            )
-
             Button(
                 colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
-                onClick = { /*TODO*/ },
-                modifier = Modifier.width(200.dp)
+                onClick = { navController.navigate(Screen.MainMenu.route) },
+                modifier = Modifier.width(130.dp)
             )
             {
                 Text(
-                    text = "Edit profile",
-                    color = colorResource(id = R.color.customDarkBrown),
+                    text = "Main",
+                    color = colorResource(id = R.color.brownGrey),
                     fontSize = 30.sp,
                     textAlign = TextAlign.Center
                 )
             }
-
-            Text(text = matchText, color = Color.Red)
-            Text(text = passwordChanged)
-
-            Button(
-                onClick = {
-                    focusManager.clearFocus()
-                    if (rePassword == password && password.length >= 4) {
-                        viewModel.user!!.password = password
-                        writeToFile(context = context, viewModel.user!!)
-                        passwordChanged = "Password change successful"
-                    }
-                },
-                modifier = Modifier.wrapContentWidth()
-            ) {
-                Text(text = "Change password")
-            }
-            Spacer(modifier = Modifier.height(32.dp))
-
-            Row()
-            {
-                Button(
-                    colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
-                    onClick = { navController.navigate(Screen.Wallet.route) },
-                    modifier = Modifier.width(130.dp)
-                )
-                {
-                    Text(
-                        text = "Wallet",
-                        color = colorResource(id = R.color.customDarkBrown),
-                        fontSize = 30.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
-                Spacer(modifier = Modifier.width(32.dp))
-                Button(
-                    colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
-                    onClick = { navController.navigate(Screen.MainMenu.route) },
-                    modifier = Modifier.width(130.dp)
-                )
-                {
-                    Text(
-                        text = "Main",
-                        color = colorResource(id = R.color.customDarkBrown),
-                        fontSize = 30.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
+        }
+        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(50.dp))
+        Surface(
+            modifier = Modifier
+//                .height(20.dp)
+                .width(300.dp),
+            shape = RectangleShape,
+            color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+        )
+        {
 
 
-            Spacer(modifier = Modifier.height(50.dp))
 
             Button(
-                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.brownGrey)),
+                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.tealGreen)),
                 onClick = {
                     viewModel.user = null
                     navController.navigate(Screen.Login.route)
@@ -293,13 +230,16 @@ fun UserProfileScreen(navController: NavController, viewModel: MainViewModel) {
             {
                 Text(
                     text = "Sign out",
-                    color = colorResource(id = R.color.tealGreen),
+                    color = colorResource(id = R.color.brownGrey),
                     fontSize = 30.sp,
                     textAlign = TextAlign.Center
                 )
             }
 
+            Spacer(modifier = Modifier.height(50.dp))
         }
+
+//
 
     }
 

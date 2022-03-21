@@ -114,7 +114,7 @@ fun MainMenuScreen(navController: NavController)
                     Image(painter = painterResource(com.revature.laundr_o_matic.R.drawable.grey_wallet_icon),
                         contentDescription = "Wallet icon",
                         modifier = Modifier
-                            .clickable {  /*context.startActivity(Intent(context,createNewReservation::Class.java))*/ } // change to user wallet
+                            .clickable {  navController.navigate(Screen.Wallet.route) } // change to user wallet
                             .size(150.dp),
                         alignment = Alignment.BottomCenter
                     )
