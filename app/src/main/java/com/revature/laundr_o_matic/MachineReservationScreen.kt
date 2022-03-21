@@ -27,11 +27,17 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
 
     viewModel.update()
 
-    Column (Modifier.background(color = colorResource(id = R.color.lightCream))){
+    Column (Modifier.background(color = colorResource(id = R.color.lightCream))) {
 
-        TopAppBar(title = {Text("Select a Machine",
-            color = colorResource(id = R.color.customDarkBrown))},
-            backgroundColor = colorResource(id = R.color.animalCrossingGreen))
+        TopAppBar(
+            title = {
+                Text(
+                    "Select a Machine",
+                    color = colorResource(id = R.color.customDarkBrown)
+                )
+            },
+            backgroundColor = colorResource(id = R.color.animalCrossingGreen)
+        )
 
 
         if (viewModel.user?.reservedDryer != null && viewModel.user?.reservedWasher != null) {
@@ -44,10 +50,10 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
                 Text(
                     "Only 1 reservation per machine type!",
                     style = MaterialTheme.typography.h6,
-                    color = colorResource(id = R.color.customDarkBrown))
-         }
-        }
-        else {
+                    color = colorResource(id = R.color.customDarkBrown)
+                )
+            }
+        } else {
 
             //LazyColumn state
             val state = rememberLazyListState()
@@ -120,7 +126,7 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
                                 //needs to be updated
                                 Row(
                                     modifier = Modifier
-                            .padding(5.dp)
+                                        .padding(5.dp)
                                         .fillMaxWidth()
                                 ) {
                                     Text(
@@ -143,18 +149,18 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
 
                         }
 
-                Divider(color = colorResource(id = R.color.tealGreen), thickness = 2.dp)
+                        Divider(color = colorResource(id = R.color.tealGreen), thickness = 2.dp)
+
+                    }
+
+                }
+
 
             }
 
         }
 
-
     }
-
-
-
-
 }
 @Preview
 @Composable
