@@ -202,8 +202,10 @@ fun MainMenuScreen(navController: NavController)
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewMainMenu() {
-    LaundromaticTheme {
+fun PreviewMainMenu()
+{
+    LaundromaticTheme()
+    {
         MainMenuScreen(navController = rememberNavController())
     }
 

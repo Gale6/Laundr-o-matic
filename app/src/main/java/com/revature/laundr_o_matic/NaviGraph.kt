@@ -11,47 +11,62 @@ fun SetupNavGraph(navController: NavHostController){
 
     var viewModel = MainViewModel()
 
-    NavHost(navController = navController, startDestination = Screen.Login.route){
-        composable(route= Screen.CurrentMachine.route){
+    NavHost(navController = navController, startDestination = Screen.Login.route)
+    {
+        composable(route= Screen.CurrentMachine.route)
+        {
             CurrentMachineScreen(navController = navController)
         }
-        composable(route= Screen.Login.route){
+        composable(route= Screen.Login.route)
+        {
             LogInScreen(navController = navController, viewModel)
         }
-        composable(route = Screen.MachineDetails.route){
+        composable(route = Screen.MachineDetails.route)
+        {
             MachineDetailsScreen(navController = navController,viewModel)
         }
-        composable(route = Screen.MachineReservation.route){
+        composable(route = Screen.MachineReservation.route)
+        {
             MachineReservationScreen(navController = navController,viewModel)
         }
-        composable(route = Screen.MachineInUse.route){
+        composable(route = Screen.MachineInUse.route)
+        {
             MachinesInUseScreen(navController = navController)
         }
-        composable(route = Screen.MainMenu.route){
+        composable(route = Screen.MainMenu.route)
+        {
             MainMenuScreen(navController = navController)
         }
-        composable(route = Screen.MissedReservation.route){
+        composable(route = Screen.MissedReservation.route)
+        {
             MissedReservationScreen(navController = navController)
         }
-        composable(route = Screen.Registration.route){
+        composable(route = Screen.Registration.route)
+        {
             RegistrationScreen(navController = navController)
         }
-        composable(route = Screen.RegistrationSuccessful.route){
+        composable(route = Screen.RegistrationSuccessful.route)
+        {
             RegistrationSuccessfulScreen(navController = navController)
         }
-        composable(route = Screen.ReservationSuccessful.route){
+        composable(route = Screen.ReservationSuccessful.route)
+        {
             ReservationSuccessfulScreen(navController = navController,viewModel)
         }
-        composable(route = Screen.ReservationTime.route){
+        composable(route = Screen.ReservationTime.route)
+        {
             ReservationTimeScreen(navController = navController,viewModel)
         }
-        composable(route = Screen.UpcomingReservation.route){
+        composable(route = Screen.UpcomingReservation.route)
+        {
             UpcomingReservationScreen(navController = navController,viewModel)
         }
-        composable(route = Screen.UserProfile.route){
+        composable(route = Screen.UserProfile.route)
+        {
             UserProfileScreen(navController = navController,viewModel)
         }
-        composable(route = Screen.Wallet.route){
+        composable(route = Screen.Wallet.route)
+        {
             WalletScreen(navController = navController)
         }
 
