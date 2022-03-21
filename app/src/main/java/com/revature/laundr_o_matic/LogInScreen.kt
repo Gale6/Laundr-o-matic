@@ -40,7 +40,8 @@ import com.revature.laundr_o_matic.viewmodel.MainViewModel
 
 // Washing machine icon
 @Composable
-fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
+fun LogInScreen(navController: NavController, viewModel:MainViewModel)
+{
 
 
     val context = LocalContext.current
@@ -137,9 +138,12 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
             // Password box input
 
             var passwordVisibility by remember { mutableStateOf(false) }
-            val icon = if (passwordVisibility) {
+            val icon = if (passwordVisibility)
+            {
                 painterResource(id = com.google.android.material.R.drawable.design_ic_visibility)
-            } else {
+            }
+            else
+            {
                 painterResource(id = com.google.android.material.R.drawable.design_ic_visibility_off)
             }
 
@@ -168,7 +172,7 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Password,
                     imeAction = ImeAction.Done
-                    ),
+                ),
                 keyboardActions = KeyboardActions(onDone = {
                     focusManager.clearFocus()
                 }
@@ -185,15 +189,21 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
             ),
 
             modifier = Modifier.height(60.dp),
-            onClick = {
+
+            onClick =
+            {
                 focusManager.clearFocus()
-                if (checkLoginInfo(username,password,context,viewModel)) {
+                if (checkLoginInfo(username,password,context,viewModel))
+                {
                     viewModel.user = readFromFile(filePath = "${context.filesDir.toString()}/${username}.ser")
                     navController.navigate(Screen.MainMenu.route)
-                } else {
+                }
+                else
+                {
                     loginStat = "Invalid login information"
                 }
-            })
+            }
+        )
         {
             Text(
                 text = "Login",
@@ -235,15 +245,19 @@ fun LogInScreen(navController: NavController, viewModel:MainViewModel) {
 fun checkLoginInfo (inUsername:String,inPassword:String,context: Context, viewModel:MainViewModel): Boolean {
     var filePath = "${context.filesDir.toString()}/${inUsername}.ser"
     var file = File(filePath)
-    if ( !file.exists()){
+    if ( !file.exists())
+    {
         return false
     }
     val myUser = readFromFile(filePath = filePath)
 
-    return if (myUser.password == inPassword)  {
+    return if (myUser.password == inPassword)
+    {
         viewModel.user = myUser
         true
-    } else {
+    }
+    else
+    {
         false
     }
     //return (myUser.password == inPassword)
