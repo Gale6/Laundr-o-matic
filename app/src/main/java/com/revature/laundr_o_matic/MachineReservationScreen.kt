@@ -69,10 +69,10 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
                         //Image ID based on if machine is Dryer or Washer -
                         //needs to be updated//
                         val machineImage: Int =
-                            if (machine is Washer) R.drawable.washer else R.drawable.dryer
+                            if (machine is Washer) R.drawable.grey_washing_machine_1 else R.drawable.grey_dryer_icon_2
 
                         //Row displaying machine
-                        Row(modifier = Modifier.background(MaterialTheme.colors.background)
+                        Row(modifier = Modifier.background(color = colorResource(id = R.color.lightCream))
                             .clickable {
                                 viewModel.selectedMachine = machine
                                 navController.navigate(Screen.MachineDetails.route)
@@ -102,7 +102,7 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
                                     Text(
                                         sName, //machineArray[it],
                                         style = MaterialTheme.typography.h5,
-                                        color = colorResource(id = R.color.customDarkBrown)
+                                        color = colorResource(id = R.color.brownGrey)
                                     )
 
                                     Spacer(Modifier.size(20.dp))
@@ -110,7 +110,7 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
                                     Text(
                                         "Machine ID: ${machine.id}",
                                         style = MaterialTheme.typography.h5,
-                                        color = colorResource(id = R.color.customDarkBrown)
+                                        color = colorResource(id = R.color.brownGrey)
                                     )
                                 }
 
@@ -119,22 +119,23 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
                                 //Row containing the details of the machine -
                                 //needs to be updated
                                 Row(
-                                    modifier = Modifier.padding(5.dp)
+                                    modifier = Modifier
+                            .padding(5.dp)
                                         .fillMaxWidth()
                                 ) {
                                     Text(
                                         "Cost: \$${machine.nCost}",
-                                        color = colorResource(id = R.color.customDarkBrown)
+                                        color = colorResource(id = R.color.brownGrey)
                                     )
                                     Spacer(Modifier.size(10.dp))
                                     Text(
                                         "Load: ${machine.nLoadSize}",
-                                        color = colorResource(id = R.color.customDarkBrown)
+                                        color = colorResource(id = R.color.brownGrey)
                                     )
                                     Spacer(Modifier.size(10.dp))
                                     Text(
                                         "Time: ${machine.nRunTime}",
-                                        color = colorResource(id = R.color.customDarkBrown)
+                                        color = colorResource(id = R.color.brownGrey)
                                     )
 
                                 }
@@ -142,13 +143,18 @@ fun MachineReservationScreen(navController: NavController, viewModel:MainViewMod
 
                         }
 
-                        Divider(color = colorResource(id = R.color.tealGreen))
-                    }
+                Divider(color = colorResource(id = R.color.tealGreen), thickness = 2.dp)
 
-                }
             }
+
         }
+
+
     }
+
+
+
+
 }
 @Preview
 @Composable

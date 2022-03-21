@@ -1,5 +1,9 @@
 package com.revature.laundr_o_matic
 
+import android.content.Intent
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -9,14 +13,20 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.revature.laundr_o_matic.model.AbstractMachine
+import com.revature.laundr_o_matic.model.MachineManager
 import com.revature.laundr_o_matic.model.Washer
+import com.revature.laundr_o_matic.ui.theme.LaundromaticTheme
 import com.revature.laundr_o_matic.viewmodel.MainViewModel
 import java.time.format.DateTimeFormatter
 
@@ -50,7 +60,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
             Spacer(modifier = Modifier.height(40.dp))
 
           //Image of the Machine Selected - needs to be updated
-          val machineImage:Int = if (machine is Washer) R.drawable.washer else R.drawable.dryer
+          var machineImage:Int = if (machine is Washer) R.drawable.grey_washing_machine_1 else R.drawable.grey_dryer_icon_2
 
           Image(painter = painterResource(id = machineImage),
               contentDescription = "Machine Image",
@@ -64,7 +74,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                  //Column holding machine Information
             Column(modifier = Modifier
                 .padding(10.dp)
-                .border(5.dp, color = colorResource(id = R.color.customDarkBrown),
+                .border(5.dp, color = colorResource(id = R.color.brownGrey),
                     RoundedCornerShape(5.dp)
                 )
                 //.size(width =  250.dp, height = 200.dp)
@@ -83,7 +93,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                         style = MaterialTheme.typography.h6,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
-                        color = colorResource(id = R.color.customDarkBrown))
+                        color = colorResource(id = R.color.brownGrey))
                 }     
 
                   //Row containing our Machine's Unique ID - needs to be updated
@@ -94,13 +104,13 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                     Text(text = "Machine ID: ",
                         style = MaterialTheme.typography.body1,
                         textAlign = TextAlign.Left,
-                        color = colorResource(id = R.color.customDarkBrown))
+                        color = colorResource(id = R.color.brownGrey))
 
                     Text(text = machine.id.toString(),
                         style = MaterialTheme.typography.body1,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
-                        color = colorResource(id = R.color.customDarkBrown))
+                        color = colorResource(id = R.color.brownGrey))
                 }
 
                     Spacer(Modifier.size(10.dp))
@@ -118,7 +128,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                         style = MaterialTheme.typography.body1,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
-                        color = colorResource(id = R.color.customDarkBrown))
+                        color = colorResource(id = R.color.brownGrey))
                 }
                     Spacer(Modifier.size(10.dp))
 
@@ -135,7 +145,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                         style = MaterialTheme.typography.body1,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
-                        color = colorResource(id = R.color.customDarkBrown))
+                        color = colorResource(id = R.color.brownGrey))
                 }
 
                     Spacer(Modifier.size(10.dp))
@@ -147,7 +157,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
 
                     Text(text = "Time: ",
                         style = MaterialTheme.typography.body1,
-                        color = colorResource(id = R.color.customDarkBrown))
+                        color = colorResource(id = R.color.brownGrey))
 
                     Text(text = "${
                         
@@ -156,7 +166,7 @@ fun MachineDetailsScreen(navController: NavController,viewModel:MainViewModel)
                         style = MaterialTheme.typography.body1
                         , modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Right,
-                        color = colorResource(id = R.color.customDarkBrown))
+                        color = colorResource(id = R.color.brownGrey))
                 }
                 
 

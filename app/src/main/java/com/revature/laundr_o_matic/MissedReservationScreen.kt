@@ -56,9 +56,9 @@ fun MissedReservationScreen(navController: NavController)
             )
             {
                 Image(
-                    painter = painterResource(id = R.drawable.frowning_face),
-                    contentDescription = "frowning face",
-                    modifier = Modifier.size(250.dp)
+                    painter = painterResource(id = R.drawable.grey_sad_face_icon_2),
+                    contentDescription = "Sad face",
+                    modifier = Modifier.size(180.dp)
                 )
             }
             Column(
@@ -68,7 +68,7 @@ fun MissedReservationScreen(navController: NavController)
                     .fillMaxHeight()
             ) {
 
-                Spacer(modifier = Modifier.height(220.dp))
+                Spacer(modifier = Modifier.height(160.dp))
 
                 Text(
                     text = "Oh no!",
@@ -76,7 +76,7 @@ fun MissedReservationScreen(navController: NavController)
                     TextStyle
                         (fontWeight = FontWeight.Bold),
                     fontSize = 50.sp,
-                    color = colorResource(id = R.color.customDarkBrown)
+                    color = colorResource(id = R.color.animalCrossingGreen)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -85,7 +85,7 @@ fun MissedReservationScreen(navController: NavController)
                             "\nWould you like to reschedule?",
                     textAlign = TextAlign.Center,
                     fontSize = 25.sp,
-                    color = colorResource(id = R.color.customDarkBrown)
+                    color = colorResource(id = R.color.brownGrey)
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -124,7 +124,7 @@ fun MissedReservationScreen(navController: NavController)
                         onClick = {navController.navigate(Screen.MainMenu.route)},
                         modifier = Modifier
                             .height(50.dp)
-                            .width(200.dp)
+                            .width(170.dp)
                     )
                     {
                         Text(
