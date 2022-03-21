@@ -54,21 +54,18 @@ fun UpcomingReservationScreen(navController: NavController,viewModel:MainViewMod
             verticalArrangement = Arrangement.Center
         )
         {
-
-
-
                 Image(
                     painter = painterResource(id = R.drawable.washing_machine),
                     contentDescription = "Machine icon",
                     modifier = Modifier.size(250.dp)
                 )
 
-
-
-
-
                     Spacer(modifier = Modifier.height(20.dp))
-
+                    Text(
+                        text = "Size: 20 loads",
+                        fontSize = 25.sp,
+                        color = colorResource(id = R.color.customDarkBrown)
+                    )
                     Text(
                         text = "Size: 20 loads",
                         fontSize = 25.sp,

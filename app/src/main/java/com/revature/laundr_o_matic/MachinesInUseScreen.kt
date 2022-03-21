@@ -32,7 +32,6 @@ fun MachinesInUseScreen(navController: NavController)
             title = { Text("Machines in use", color = colorResource(id = R.color.customDarkBrown)) },
             backgroundColor = colorResource(id = R.color.animalCrossingGreen))
 
-
             Box(modifier = Modifier
                 .fillMaxSize()
                 .background(color = colorResource(id = R.color.lightCream)),
@@ -178,7 +177,6 @@ fun MachinesInUseScreen(navController: NavController)
                         Spacer(modifier = Modifier.height(30.dp))
                     }
                 }
-
         }
     }
 }
