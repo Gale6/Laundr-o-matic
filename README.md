@@ -17,6 +17,16 @@ MVVM design pattern
 * Laundry and dryer reservation
 * Finish cycle timer
 
+## Getting Started
+
+1. Download the project https://github.com/Gale6/Laundr-o-matic.git
+2. Import into Android Studio
+3. Build and run the project
+
+## Usage 
+
+When ran, register a new user with the app. The main menu provides navigation through the app. New Reservation gives users a list of available machines to reserve. In Current Machines, users are shown what machines they have reserved and any running machines. Wallet shows the users purchase history, and Profile allows for users to edit their password.
+
 ## Contributors
 
 * Ryan Cox (<https://github.com/RyanKCox>)
