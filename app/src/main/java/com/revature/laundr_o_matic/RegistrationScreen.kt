@@ -70,8 +70,7 @@ fun RegistrationScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.background(color = colorResource(id = R.color.lightCream), RectangleShape)
-            .fillMaxWidth()
-            .fillMaxHeight(.8f)
+            .fillMaxSize()
             .clickable { focusManager.clearFocus() }
     )
     {

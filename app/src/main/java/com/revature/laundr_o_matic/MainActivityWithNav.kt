@@ -37,7 +37,3 @@ class MainActivityWithNav : ComponentActivity() {
         }
     }
 }
-
-
-
-
